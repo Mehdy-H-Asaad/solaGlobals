@@ -23,6 +23,7 @@ export const FAQs = () => {
 						<div className="flex flex-col gap-4">
 							{faqsData.map((faq, index) => (
 								<motion.div
+									viewport={{ once: true }}
 									variants={staggerVariants}
 									initial="initial"
 									whileInView="animate"
@@ -42,6 +43,7 @@ export const FAQs = () => {
 					</Accordion>
 
 					<motion.img
+						viewport={{ once: true }}
 						initial={{ opacity: 0, marginLeft: 60 }}
 						whileInView={{ opacity: 1, marginLeft: 0 }}
 						transition={{ duration: 0.5 }}

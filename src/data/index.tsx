@@ -29,8 +29,8 @@ export const contactDetails = [
 	{
 		id: 1,
 		contact: "Head Office",
-		description: ` Al-Qusiba Street, Janzour, Tripoli`,
-		secAddress: " 416 cardinal dr statesboro, GA 30461",
+		description: "Al-Qusiba Street, Janzour, Tripoli",
+		secAddress: "416 cardinal dr statesboro, GA 30461",
 	},
 	{
 		id: 2,

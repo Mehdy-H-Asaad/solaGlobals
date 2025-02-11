@@ -40,6 +40,7 @@ export const Navbar = () => {
 					<div className="hidden lg:flex items-center gap-10">
 						{navLinks.map((link, index) => (
 							<motion.a
+								viewport={{ once: true }}
 								variants={staggerVariants}
 								initial="initial"
 								animate="animate"
@@ -58,7 +59,7 @@ export const Navbar = () => {
 						<a href="tel:+218 91-4729090">+218 91-4729090</a>
 					</div>
 
-					<ResponsiveNavBar />
+					<ResponsiveNavBar isBackgroundVisible={isBackgroundVisible} />
 				</div>
 			</div>
 		</div>

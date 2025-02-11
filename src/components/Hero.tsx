@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 export const Hero = () => {
 	return (
-		<div className="py-20 hero-bg h-[900px] sm:h-screen flex items-center justify-center ">
+		<div className="py-20 hero-bg h-[700px] sm:h-screen flex items-center justify-center ">
 			<div className="container">
 				<div className="relative flex items-center justify-center">
 					<motion.div
+						viewport={{ once: true }}
 						initial={{ opacity: 0, y: 40 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8 }}
@@ -14,7 +15,7 @@ export const Hero = () => {
 							Drive Your Dreams With
 							<span className="font-[900] text-blue"> Sola Groups</span>
 						</div>
-						<p className="text-3xl text-center">
+						<p className="text-xl sm:text-3xl text-center">
 							Sola Groups: Your Bridge to Quality Cars From the USA to Libya
 						</p>
 						<div className="cursor-pointer duration-200 hover:bg-white hover:text-black text-lg font-[600] bg-blue text-white py-3 px-6 rounded-md">

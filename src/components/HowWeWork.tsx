@@ -24,6 +24,7 @@ export const HowWeWork = () => {
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-20">
 					{howWeWorkData.map((work, index) => (
 						<motion.div
+							viewport={{ once: true }}
 							variants={staggerVariants}
 							initial="initial"
 							whileInView="animate"

@@ -61,6 +61,7 @@ export const Welcome = () => {
 								<motion.div
 									variants={staggerVariants}
 									initial="initial"
+									viewport={{ once: true }}
 									whileInView="animate"
 									custom={index}
 									className="flex  gap-2"

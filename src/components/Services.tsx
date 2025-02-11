@@ -25,6 +25,7 @@ export const Services = () => {
 					{servicesData.map((service, index) => (
 						<motion.div
 							variants={staggerVariants}
+							viewport={{ once: true }}
 							initial="initial"
 							whileInView="animate"
 							custom={index}

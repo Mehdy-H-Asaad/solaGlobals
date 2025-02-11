@@ -11,15 +11,16 @@ export const Footer = () => {
 				<div>
 					<img
 						src={logo}
-						className="size-40 mx-auto object-cover"
+						className="size-40 mb-4 mx-auto object-cover"
 						alt="Not found"
 						loading="lazy"
 					/>
 				</div>
 
-				<div className="flex flex-wrap justify-center gap-20">
+				<div className="flex flex-col sm:flex-row flex-wrap justify-center gap-20">
 					<div className="flex flex-col gap-10 flex-1">
 						<motion.div
+							viewport={{ once: true }}
 							initial={{ opacity: 0, y: 100 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.8 }}
@@ -32,6 +33,7 @@ export const Footer = () => {
 						</motion.div>
 
 						<motion.div
+							viewport={{ once: true }}
 							initial={{ opacity: 0, y: 100 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.8 }}
@@ -41,8 +43,13 @@ export const Footer = () => {
 
 							<div className="flex flex-col gap-4">
 								{contactDetails.map(contact => (
-									<div key={contact.id} className="flex items-center gap-2">
-										{contact.contact}: <div>{contact.description}</div>
+									<div key={contact.id} className="flex flex-col  gap-1">
+										{contact.contact}:
+										<a href={contact.href} className="text-sm">
+											{contact.hrefTitle}
+										</a>
+										<div className="text-sm">{contact.description}</div>
+										<p className="text-sm">{contact.secAddress}</p>
 									</div>
 								))}
 							</div>
@@ -50,10 +57,11 @@ export const Footer = () => {
 					</div>
 
 					<motion.div
+						viewport={{ once: true }}
 						initial={{ opacity: 0, y: 100 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8 }}
-						className="flex flex-col gap-2 flex-1 items-center"
+						className="flex flex-col gap-2 flex-1 items-start sm:items-center"
 					>
 						<h1 className="text-2xl font-bold">Quick Links</h1>
 						<div className="flex flex-col gap-4">

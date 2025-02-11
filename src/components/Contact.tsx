@@ -50,6 +50,7 @@ export const Contact = () => {
 									initial="initial"
 									whileInView="animate"
 									custom={index}
+									viewport={{ once: true }}
 									key={contact.id}
 									className="flex flex-col gap-2 border border-blue rounded-md py-4 px-6 items-center justify-center text-center"
 								>
@@ -88,6 +89,7 @@ export const Contact = () => {
 							{/* </div> */}
 						</div>
 						<motion.div
+							viewport={{ once: true }}
 							initial={{ opacity: 0, x: 60 }}
 							whileInView={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.8 }}
