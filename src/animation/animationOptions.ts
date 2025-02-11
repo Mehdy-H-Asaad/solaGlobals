@@ -18,7 +18,7 @@ export const useAnimationOptions = () => {
 	};
 
 	const ref = useRef(null);
-	const isInView = useInView(ref, { once: true, margin: "-75%" });
+	const isInView = useInView(ref, { once: true, margin: "-25%" });
 
 	const textAnimation = {
 		initial: {
