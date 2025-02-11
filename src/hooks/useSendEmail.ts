@@ -3,14 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-type TSendEmailDTO = {
-	name: string;
-	subject?: string;
-	phone: string;
-	email: string;
-	message: string;
-};
+import { TSendEmailDTO } from "@/types";
 
 export const useSendEmail = () => {
 	const { mutate: sendEmail, isPending: IsSendingEmail } = useMutation({

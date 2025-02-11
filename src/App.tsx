@@ -1,23 +1,19 @@
-import { Contact } from "./components/Contact";
-import { FAQs } from "./components/FAQs";
-import { Footer } from "./components/Footer";
-import { Hero } from "./components/Hero";
-import { HowWeWork } from "./components/HowWeWork";
-import { Navbar } from "./components/Navbar";
-import { Services } from "./components/Services";
-import { Welcome } from "./components/Welcome";
-
+import { Route, Routes, useLocation } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Admin } from "./pages/Admin";
 function App() {
+	const location = useLocation();
+	const isAdminURL = location.pathname.startsWith("/admin");
+
 	return (
 		<>
-			<Navbar />
-			<Hero />
-			<Welcome />
-			<HowWeWork />
-			<Services />
-			<FAQs />
-			<Contact />
-			<Footer />
+			<Routes>
+				<Route path="/" element={<Home />} />
+			</Routes>
+
+			<Routes>
+				<Route path="/admin" element={<Admin />} />
+			</Routes>
 		</>
 	);
 }

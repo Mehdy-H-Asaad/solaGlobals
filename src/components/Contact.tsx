@@ -12,6 +12,8 @@ import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { useMemo } from "react";
 import { contactDetails } from "@/data";
+import { motion } from "framer-motion";
+import { useAnimationOptions } from "@/animation/animationOptions";
 
 export const Contact = () => {
 	const { emailForm, onSendEmail } = useSendEmail();
@@ -31,6 +33,9 @@ export const Contact = () => {
 		[]
 	);
 
+	const { isInView, ref, staggerVariants, textAnimation } =
+		useAnimationOptions();
+
 	return (
 		<div className="py-20" id="contact">
 			<div className="container">
@@ -39,8 +44,12 @@ export const Contact = () => {
 						<div>{googleMap}</div>
 
 						<div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-10">
-							{contactDetails.map(contact => (
-								<div
+							{contactDetails.map((contact, index) => (
+								<motion.div
+									variants={staggerVariants}
+									initial="initial"
+									whileInView="animate"
+									custom={index}
 									key={contact.id}
 									className="flex flex-col gap-2 border border-blue rounded-md py-4 px-6 items-center justify-center text-center"
 								>
@@ -50,17 +59,39 @@ export const Contact = () => {
 									</a>
 									<div className="text-sm">{contact.description}</div>
 									<p className="text-sm">{contact.secAddress}</p>
-								</div>
+								</motion.div>
 							))}
 						</div>
 					</div>
 
 					<div className="flex-1">
-						<div className="text-4xl font-bold">
-							Contact <span className="text-blue">Us</span>
+						<div ref={ref}>
+							<div className="overflow-hidden">
+								<motion.div
+									variants={textAnimation}
+									initial="initial"
+									animate={isInView ? "enter" : ""}
+									className="text-4xl font-bold"
+								>
+									Contact <span className="text-blue">Us</span>
+								</motion.div>
+							</div>
+							<div className="overflow-hidden mb-6">
+								<motion.p
+									variants={textAnimation}
+									initial="initial"
+									animate={isInView ? "enter" : ""}
+								>
+									Feel free to contact us.
+								</motion.p>
+							</div>
+							{/* </div> */}
 						</div>
-						<p className="mb-6">Feel free to contact us.</p>
-						<div>
+						<motion.div
+							initial={{ opacity: 0, x: 60 }}
+							whileInView={{ opacity: 1, x: 0 }}
+							transition={{ duration: 0.8 }}
+						>
 							<Form {...emailForm}>
 								<form
 									className="flex flex-col gap-6"
@@ -137,7 +168,7 @@ export const Contact = () => {
 									</Button>
 								</form>
 							</Form>
-						</div>
+						</motion.div>
 					</div>
 				</div>
 			</div>

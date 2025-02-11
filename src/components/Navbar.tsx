@@ -1,6 +1,9 @@
 import { navLinks } from "@/data";
 import { useEffect, useState } from "react";
 import Logo from "../assets/imgs/logo.png";
+import { ResponsiveNavBar } from "./ResponsiveNavBar";
+import { motion } from "framer-motion";
+import { useAnimationOptions } from "@/animation/animationOptions";
 
 export const Navbar = () => {
 	const [isBackgroundVisible, setIsBackGroundVisible] = useState<boolean>(
@@ -20,6 +23,8 @@ export const Navbar = () => {
 		};
 	}, []);
 
+	const { staggerVariants } = useAnimationOptions();
+
 	return (
 		<div
 			className={`${
@@ -32,22 +37,28 @@ export const Navbar = () => {
 				<div className="flex items-center justify-between">
 					<img src={Logo} className="w-32" alt="Logo" />
 
-					<div className="flex items-center gap-10">
-						{navLinks.map(link => (
-							<a
+					<div className="hidden lg:flex items-center gap-10">
+						{navLinks.map((link, index) => (
+							<motion.a
+								variants={staggerVariants}
+								initial="initial"
+								animate="animate"
+								custom={index}
 								href={link.id}
 								className="font-bold cursor-pointer nav-link"
 								key={link.id}
 							>
 								{link.title}
-							</a>
+							</motion.a>
 						))}
 					</div>
 
-					<div className="flex flex-col gap-2">
+					<div className="hidden lg:flex flex-col gap-2">
 						<div className="font-bold">Call Us Today: </div>
 						<a href="tel:+218 91-4729090">+218 91-4729090</a>
 					</div>
+
+					<ResponsiveNavBar />
 				</div>
 			</div>
 		</div>
