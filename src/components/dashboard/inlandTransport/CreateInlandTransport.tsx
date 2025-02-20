@@ -22,7 +22,6 @@ import { useEffect, useRef, useState } from "react";
 import { useGetSources } from "../hooks/source/useGetSources";
 import { useGetDestinations } from "../hooks/destination/useGetDestinations";
 import { Skeleton } from "@/components/ui/skeleton";
-import toast from "react-hot-toast";
 
 export const CreateInlandTransport = () => {
 	const {
