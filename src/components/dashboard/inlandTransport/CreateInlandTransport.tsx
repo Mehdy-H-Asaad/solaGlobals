@@ -84,7 +84,7 @@ export const CreateInlandTransport = () => {
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Create Inland transport
+					Create inland transport
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">

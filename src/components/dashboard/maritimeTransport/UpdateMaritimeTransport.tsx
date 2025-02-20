@@ -73,7 +73,7 @@ export const UpdateMaritimeTransport = (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Update Maritime transport
+					Update maritime transport
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">

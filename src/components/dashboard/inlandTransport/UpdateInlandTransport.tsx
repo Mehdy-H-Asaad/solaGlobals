@@ -70,7 +70,7 @@ export const UpdateInlandTransport = (inlandTransport: TInlandTransports) => {
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Update Inland transport
+					Update inland transport
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">

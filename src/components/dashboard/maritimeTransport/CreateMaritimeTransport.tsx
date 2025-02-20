@@ -63,6 +63,20 @@ export const CreateMaritimeTransport = () => {
 		destination.state.toLowerCase().includes(warehouseSearch.toLowerCase())
 	);
 
+	const filteredshippingLines = shippingLines?.filter(shippingLine =>
+		shippingLine.name.toLowerCase().includes(shippingLineSearch.toLowerCase())
+	);
+
+	const isValidShippingLine = filteredshippingLines?.some(
+		source => source.name.toLowerCase() === shippingLineSearch.toLowerCase()
+	);
+	const isValidDestination = filteredDestinations?.some(
+		destination =>
+			destination.state.toLowerCase() === warehouseSearch.toLowerCase()
+	);
+
+	const isFormValid = isValidShippingLine && isValidDestination;
+
 	if (!filteredDestinations || !filteredShippingLines)
 		return <Skeleton className="w-[250px] h-8" />;
 
@@ -70,7 +84,7 @@ export const CreateMaritimeTransport = () => {
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Create Maritime transport
+					Create maritime transport
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
@@ -198,6 +212,7 @@ export const CreateMaritimeTransport = () => {
 								<Button
 									className="bg-blue hover:bg-cyan-800 text-white"
 									type="submit"
+									disabled={isCreatingMaritimeTransport || !isFormValid}
 								>
 									{isCreatingMaritimeTransport
 										? "Creating..."

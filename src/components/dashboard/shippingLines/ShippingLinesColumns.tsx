@@ -53,7 +53,7 @@ export const ShippingLineColumns: ColumnDef<TShippingLine>[] = [
 						<DropdownMenuLabel>Options</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<AlertDialog>
-							<AlertDialogTrigger className="mb-2 bg-red-600 duration-200 text-white hover:!bg-red-800 hover:!text-white cursor-pointer px-2 py-1 flex rounded-sm">
+							<AlertDialogTrigger className="mb-2 bg-red-600 duration-200 text-white hover:!bg-red-800 text-sm hover:!text-white cursor-pointer w-full text-center justify-center p-2 flex rounded-sm">
 								Delete shipping line
 							</AlertDialogTrigger>
 							<AlertDialogContent className="bg-white text-black">
