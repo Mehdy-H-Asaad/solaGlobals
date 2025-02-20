@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
+import { Trans, useTranslation } from "react-i18next";
 export const Hero = () => {
+	const { t } = useTranslation();
+
 	return (
 		<div className="py-20 hero-bg h-[700px] sm:h-screen flex items-center justify-center ">
 			<div className="container">
@@ -12,14 +15,16 @@ export const Hero = () => {
 						className="text-white  flex flex-col gap-10 items-center"
 					>
 						<div className="text-3xl md:text-5xl lg:text-7xl max-w-[60rem] text-center">
-							Drive Your Dreams With
-							<span className="font-[900] text-blue"> Sola Groups</span>
+							<Trans i18nKey="hero.title">
+								<span className="font-[900] text-blue"> Sola Groups</span>
+							</Trans>
 						</div>
 						<p className="text-xl sm:text-3xl text-center">
-							Sola Groups: Your Bridge to Quality Cars From the USA to Libya
+							{t("hero.paraghraph")}
+							{/* Sola Groups: Your Bridge to Quality Cars From the USA to Libya */}
 						</p>
 						<div className="cursor-pointer duration-200 hover:bg-white hover:text-black text-lg font-[600] bg-blue text-white py-3 px-6 rounded-md">
-							Track Your Vehicle
+							{t("hero.button")}
 						</div>
 					</motion.div>
 				</div>

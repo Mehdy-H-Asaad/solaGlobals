@@ -1,12 +1,19 @@
 import { useAnimationOptions } from "@/animation/animationOptions";
 import { servicesData } from "@/data";
 import { motion } from "framer-motion";
+import { Trans, useTranslation } from "react-i18next";
 
 export const Services = () => {
 	const { isInView, ref, staggerVariants, textAnimation } =
 		useAnimationOptions();
+
+	const { t } = useTranslation();
+	const servicesDataTranslate = t("services.servicesData", {
+		returnObjects: true,
+	}) as typeof servicesData;
+
 	return (
-		<div className="py-20" id="services">
+		<div className="py-20 bg-[#f1f5fa]" id="work">
 			<div className="container">
 				<div ref={ref}>
 					<div className="overflow-hidden mb-10">
@@ -14,32 +21,33 @@ export const Services = () => {
 							variants={textAnimation}
 							initial="initial"
 							animate={isInView ? "enter" : ""}
-							className="text-center font-[700] text-5xl"
+							className="text-5xl font-bold w-fit mx-auto"
 						>
-							Our
-							<span className="text-blue"> Services</span>
+							<Trans i18nKey={"services.title"}>
+								<span className="text-blue">Services</span>
+							</Trans>
 						</motion.div>
 					</div>
 				</div>
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-20 ">
-					{servicesData.map((service, index) => (
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
+					{servicesDataTranslate.map((work, index) => (
 						<motion.div
-							variants={staggerVariants}
 							viewport={{ once: true }}
+							variants={staggerVariants}
 							initial="initial"
 							whileInView="animate"
 							custom={index}
-							key={service.id}
-							className="flex flex-col gap-4 border-[3px] p-4 rounded-md border-black relative"
+							key={work.id}
+							className="flex flex-col gap-4 items-center"
 						>
-							<div>
-								<service.icon
-									className="absolute text-blue w-20 -top-4 bg-white left-4"
-									size={35}
-								/>
+							<div key={work.id} className="font-bold text-6xl  w-fit">
+								<span className="how-we-work-num">0</span>
+								{index + 1}
 							</div>
-							<div className="font-bold text-xl">{service.title}</div>
-							<div className="text-lg">{service.service}</div>
+							<div className="font-bold text-xl">{work.titel}</div>
+							<p className="rtl:text-base text-sm text-center">
+								{work.description}
+							</p>
 						</motion.div>
 					))}
 				</div>

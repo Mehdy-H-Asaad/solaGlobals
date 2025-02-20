@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TSendEmailDTO } from "@/types";
+import { useTranslation } from "react-i18next";
 
 export const useSendEmail = () => {
 	const { mutate: sendEmail, isPending: IsSendingEmail } = useMutation({
@@ -19,11 +20,15 @@ export const useSendEmail = () => {
 		},
 	});
 
+	const { t } = useTranslation();
 	const emailSchema = z.object({
-		name: z.string().min(1, "Name is required"),
-		phone: z.string().min(1, "Phone is required"),
-		email: z.string().min(1, "Email is required").email("Invalid Email"),
-		message: z.string().min(1, "Message is required"),
+		name: z.string().min(1, t("validation.name")),
+		phone: z.string().min(1, t("validation.phone")),
+		email: z
+			.string()
+			.min(1, t("validation.email"))
+			.email(t("validation.emailNotValid")),
+		message: z.string().min(1, t("validation.message")),
 		subject: z.string().optional(),
 	});
 

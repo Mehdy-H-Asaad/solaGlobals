@@ -1,5 +1,5 @@
-import loginImg from "../assets/imgs/welcome-img.jpg";
-import logo from "../assets/imgs/logo.png";
+import loginImg from "../../assets/imgs/welcome-img.jpg";
+import logo from "../../assets/imgs/logo.png";
 import {
 	Form,
 	FormControl,
@@ -7,12 +7,12 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+} from "../ui/form";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import { useAdminLogin } from "@/hooks/useAdminLogin";
 export const AdminLogin = () => {
-	const { onLogin, adminLoginForm } = useAdminLogin();
+	const { onLogin, adminLoginForm, isLoggingIn } = useAdminLogin();
 
 	return (
 		<div className="flex items-center justify-center h-screen mx-20 lg:mr-20 lg:mx-0">
@@ -38,12 +38,12 @@ export const AdminLogin = () => {
 						>
 							<FormField
 								control={adminLoginForm.control}
-								name="email"
+								name="username"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Email</FormLabel>
+										<FormLabel>Username</FormLabel>
 										<FormControl>
-											<Input {...field} placeholder="Email" />
+											<Input {...field} placeholder="Username" />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -67,8 +67,11 @@ export const AdminLogin = () => {
 								)}
 							/>
 
-							<Button className="w-fit font-bold bg-blue duration-300 hover:bg-black text-white p-2 px-10 rounded-md">
-								Login
+							<Button
+								disabled={isLoggingIn}
+								className="w-fit font-bold bg-blue duration-300 hover:bg-black text-white p-2 px-10 rounded-md"
+							>
+								{isLoggingIn ? "Logging..." : "Login"}
 							</Button>
 						</form>
 					</Form>

@@ -5,23 +5,29 @@ import {
 	AccordionContent,
 } from "@/components/ui/accordion";
 import FAQsImg from "../assets/imgs/faqs.jpg";
-import { faqsData } from "@/data";
 import { motion } from "framer-motion";
 import { useAnimationOptions } from "@/animation/animationOptions";
+import { Trans, useTranslation } from "react-i18next";
 export const FAQs = () => {
 	const { staggerVariants } = useAnimationOptions();
+
+	const { t } = useTranslation();
+
+	const FAQsData = t("faqs.faqsData", { returnObjects: true }) as any[];
 
 	return (
 		<div className="py-20 bg-[#f1f5fa]" id="faq">
 			<div className="container">
 				<div className="text-4xl font-bold w-fit mx-auto mb-20 text-center lg:text-start">
-					Frequently Asked<span className="text-blue "> Questions</span>
+					<Trans i18nKey={"faqs.title"}>
+						<span className="text-blue "> Questions</span>
+					</Trans>
 				</div>
 
-				<div className="flex flex-col lg:flex-row justify-center gap-20">
+				<div className="flex rtl:flex-row-reverse flex-col lg:flex-row justify-center gap-20">
 					<Accordion type="single" collapsible className="flex-1">
 						<div className="flex flex-col gap-4">
-							{faqsData.map((faq, index) => (
+							{FAQsData.map((faq, index) => (
 								<motion.div
 									viewport={{ once: true }}
 									variants={staggerVariants}

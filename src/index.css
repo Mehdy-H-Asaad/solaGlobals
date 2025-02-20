@@ -9,6 +9,10 @@ body {
 	overflow-x: hidden;
 }
 
+html[lang="ar"] body {
+	font-family: "Cairo", serif;
+}
+
 html {
 	overflow-x: hidden;
 	scroll-behavior: smooth;
@@ -31,6 +35,10 @@ html {
 }
 
 .nav-link:hover::before {
+	width: 100%;
+}
+
+.nav-link.active::before {
 	width: 100%;
 }
 

@@ -5,7 +5,7 @@ export type TAdmin = {
 };
 
 export type TAdminLoginDTO = {
-	email: string;
+	username: string;
 	password: string;
 };
 

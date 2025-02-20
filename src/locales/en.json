@@ -1,0 +1,193 @@
+{
+	"navLinks": [
+	  {
+		"title": "Home",
+		"id": "#"
+	  },
+	  {
+		"title": "Work",
+		"id": "#work"
+	  },
+	  {
+		"title": "Services",
+		"id": "#services"
+	  },
+	  {
+		"title": "FAQs",
+		"id": "#faq"
+	  },
+	  {
+		"title": "Contact",
+		"id": "#contact"
+	  },
+	  {
+		"title": "English"
+	  }
+	],
+
+	"phoneNumbers": {
+		"firstNumber": "+218 91-4729090",
+		"secondNumber":"+1 (912) 275-5983"
+	},
+
+	"hero": {
+		"title": "Drive Your Dreams With <0> Sola Groups</0>",
+		"paraghraph" : "Sola Groups: Your Bridge to Quality Cars From the USA to Libya",
+		"button" : "Track your vehicle"
+	},
+
+	"contact": {
+		"title":"Contact <0>Us</0>",
+		"paraghraph": "Feel free to contact us.",
+	"contactDetails": [
+	  {
+		"id": 1,
+		"type": "address",
+		"label": "Head Office",
+		"primary": "Al-Qusiba Street, Janzour, Tripoli",
+		"secondary": "416 Cardinal Dr, Statesboro, GA 30461"
+	  },
+	  {
+		"id": 2,
+		"type": "phone",
+		"label": "Phone",
+		"primary": "+218 91-4729090",
+		"secondary": "+1 (912) 275-5983"
+	  },
+	  {
+		"id": 3,
+		"type": "email",
+		"label": "Email",
+		"primary": "suoollibya2015@gmail.com"
+	  },
+	  {
+		"id": 4,
+		"type": "phone",
+		"label": "WhatsApp",
+		"primary": "+218 91-4729090"
+	  }
+	]},
+
+	"faqs" : {
+		"title": "Frequently Asked <0>Questions<0/>",
+	"faqsData": [
+	  {
+		"id": 1,
+		"question": "How does the online car bidding process work?",
+		"answer": "Users can browse a wide selection of vehicles listed on the platform, place bids in real-time auctions, and win vehicles if they have the highest bid."
+	  },
+	  {
+		"id": 2,
+		"question": "Why ship using a shipping container?",
+		"answer": "Shipping containers are used because they are standardized, secure, cost-effective, and easy to transport by ship, train, or truck, making global trade efficient."
+	  },
+	  {
+		"id": 3,
+		"question": "Can I transport a vehicle I purchased to another state or country?",
+		"answer": "Yes, we provide transportation services through our company, including international shipping."
+	  },
+	  {
+		"id": 4,
+		"question": "Can I inspect the vehicle before bidding?",
+		"answer": "Yes, most platforms like Copart provide detailed vehicle descriptions, photos, and condition reports."
+	  }
+	]},
+
+	"services": {
+		"title" : "Our <0>Services</0>",
+	"servicesData": [
+	  {
+		"id": 1,
+		"title": "Search Inventory",
+		"description": "Explore our extensive inventory to find your perfect vehicle"
+	  },
+	  {
+		"id": 2,
+		"title": "Dispatch",
+		"description": "We prepare and ship your vehicle to one of our warehouses."
+	  },
+	  {
+		"id": 3,
+		"title": "Customer Service",
+		"description": "24/7 by WhatsApp groups and emails"
+	  },
+	  {
+		"id": 4,
+		"title": "Loading",
+		"description": "The product is safely loaded onto the container"
+	  },
+	  {
+		"id": 5,
+		"title": "Delivery",
+		"description": "The product is promptly delivered to the customer’s specified address"
+	  }
+	]
+},
+
+	"chooseUs" : {
+		"title": "Choose <0>Us</0>",
+	"chooseUsData": [
+	  {
+		"id": 1,
+		"title": "Trust",
+		"service": "Loyal and committed to our company always.",
+		"icon" : "FaHandshakeSimple"
+	  },
+	  {
+		"id": 2,
+		"title": "Continuous Improvement",
+		"service": "Ongoing enhancement of our team and offerings.",
+		"icon": "FaArrowTrendUp"
+		
+	  },
+	  {
+		"id": 3,
+		"title": "Reliability",
+		"service": "Execute and uphold our responsibilities under all conditions.",
+		"icon": "AiOutlineSafety"
+	  },
+	  {
+		"id": 4,
+		"title": "Accountability",
+		"service": "Take ownership and responsibility for our actions and outcomes.",
+		"icon" : "TbChecklist"
+		}
+	]
+	},
+	"welcome" : {
+		"title": "Welcome to <0>Sola Group</0>",
+	"welcomeData": {
+		"welcomeParagraphOne": "We provide a complete end-to-end service, starting with expert bidding on your preferred vehicles at US auctions.",
+		"welcomeParagraphTwo": "We handle all the necessary paperwork and logistics, and ensuring safe and timely delivery to your specified location, wherever that may be.."
+	},
+
+	"WelcomeIcons": [
+	  {
+		"id": 1,
+		"title": "Easy Financing"
+	  },
+	  {
+		"id": 2,
+		"title": "All Brands Cars"
+	  },
+	  {
+		"id": 3,
+		"title": "Quality Services"
+	  }
+	]
+},
+
+	"footer": {
+		"aboutTitle": "About",
+		"aboutParaghraph": "We provide a complete end-to-end service, starting with expert bidding on your preferred vehicles at US auctions.",
+		"quickLinksTitle": "Quick Links"
+	},
+
+	"validation": {
+		"name":"name is required",
+		"phone": "Phone is required",
+		"email":"Email is required",
+		"emailNotValid": "Invalid Email",
+		"message":"Message is required"
+	}
+  }

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { navLinks } from "@/data";
 import { SheetTrigger, SheetContent, Sheet } from "./ui/sheet";
 import { CiMenuFries } from "react-icons/ci";
 import { FaEarthAmericas } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 
 export const ResponsiveNavBar = ({
 	isBackgroundVisible,
@@ -10,6 +10,16 @@ export const ResponsiveNavBar = ({
 	isBackgroundVisible: boolean;
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
+
+	const { t, i18n } = useTranslation();
+
+	const changeLanguage = () => {
+		i18n.language === "ar"
+			? i18n.changeLanguage("en")
+			: i18n.changeLanguage("ar");
+	};
+
+	const navLinks = t("navLinks", { returnObjects: true }) as any[];
 
 	return (
 		<div className="block lg:hidden">
@@ -24,20 +34,27 @@ export const ResponsiveNavBar = ({
 					/>
 				</SheetTrigger>
 				<SheetContent className="bg-main-color text-black">
-					<div className="flex flex-col gap-10">
+					<div className="rtl:items-end flex flex-col gap-10">
 						{navLinks.map(nav => (
 							<a
 								href={nav.id}
 								className="text-lg font-bold"
 								key={nav.id}
-								onClick={() => setIsOpen(false)} // Close sheet on click
+								onClick={() => setIsOpen(false)}
 							>
 								{nav.title}
 							</a>
 						))}
-						<div className="flex items-center gap-2">
+						<div
+							className="flex items-center gap-2"
+							onClick={() => {
+								changeLanguage(), setIsOpen(false);
+							}}
+						>
 							<FaEarthAmericas size={24} />
-							<div className="text-lg font-bold">EN</div>
+							<div className="text-lg font-bold">
+								{i18n.language === "en" ? "English" : "العربية"}
+							</div>
 						</div>
 					</div>
 				</SheetContent>

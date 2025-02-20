@@ -1,16 +1,27 @@
-import { icons } from "@/data";
+// import { WelcomeIcons } from "@/data";
 import WelcomeImg from "../assets/imgs/cargoship-TA.jpg";
 import { motion } from "framer-motion";
 import { useAnimationOptions } from "@/animation/animationOptions";
+import { Trans, useTranslation } from "react-i18next";
+import { GiTakeMyMoney, GiCarWheel } from "react-icons/gi";
+import { GoChecklist } from "react-icons/go";
 
 export const Welcome = () => {
 	const { isInView, ref, staggerVariants, textAnimation } =
 		useAnimationOptions();
 
+	const { t } = useTranslation();
+
+	const welcomeIcons = t("welcome.WelcomeIcons", {
+		returnObjects: true,
+	}) as any[];
+
+	const icons = [GiTakeMyMoney, GiCarWheel, GoChecklist];
+
 	return (
 		<div className="py-20 ">
 			<div className="container">
-				<div className="flex flex-col items-center lg:items-start lg:flex-row justify-center gap-20">
+				<div className="flex rtl:flex-row-reverse flex-col items-center lg:items-start lg:flex-row justify-center gap-20">
 					<motion.img
 						initial={{ opacity: 0, x: -60 }}
 						whileInView={{ opacity: 1, x: 0 }}
@@ -23,14 +34,16 @@ export const Welcome = () => {
 					/>
 
 					<div ref={ref} className="flex flex-col gap-10 flex-1 ">
-						<div className="overflow-hidden">
+						<div className="overflow-hidden rtl:h-14">
 							<motion.div
 								variants={textAnimation}
 								initial="initial"
 								animate={isInView ? "enter" : ""}
 								className="text-4xl font-bold"
 							>
-								Welcome to <span className="text-blue">Sola Group</span>
+								<Trans i18nKey={"welcome.title"}>
+									<span className="text-blue">Sola Group</span>
+								</Trans>
 							</motion.div>
 						</div>
 						<div className="overflow-hidden">
@@ -40,8 +53,7 @@ export const Welcome = () => {
 								animate={isInView ? "enter" : ""}
 								className="text-lg"
 							>
-								We provide a complete end-to-end service, starting with expert
-								bidding on your preferred vehicles at US auctions.
+								{t("welcome.welcomeData.welcomeParagraphOne")}
 							</motion.p>
 						</div>
 
@@ -51,26 +63,27 @@ export const Welcome = () => {
 								initial="initial"
 								animate={isInView ? "enter" : ""}
 							>
-								We handle all the necessary paperwork and logistics, and
-								ensuring safe and timely delivery to your specified location,
-								wherever that may be.
+								{t("welcome.welcomeData.welcomeParagraphTwo")}
 							</motion.p>
 						</div>
 						<div className="flex gap-14 flex-wrap">
-							{icons.map((icon, index) => (
-								<motion.div
-									variants={staggerVariants}
-									initial="initial"
-									viewport={{ once: true }}
-									whileInView="animate"
-									custom={index}
-									className="flex  gap-2"
-									key={icon.id}
-								>
-									<div>{icon.icon}</div>
-									<div className="text-lg font-[600]">{icon.title}</div>
-								</motion.div>
-							))}
+							{welcomeIcons.map((icon, index) => {
+								const IconComponent = icons[index];
+								return (
+									<motion.div
+										variants={staggerVariants}
+										initial="initial"
+										viewport={{ once: true }}
+										whileInView="animate"
+										custom={index}
+										className="flex  gap-2"
+										key={icon.id}
+									>
+										<div>{<IconComponent size={28} />}</div>
+										<div className="text-lg font-[600]">{icon.title}</div>
+									</motion.div>
+								);
+							})}
 						</div>
 					</div>
 				</div>

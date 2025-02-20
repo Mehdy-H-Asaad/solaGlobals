@@ -2,10 +2,10 @@ import { Contact } from "@/components/Contact";
 import { FAQs } from "@/components/FAQs";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
-import { HowWeWork } from "@/components/HowWeWork";
-import { Navbar } from "@/components/Navbar";
 import { Services } from "@/components/Services";
+import { Navbar } from "@/components/Navbar";
 import { Welcome } from "@/components/Welcome";
+import { ChooseUs } from "@/components/ChooseUs";
 
 export const Home = () => {
 	return (
@@ -13,8 +13,8 @@ export const Home = () => {
 			<Navbar />
 			<Hero />
 			<Welcome />
-			<HowWeWork />
 			<Services />
+			<ChooseUs />
 			<FAQs />
 			<Contact />
 			<Footer />

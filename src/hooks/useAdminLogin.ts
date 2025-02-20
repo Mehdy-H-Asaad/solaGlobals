@@ -1,38 +1,30 @@
-import { axiosClient } from "@/api/axiosClient";
+import { useApiMutation } from "@/api/useApiMutation";
 import { useAuthStore } from "@/state/auth.state";
 import { TAdmin, TAdminLoginDTO } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 export const useAdminLogin = () => {
 	const { setAdmin } = useAuthStore();
 	const navigate = useNavigate();
+
 	const {
+		data: adminLoginData,
 		mutate: adminLogin,
 		isPending: isLoggingIn,
-		data: adminLoginData,
-	} = useMutation({
-		mutationKey: ["login"],
-		mutationFn: async (values: TAdminLoginDTO) => {
-			try {
-				const { data }: { data: TAdmin } = await axiosClient.post(
-					"/admin/login",
-					values
-				);
-
-				return data;
-			} catch (error: any) {
-				throw new Error(error.response.data.error);
-			}
-		},
+	} = useApiMutation<TAdmin, TAdminLoginDTO>({
+		axiosRequestMethod: "post",
+		queryKey: ["user"],
+		requestURL: "/auth/login",
+		onSuccess: () => toast.success("LoggedIn successfully"),
 	});
 
 	const adminLoginSchema = z.object({
-		email: z.string().min(1, "Email is required"),
+		username: z.string().min(1, "Username is required"),
 		password: z.string().min(1, "Password is required"),
 	});
 
@@ -41,7 +33,7 @@ export const useAdminLogin = () => {
 	const adminLoginForm = useForm<TAdminLoginSchema>({
 		resolver: zodResolver(adminLoginSchema),
 		defaultValues: {
-			email: "",
+			username: "",
 			password: "",
 		},
 	});
@@ -53,7 +45,7 @@ export const useAdminLogin = () => {
 	useEffect(() => {
 		if (adminLoginData) {
 			setAdmin(adminLoginData);
-			navigate("", { replace: true });
+			navigate("/admin/source", { replace: true });
 		}
 	}, [adminLoginData]);
 
