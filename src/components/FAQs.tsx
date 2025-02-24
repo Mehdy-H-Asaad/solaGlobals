@@ -8,6 +8,7 @@ import FAQsImg from "../assets/imgs/faqs.jpg";
 import { motion } from "framer-motion";
 import { useAnimationOptions } from "@/animation/animationOptions";
 import { Trans, useTranslation } from "react-i18next";
+
 export const FAQs = () => {
 	const { staggerVariants } = useAnimationOptions();
 
@@ -27,7 +28,7 @@ export const FAQs = () => {
 					</Trans>
 				</div>
 
-				<div className="flex rtl:flex-row-reverse flex-col lg:flex-row justify-center gap-20">
+				<div className="flex rtl:flex-col-reverse lg:rtl:flex-row-reverse flex-col lg:flex-row justify-center gap-20">
 					<Accordion type="single" collapsible className="flex-1">
 						<div className="flex flex-col gap-4">
 							{FAQsData.map((faq, index) => (
@@ -56,7 +57,7 @@ export const FAQs = () => {
 						initial={{ opacity: 0, marginLeft: 60 }}
 						whileInView={{ opacity: 1, marginLeft: 0 }}
 						transition={{ duration: 0.5 }}
-						className="size-96 object-cover rounded-md flex-1 mx-auto"
+						className="size-96 object-cover rounded-md !ml-auto flex-1 mx-auto"
 						src={FAQsImg}
 						loading="lazy"
 						alt="Not found"

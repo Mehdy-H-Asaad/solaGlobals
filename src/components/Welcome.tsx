@@ -21,7 +21,7 @@ export const Welcome = () => {
 	return (
 		<div className="py-20 ">
 			<div className="container">
-				<div className="flex rtl:flex-row-reverse flex-col items-center lg:items-start lg:flex-row justify-center gap-20">
+				<div className="flex rtl:flex-col-reverse rtl:lg:flex-row-reverse flex-col items-center lg:items-start lg:flex-row justify-center gap-20">
 					<motion.img
 						initial={{ opacity: 0, x: -60 }}
 						whileInView={{ opacity: 1, x: 0 }}
@@ -34,7 +34,7 @@ export const Welcome = () => {
 					/>
 
 					<div ref={ref} className="flex flex-col gap-10 flex-1 ">
-						<div className="overflow-hidden rtl:h-14">
+						<div className="overflow-hidden rtl:overflow-visible">
 							<motion.div
 								variants={textAnimation}
 								initial="initial"

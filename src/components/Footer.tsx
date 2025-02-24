@@ -11,7 +11,7 @@ export const Footer = () => {
 
 	const contactDetails = t("contact.contactDetails", {
 		returnObjects: true,
-	}) as any[];
+	}) as Record<string, string>[];
 
 	const navLinks = t("navLinks", { returnObjects: true }) as Record<
 		string,
@@ -53,7 +53,7 @@ export const Footer = () => {
 
 							<div className="flex flex-col gap-4">
 								{contactDetails.map(contact => (
-									<div className="flex flex-col gap-1">
+									<div key={contact.id} className="flex flex-col gap-1">
 										<div className="text-lg font-bold">
 											{contact.label == "WhatsApp" ||
 											contact.label == "واتساب" ? (

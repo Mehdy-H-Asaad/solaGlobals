@@ -46,7 +46,7 @@ export const Contact = () => {
 	return (
 		<div className="py-20" id="contact">
 			<div className="container">
-				<div className="flex rtl:flex-row-reverse justify-between flex-col lg:flex-row gap-20">
+				<div className="flex rtl:flex-col-reverse lg:rtl:flex-row-reverse justify-between flex-col lg:flex-row gap-20">
 					<div className="flex-1 flex-col flex gap-10">
 						<div>{googleMap}</div>
 
