@@ -32,6 +32,8 @@ export const useApiMutation = <TResponse, TParams = void>({
 				](requestURL, values ? values : undefined);
 				return data;
 			} catch (error: any) {
+				console.log(error);
+
 				throw new Error(error.response?.data?.detail || "An error occurred");
 			}
 		},

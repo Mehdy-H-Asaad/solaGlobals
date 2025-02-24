@@ -13,7 +13,10 @@ import { MaritimeTransportPage } from "./pages/dashboard/MaritimeTransportPage";
 import { ShippingLinesPage } from "./pages/dashboard/ShippingLinesPage";
 import { AuctionFeesPage } from "./pages/dashboard/AuctionFeesPage";
 import { UsersPage } from "./pages/dashboard/UsersPage";
+import { useAxiosResponse } from "./api/useAxiosResponse";
 function App() {
+	useAxiosResponse();
+
 	const { i18n } = useTranslation();
 
 	useEffect(() => {

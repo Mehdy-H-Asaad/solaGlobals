@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 export const axiosClient = axios.create({
 	baseURL: "https://solagroup.vercel.app",
 	headers: {
@@ -9,8 +9,6 @@ export const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
 	config => {
 		const token = localStorage.getItem("token");
-		const location = useLocation();
-		console.log(location.pathname);
 		if (token) {
 			config.headers.Authorization = `Bearer ${token}`;
 		}
@@ -19,17 +17,17 @@ axiosClient.interceptors.request.use(
 	error => Promise.reject(error)
 );
 
-axiosClient.interceptors.response.use(
-	response => response,
-	async error => {
-		const location = useLocation();
-		if (
-			error.response?.status === 401 &&
-			location.pathname.startsWith("/admin")
-		) {
-			localStorage.removeItem("token");
-			window.location.replace("/admin/login");
-		}
-		return Promise.reject(error);
-	}
-);
+// axiosClient.interceptors.response.use(
+// 	response => response,
+// 	async error => {
+// 		const location = useLocation();
+// 		if (
+// 			error.response?.status === 401 &&
+// 			location.pathname.startsWith("/admin")
+// 		) {
+// 			localStorage.removeItem("token");
+// 			window.location.replace("/admin/login");
+// 		}
+// 		return Promise.reject(error);
+// 	}
+// );
