@@ -18,24 +18,32 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useCreateDestination } from "../hooks/destination/useCreateDestination";
+import { t } from "i18next";
+import { useFormState } from "react-hook-form";
 
 export const CreateDestination = () => {
 	const { createDestinationForm, isCreatingDestination, onCreateDestination } =
 		useCreateDestination();
 
+	const { isValid } = useFormState({ control: createDestinationForm.control });
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Create warehouse
+					{t("dashboard.create.create", { name: t("dashboard.warehouse") })}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Create warehouse</DialogTitle>
+					<DialogTitle>
+						{t("dashboard.create.create", { name: t("dashboard.warehouse") })}
+					</DialogTitle>
 					<DialogDescription>
-						Make changes to your warehouses here. Click Create destination when
-						you're done.
+						{t("dashboard.create.createDescription", {
+							name: t("dashboard.warehouse"),
+							names: t("dashboard.Warehouses"),
+						})}
 					</DialogDescription>
 				</DialogHeader>
 
@@ -49,9 +57,9 @@ export const CreateDestination = () => {
 							name="state"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>State</FormLabel>
+									<FormLabel>{t("dashboard.state")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="State" />
+										<Input {...field} placeholder={t("dashboard.state")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -62,9 +70,9 @@ export const CreateDestination = () => {
 							name="city"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>City</FormLabel>
+									<FormLabel>{t("dashboard.city")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="city" />
+										<Input {...field} placeholder={t("dashboard.city")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -75,9 +83,9 @@ export const CreateDestination = () => {
 							name="address"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Address</FormLabel>
+									<FormLabel>{t("dashboard.address")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="address" />
+										<Input {...field} placeholder={t("dashboard.address")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -88,9 +96,9 @@ export const CreateDestination = () => {
 							name="zipcode"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Zip Code</FormLabel>
+									<FormLabel>{t("dashboard.zip")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="Zip Code" />
+										<Input {...field} placeholder={t("dashboard.zip")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -99,10 +107,15 @@ export const CreateDestination = () => {
 
 						<DialogFooter>
 							<Button
-								className="bg-blue hover:bg-cyan-800 text-white"
+								className="bg-blue hover:bg-cyan-800 text-white rtl:ml-auto"
 								type="submit"
+								disabled={isCreatingDestination || !isValid}
 							>
-								{isCreatingDestination ? "Creating..." : "Create warehouse"}
+								{isCreatingDestination
+									? t("dashboard.create.creating")
+									: t("dashboard.create.create", {
+											name: t("dashboard.warehouse"),
+									  })}
 							</Button>
 						</DialogFooter>
 					</form>

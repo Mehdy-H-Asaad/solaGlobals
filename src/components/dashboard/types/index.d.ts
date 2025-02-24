@@ -18,7 +18,6 @@ export type TInlandTransports = {
 	warehouse_zipcode: string;
 	cost: number;
 };
-
 export type TMaritimeTransports = {
 	id: number;
 	warehouse_id: number;
@@ -28,13 +27,25 @@ export type TMaritimeTransports = {
 	shipping_line_name: string;
 	cost: number;
 };
-
 export type TShippingLine = {
 	id: number;
 	name: string;
 };
-
+export type TUsers = {
+	username: string;
+	created_at: string;
+};
+export type TAuctionFee = {
+	id: number;
+	range_from: number;
+	range_to: number;
+	fee: number;
+	auction: number;
+};
 export type TDestination = TSource;
+export type TAdditionalFee = {
+	additional_fee: number;
+};
 
 export type TCreateDestinationDTO = Omit<TSource, "id">;
 export type TCreateSourceDTO = Omit<TSource, "id">;
@@ -47,9 +58,17 @@ export type TCreateMaritimeTransportDTO = Pick<
 	"shipping_line_id" | "warehouse_id" | "cost"
 >;
 export type TCreateShippingLineDTO = Pick<TShippingLine, "name">;
+export type TCreateAdminDTO = {
+	username: string;
+	password: string;
+};
 
 export type TUpdateMaritimeTransportsDTO = TCreateMaritimeTransport;
 export type TUpdateSourceDTO = Omit<TSource, "id">;
 export type TUpdateDestinationDTO = Omit<TSource, "id">;
 export type TUpdateInlandTransportsDTO = TCreateInlandTransportDTO;
 export type TUpdateShippingLineDTO = TCreateShippingLineDTO;
+export type TUpdateAuctionFeeDTO = Pick<TAuctionFee, "fee">;
+export type TUpdateAdditionalFeeDTO = {
+	additional_fee: number;
+};

@@ -24,4 +24,9 @@ export const adminNavLinks = [
 		title: "Shipping lines",
 		href: "/shipping-lines",
 	},
+	{
+		id: 6,
+		title: "Settings",
+		href: "/settings",
+	},
 ];

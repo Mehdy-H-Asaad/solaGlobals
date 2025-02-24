@@ -25,12 +25,14 @@ import {
 import React, { useState } from "react";
 import { CreateDestination } from "./CreateDestination";
 import { Skeleton } from "@/components/ui/skeleton";
+import { t } from "i18next";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
 	pagination: PaginationState;
 	isLoading: boolean;
+	pageCount: number;
 	setPagination: React.Dispatch<React.SetStateAction<PaginationState>>;
 }
 
@@ -39,6 +41,7 @@ export function DestinationDataTable<TData, TValue>({
 	data,
 	pagination,
 	isLoading,
+	pageCount,
 	setPagination,
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = useState<SortingState>([]);
@@ -53,7 +56,7 @@ export function DestinationDataTable<TData, TValue>({
 		data,
 		columns,
 		manualPagination: true,
-		pageCount: 2,
+		pageCount: pageCount,
 		onPaginationChange: setPagination,
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
@@ -76,7 +79,7 @@ export function DestinationDataTable<TData, TValue>({
 		<div>
 			<div className="flex items-center justify-between py-4 gap-10">
 				<Input
-					placeholder="Search by state"
+					placeholder={t("dashboard.search.searchState")}
 					value={(table.getColumn("state")?.getFilterValue() as string) ?? ""}
 					onChange={event =>
 						table.getColumn("state")?.setFilterValue(event.target.value)
@@ -93,7 +96,7 @@ export function DestinationDataTable<TData, TValue>({
 							<TableRow className="border border-gray-500" key={headerGroup.id}>
 								{headerGroup.headers.map(header => {
 									return (
-										<TableHead key={header.id}>
+										<TableHead className="rtl:text-right" key={header.id}>
 											{header.isPlaceholder
 												? null
 												: flexRender(
@@ -156,7 +159,7 @@ export function DestinationDataTable<TData, TValue>({
 					onClick={() => table.previousPage()}
 					disabled={!table.getCanPreviousPage()}
 				>
-					Previous
+					{t("dashboard.previous")}
 				</Button>
 				<Button
 					className="bg-transparent hover:bg-black hover:text-white duration-200 border text-black border-gray-500 cursor-pointer"
@@ -164,7 +167,7 @@ export function DestinationDataTable<TData, TValue>({
 					onClick={() => table.nextPage()}
 					disabled={!table.getCanNextPage()}
 				>
-					Next
+					{t("dashboard.next")}
 				</Button>
 			</div>
 		</div>

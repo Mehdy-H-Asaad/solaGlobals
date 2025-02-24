@@ -22,34 +22,49 @@ import {
 } from "@/components/ui/alert-dialog";
 import { UpdateSource } from "./UpdateSource";
 import { useDeleteSource } from "../hooks/source/useDeleteSource";
+import { useTranslation } from "react-i18next";
 
 export const SourceColumns: ColumnDef<TSource>[] = [
 	{
 		accessorKey: "state",
-		header: "State",
+		header: () => {
+			const { t } = useTranslation();
+			return t("dashboard.state");
+		},
 	},
 	{
 		accessorKey: "city",
-		header: "City",
+		header: () => {
+			const { t } = useTranslation();
+			return t("dashboard.city");
+		},
 	},
 	{
 		accessorKey: "address",
-		header: "Address",
+		header: () => {
+			const { t } = useTranslation();
+			return t("dashboard.address");
+		},
 	},
 	{
 		accessorKey: "zipcode",
-		header: "Zip code",
+		header: () => {
+			const { t } = useTranslation();
+			return t("dashboard.zip");
+		},
 	},
-
 	{
 		id: "actions",
-		header: "Options",
+		header: () => {
+			const { t } = useTranslation();
+			return t("dashboard.options");
+		},
 		cell: ({ row }) => {
 			const sourceId = row.original.id;
 			const source = row.original;
 
 			const { deleteSource } = useDeleteSource({ sourceId: sourceId });
-
+			const { t } = useTranslation();
 			return (
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
@@ -58,28 +73,31 @@ export const SourceColumns: ColumnDef<TSource>[] = [
 							<MoreHorizontal className="h-4 w-4" />
 						</Button>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end">
-						<DropdownMenuLabel>Options</DropdownMenuLabel>
+					<DropdownMenuContent className="rtl:ml-auto" align="end">
+						<DropdownMenuLabel className="rtl:text-right">
+							{t("dashboard.options")}
+						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<AlertDialog>
 							<AlertDialogTrigger className="mb-2 bg-red-600 duration-200 text-white hover:!bg-red-800 hover:!text-white cursor-pointer w-full text-sm text-center justify-center p-2 flex rounded-sm">
-								Delete source
+								{t("dashboard.delete.deleteSource")}
 							</AlertDialogTrigger>
 							<AlertDialogContent className="bg-white text-black">
 								<AlertDialogHeader>
-									<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-									<AlertDialogDescription>
-										This action cannot be undone. This will permanently delete
-										your account and remove your data from our servers.
+									<AlertDialogTitle className="rtl:text-right">
+										{t("dashboard.delete.deleteTitle")}
+									</AlertDialogTitle>
+									<AlertDialogDescription className="rtl:text-right">
+										{t("dashboard.delete.deleteDescription")}
 									</AlertDialogDescription>
 								</AlertDialogHeader>
-								<AlertDialogFooter>
+								<AlertDialogFooter className="rtl:justify-start rtl:gap-1">
 									<AlertDialogCancel className="bg-black text-white duration-200">
-										Cancel
+										{t("dashboard.delete.deleteCancel")}
 									</AlertDialogCancel>
 									<AlertDialogAction asChild onClick={() => deleteSource()}>
-										<Button className="!bg-golden duration-200 hover:bg-black hover:text-white text-white bg-red-600">
-											Delete
+										<Button className=" duration-200 hover:bg-black hover:text-white text-white bg-red-600">
+											{t("dashboard.delete.deleteBtn")}
 										</Button>
 									</AlertDialogAction>
 								</AlertDialogFooter>

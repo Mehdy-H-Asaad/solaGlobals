@@ -1,5 +1,4 @@
 import { useAnimationOptions } from "@/animation/animationOptions";
-import { servicesData } from "@/data";
 import { motion } from "framer-motion";
 import { Trans, useTranslation } from "react-i18next";
 
@@ -10,10 +9,10 @@ export const Services = () => {
 	const { t } = useTranslation();
 	const servicesDataTranslate = t("services.servicesData", {
 		returnObjects: true,
-	}) as typeof servicesData;
+	}) as Record<string, string>[];
 
 	return (
-		<div className="py-20 bg-[#f1f5fa]" id="work">
+		<div className="py-20 bg-[#f1f5fa]" id="services">
 			<div className="container">
 				<div ref={ref}>
 					<div className="overflow-hidden mb-10">

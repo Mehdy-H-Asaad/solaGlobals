@@ -41,7 +41,7 @@ export const Contact = () => {
 
 	const contactDetails = t("contact.contactDetails", {
 		returnObjects: true,
-	}) as any[];
+	}) as Record<string, string>[];
 
 	return (
 		<div className="py-20" id="contact">

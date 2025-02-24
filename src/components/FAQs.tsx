@@ -13,7 +13,10 @@ export const FAQs = () => {
 
 	const { t } = useTranslation();
 
-	const FAQsData = t("faqs.faqsData", { returnObjects: true }) as any[];
+	const FAQsData = t("faqs.faqsData", { returnObjects: true }) as Record<
+		string,
+		string
+	>[];
 
 	return (
 		<div className="py-20 bg-[#f1f5fa]" id="faq">

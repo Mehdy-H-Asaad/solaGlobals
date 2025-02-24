@@ -12,7 +12,7 @@ i18n.use(initReactI18next).init({
 			translation: ar, // Arabic translations
 		},
 	},
-	lng: "en", // Default language
+	lng: "ar", // Default language
 	fallbackLng: "en", // Fallback language
 	interpolation: {
 		escapeValue: false, // React already escapes values

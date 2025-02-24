@@ -4,7 +4,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
-import { destinationSchema } from "@/schema/destination.schema";
+import { useDestinationSchema } from "@/schema/destination.schema";
 
 export const useUpdateDestination = (id: number) => {
 	const {
@@ -21,7 +21,7 @@ export const useUpdateDestination = (id: number) => {
 		},
 	});
 
-	const updateDestinationSchema = destinationSchema;
+	const updateDestinationSchema = useDestinationSchema().destinationSchema;
 
 	type TUpdateDestinationSchema = z.infer<typeof updateDestinationSchema>;
 

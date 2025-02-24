@@ -11,6 +11,8 @@ import { useTranslation } from "react-i18next";
 import { InlandTransportsPage } from "./pages/dashboard/InlandTransportsPage";
 import { MaritimeTransportPage } from "./pages/dashboard/MaritimeTransportPage";
 import { ShippingLinesPage } from "./pages/dashboard/ShippingLinesPage";
+import { AuctionFeesPage } from "./pages/dashboard/AuctionFeesPage";
+import { UsersPage } from "./pages/dashboard/UsersPage";
 function App() {
 	const { i18n } = useTranslation();
 
@@ -38,6 +40,8 @@ function App() {
 							element={<MaritimeTransportPage />}
 						/>
 						<Route path="shipping-lines" element={<ShippingLinesPage />} />
+						<Route path="auction-fee" element={<AuctionFeesPage />} />
+						<Route path="settings" element={<UsersPage />} />
 					</Route>
 				</Route>
 

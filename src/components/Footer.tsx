@@ -13,7 +13,10 @@ export const Footer = () => {
 		returnObjects: true,
 	}) as any[];
 
-	const navLinks = t("navLinks", { returnObjects: true }) as any[];
+	const navLinks = t("navLinks", { returnObjects: true }) as Record<
+		string,
+		string
+	>[];
 
 	return (
 		<div ref={ref} className="bg-main-color py-10">

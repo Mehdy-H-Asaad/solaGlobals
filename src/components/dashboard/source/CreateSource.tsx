@@ -18,24 +18,32 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useCreateSource } from "../hooks/source/useCreateSource";
+import { t } from "i18next";
+import { useFormState } from "react-hook-form";
 
 export const CreateSource = () => {
 	const { createSourceForm, onCreateSource, isCreatingSource } =
 		useCreateSource();
 
+	const { isValid } = useFormState({ control: createSourceForm.control });
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Create source
+					{t("dashboard.create.create", { name: t("dashboard.Sources") })}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Create source</DialogTitle>
+					<DialogTitle>
+						{t("dashboard.create.create", { name: t("dashboard.Sources") })}
+					</DialogTitle>
 					<DialogDescription>
-						Make changes to your sources here. Click Create source when you're
-						done.
+						{t("dashboard.create.createDescription", {
+							names: t("dashboard.Sources"),
+							name: t("dashboard.source"),
+						})}
 					</DialogDescription>
 				</DialogHeader>
 				<Form {...createSourceForm}>
@@ -48,9 +56,9 @@ export const CreateSource = () => {
 							name="state"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>State</FormLabel>
+									<FormLabel>{t("dashboard.state")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="State" />
+										<Input {...field} placeholder={t("dashboard.state")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -61,9 +69,9 @@ export const CreateSource = () => {
 							name="city"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>City</FormLabel>
+									<FormLabel>{t("dashboard.city")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="city" />
+										<Input {...field} placeholder={t("dashboard.city")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -74,9 +82,9 @@ export const CreateSource = () => {
 							name="address"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Address</FormLabel>
+									<FormLabel>{t("dashboard.address")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="address" />
+										<Input {...field} placeholder={t("dashboard.address")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -87,9 +95,9 @@ export const CreateSource = () => {
 							name="zipcode"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Zip Code</FormLabel>
+									<FormLabel>{t("dashboard.zip")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="Zip Code" />
+										<Input {...field} placeholder={t("dashboard.zip")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -98,11 +106,15 @@ export const CreateSource = () => {
 
 						<DialogFooter>
 							<Button
-								className="bg-blue hover:bg-cyan-800 text-white"
+								className="bg-blue hover:bg-cyan-800 text-white rtl:ml-auto"
 								type="submit"
-								disabled={isCreatingSource}
+								disabled={isCreatingSource || !isValid}
 							>
-								{isCreatingSource ? "Creating..." : "Create source"}
+								{isCreatingSource
+									? t("dashboard.create.creating")
+									: t("dashboard.create.create", {
+											name: t("dashboard.source"),
+									  })}
 							</Button>
 						</DialogFooter>
 					</form>

@@ -19,6 +19,8 @@ import {
 import { TDestination } from "../types";
 import { useEffect } from "react";
 import { useUpdateDestination } from "../hooks/destination/useUpdateDestination";
+import { t } from "i18next";
+import { useFormState } from "react-hook-form";
 
 export const UpdateDestination = (destination: TDestination) => {
 	const { updateDestinationForm, isUpdatingDestination, onUpdateDestination } =
@@ -30,19 +32,25 @@ export const UpdateDestination = (destination: TDestination) => {
 		}
 	}, []);
 
+	const { isValid } = useFormState({ control: updateDestinationForm.control });
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Update warehouse
+				<Button className="bg-blue hover:bg-cyan-800 text-white w-full">
+					{t("dashboard.update.update", { name: t("dashboard.warehouse") })}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Update warehouse</DialogTitle>
+					<DialogTitle>
+						{t("dashboard.update.update", { name: t("dashboard.warehouse") })}
+					</DialogTitle>
 					<DialogDescription>
-						Make changes to your warehouses here. Click Create source when
-						you're done.
+						{t("dashboard.update.updateDescription", {
+							name: t("dashboard.warehouse"),
+							names: t("dashboard.Warehouses"),
+						})}
 					</DialogDescription>
 				</DialogHeader>
 				<Form {...updateDestinationForm}>
@@ -55,9 +63,9 @@ export const UpdateDestination = (destination: TDestination) => {
 							name="state"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>State</FormLabel>
+									<FormLabel>{t("dashboard.state")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="State" />
+										<Input {...field} placeholder={t("dashboard.state")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -68,9 +76,9 @@ export const UpdateDestination = (destination: TDestination) => {
 							name="city"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>City</FormLabel>
+									<FormLabel>{t("dashboard.city")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="city" />
+										<Input {...field} placeholder={t("dashboard.city")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -81,9 +89,9 @@ export const UpdateDestination = (destination: TDestination) => {
 							name="address"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Address</FormLabel>
+									<FormLabel>{t("dashboard.address")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="address" />
+										<Input {...field} placeholder={t("dashboard.address")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -94,9 +102,9 @@ export const UpdateDestination = (destination: TDestination) => {
 							name="zipcode"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Zip Code</FormLabel>
+									<FormLabel>{t("dashboard.zip")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="Zip Code" />
+										<Input {...field} placeholder={t("dashboard.zip")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -105,11 +113,15 @@ export const UpdateDestination = (destination: TDestination) => {
 
 						<DialogFooter>
 							<Button
-								className="bg-blue hover:bg-cyan-800 text-white"
+								className="bg-blue hover:bg-cyan-800 text-white rtl:ml-auto"
 								type="submit"
-								disabled={isUpdatingDestination}
+								disabled={isUpdatingDestination || !isValid}
 							>
-								{isUpdatingDestination ? "Updating..." : "Update destination"}
+								{isUpdatingDestination
+									? t("dashboard.update.updating")
+									: t("dashboard.update.update", {
+											name: t("dashboard.warehouse"),
+									  })}
 							</Button>
 						</DialogFooter>
 					</form>

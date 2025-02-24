@@ -1,5 +1,4 @@
 import { useAnimationOptions } from "@/animation/animationOptions";
-import { chooseUsData } from "@/data";
 import { motion } from "framer-motion";
 import { Trans, useTranslation } from "react-i18next";
 import { AiOutlineSafety } from "react-icons/ai";
@@ -14,7 +13,7 @@ export const ChooseUs = () => {
 
 	const chooseUsDataTranslation = t("chooseUs.chooseUsData", {
 		returnObjects: true,
-	}) as typeof chooseUsData;
+	}) as Record<string, string>[];
 
 	const icons = [
 		FaHandshakeSimple,
@@ -24,7 +23,7 @@ export const ChooseUs = () => {
 	];
 
 	return (
-		<div className="py-20" id="services">
+		<div className="py-20">
 			<div className="container">
 				<div ref={ref}>
 					<div className="overflow-hidden rtl:h-16 mb-10">

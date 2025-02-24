@@ -1,4 +1,4 @@
-import { maritimeTransportSchema } from "@/schema/maritimeTransport.schema";
+import { useMaritimeTransportSchema } from "@/schema/maritimeTransport.schema";
 import { TMaritimeTransports, TUpdateMaritimeTransportsDTO } from "../../types";
 import { useApiMutation } from "@/api/useApiMutation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,8 +24,8 @@ export const useUpdateMaritimeTransport = (id: string) => {
 		},
 	});
 
-	const updateMaritimeTransportSchema = maritimeTransportSchema
-		.pick({
+	const updateMaritimeTransportSchema = useMaritimeTransportSchema()
+		.maritimeTransportSchema.pick({
 			cost: true,
 			shipping_line_id: true,
 			warehouse_id: true,

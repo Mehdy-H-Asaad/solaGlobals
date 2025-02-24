@@ -1,7 +1,7 @@
 import { useApiMutation } from "@/api/useApiMutation";
 import { TCreateMaritimeTransportDTO, TMaritimeTransports } from "../../types";
 import toast from "react-hot-toast";
-import { maritimeTransportSchema } from "@/schema/maritimeTransport.schema";
+import { useMaritimeTransportSchema } from "@/schema/maritimeTransport.schema";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -24,8 +24,8 @@ export const useCreateMaritimeTransport = () => {
 		},
 	});
 
-	const createMaritimeTransportSchema = maritimeTransportSchema
-		.pick({
+	const createMaritimeTransportSchema = useMaritimeTransportSchema()
+		.maritimeTransportSchema.pick({
 			cost: true,
 			shipping_line_id: true,
 			warehouse_id: true,

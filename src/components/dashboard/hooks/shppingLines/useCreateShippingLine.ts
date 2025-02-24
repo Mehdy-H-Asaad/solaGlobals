@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
 import { TCreateShippingLineDTO, TShippingLine } from "../../types";
-import { shippingLineSchema } from "@/schema/shippingLine.schema";
+import { useShippingLineSchema } from "@/schema/shippingLine.schema";
 
 export const useCreateShippingLine = () => {
 	const {
@@ -24,9 +24,10 @@ export const useCreateShippingLine = () => {
 		},
 	});
 
-	const createShippingLineSchema = shippingLineSchema.extend({
-		name: z.string().min(1, "Shipping line is required"),
-	});
+	const createShippingLineSchema =
+		useShippingLineSchema().shippingLineSchema.extend({
+			name: z.string().min(1, "Shipping line is required"),
+		});
 
 	type TCreateShippingLineSchema = z.infer<typeof createShippingLineSchema>;
 

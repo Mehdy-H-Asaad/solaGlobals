@@ -18,6 +18,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useCreateShippingLine } from "../hooks/shppingLines/useCreateShippingLine";
+import { t } from "i18next";
+import { useFormState } from "react-hook-form";
 
 export const CreateShippingLine = () => {
 	const {
@@ -26,19 +28,27 @@ export const CreateShippingLine = () => {
 		onCreateShippingLine,
 	} = useCreateShippingLine();
 
+	const { isValid } = useFormState({ control: createShippingLineForm.control });
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Create shipping line
+					{t("dashboard.create.create", { name: t("dashboard.shippingLine") })}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Create shipping line</DialogTitle>
+					<DialogTitle>
+						{t("dashboard.create.create", {
+							name: t("dashboard.shippingLine"),
+						})}
+					</DialogTitle>
 					<DialogDescription>
-						Make changes to your shipping lines here. Click Create shipping line
-						when you're done.
+						{t("dashboard.create.createDescription", {
+							name: t("dashboard.shippingLine"),
+							names: t("dashboard.Shipping lines"),
+						})}
 					</DialogDescription>
 				</DialogHeader>
 				<Form {...createShippingLineForm}>
@@ -51,9 +61,9 @@ export const CreateShippingLine = () => {
 							name="name"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Shipping line</FormLabel>
+									<FormLabel>{t("dashboard.name")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="Name" />
+										<Input {...field} placeholder={t("dashboard.name")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -62,13 +72,15 @@ export const CreateShippingLine = () => {
 
 						<DialogFooter>
 							<Button
-								className="bg-blue hover:bg-cyan-800 text-white"
+								className="bg-blue hover:bg-cyan-800 text-white rtl:ml-auto"
 								type="submit"
-								disabled={isCreatingShippingLine}
+								disabled={isCreatingShippingLine || !isValid}
 							>
 								{isCreatingShippingLine
-									? "Creating..."
-									: "Create shipping line"}
+									? t("dashboard.create.creating")
+									: t("dashboard.create.create", {
+											name: t("dashboard.shippingLine"),
+									  })}
 							</Button>
 						</DialogFooter>
 					</form>

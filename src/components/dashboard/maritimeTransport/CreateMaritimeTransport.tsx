@@ -17,12 +17,12 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useEffect, useRef, useState } from "react";
 import { useGetDestinations } from "../hooks/destination/useGetDestinations";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useCreateMaritimeTransport } from "../hooks/maritimeTransports/useCreateMaritimeTransport";
 import { useGetShippingLines } from "../hooks/shppingLines/useGetShippingLines";
-
+import { useFormState } from "react-hook-form";
+import Select from "react-select";
+import { t } from "i18next";
 export const CreateMaritimeTransport = () => {
 	const {
 		createMaritimeTransportForm,
@@ -30,72 +30,46 @@ export const CreateMaritimeTransport = () => {
 		onCreateMaritimeTransport,
 	} = useCreateMaritimeTransport();
 
-	const ref = useRef<HTMLDivElement | null>(null);
-
-	useEffect(() => {
-		const handleClickOutsideSelectMenu = (e: MouseEvent) => {
-			if (ref.current && !ref.current.contains(e.target as Node)) {
-				setIsShippingLineDropdownOpen(false);
-				setIsWarehouseDropdownOpen(false);
-			}
-		};
-
-		document.addEventListener("mousedown", handleClickOutsideSelectMenu);
-
-		return () =>
-			document.removeEventListener("mousedown", handleClickOutsideSelectMenu);
-	}, []);
-
-	const [shippingLineSearch, setShippingLineSearch] = useState<string>("");
-	const [warehouseSearch, setWarehouseSearch] = useState<string>("");
-	const [isShippingLineDropdownOpen, setIsShippingLineDropdownOpen] =
-		useState(false);
-	const [isWarehouseDropdownOpen, setIsWarehouseDropdownOpen] = useState(false);
-
 	const { shippingLines } = useGetShippingLines();
 	const { destinations } = useGetDestinations();
 
-	const filteredShippingLines = shippingLines?.filter(shippingLine =>
-		shippingLine.name.toLowerCase().includes(shippingLineSearch.toLowerCase())
-	);
+	const formattedDestinations = destinations?.map(destination => ({
+		label: destination.state,
+		value: destination.id,
+	}));
+	const formattedShippingLines = shippingLines?.map(shippingLine => ({
+		label: shippingLine.name,
+		value: shippingLine.id,
+	}));
 
-	const filteredDestinations = destinations?.filter(destination =>
-		destination.state.toLowerCase().includes(warehouseSearch.toLowerCase())
-	);
-
-	const filteredshippingLines = shippingLines?.filter(shippingLine =>
-		shippingLine.name.toLowerCase().includes(shippingLineSearch.toLowerCase())
-	);
-
-	const isValidShippingLine = filteredshippingLines?.some(
-		source => source.name.toLowerCase() === shippingLineSearch.toLowerCase()
-	);
-	const isValidDestination = filteredDestinations?.some(
-		destination =>
-			destination.state.toLowerCase() === warehouseSearch.toLowerCase()
-	);
-
-	const isFormValid = isValidShippingLine && isValidDestination;
-
-	if (!filteredDestinations || !filteredShippingLines)
-		return <Skeleton className="w-[250px] h-8" />;
+	const { isValid } = useFormState({
+		control: createMaritimeTransportForm.control,
+	});
 
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Create maritime transport
+					{t("dashboard.create.create", {
+						name: t("dashboard.maritimeTransport"),
+					})}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Create Maritime transport</DialogTitle>
+					<DialogTitle>
+						{t("dashboard.create.create", {
+							name: t("dashboard.maritimeTransport"),
+						})}
+					</DialogTitle>
 					<DialogDescription>
-						Make changes to your Maritime transports here. Click Create
-						destination when you're done.
+						{t("dashboard.create.createDescription", {
+							name: t("dashboard.maritimeTransport"),
+							names: t("dashboard.Maritime transports"),
+						})}
 					</DialogDescription>
 				</DialogHeader>
-				<div ref={ref}>
+				<div>
 					<Form {...createMaritimeTransportForm}>
 						<form
 							className="flex flex-col gap-5"
@@ -108,38 +82,16 @@ export const CreateMaritimeTransport = () => {
 								name="shipping_line_id"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Shipping line</FormLabel>
+										<FormLabel>{t("dashboard.shippingLine")}</FormLabel>
 										<FormControl>
-											<div className="relative">
-												<Input
-													value={shippingLineSearch}
-													onChange={e => {
-														setShippingLineSearch(e.target.value);
-													}}
-													onClick={() => setIsShippingLineDropdownOpen(true)}
-													onInput={() => setIsShippingLineDropdownOpen(true)}
-													placeholder="Search Shipping line"
-												/>
-												{/* Shipping Line Dropdown */}
-												{isShippingLineDropdownOpen &&
-													filteredShippingLines?.length > 0 && (
-														<div className="absolute w-full bg-white border rounded-md shadow-md mt-1 max-h-40 z-10 overflow-y-auto">
-															{filteredShippingLines?.map(shippingLine => (
-																<div
-																	key={shippingLine.id}
-																	className="p-2 cursor-pointer hover:bg-gray-200"
-																	onClick={() => {
-																		field.onChange(shippingLine.id); // Set selected value in the form
-																		setShippingLineSearch(shippingLine.name); // Show selected text in input
-																		setIsShippingLineDropdownOpen(false);
-																	}}
-																>
-																	{shippingLine.name}
-																</div>
-															))}
-														</div>
-													)}
-											</div>
+											<Select
+												isSearchable={true}
+												options={formattedShippingLines}
+												className="basic-single"
+												classNamePrefix="select"
+												name="source"
+												onChange={option => field.onChange(option?.value)}
+											/>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -150,38 +102,16 @@ export const CreateMaritimeTransport = () => {
 								name="warehouse_id"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Warehouse</FormLabel>
+										<FormLabel>{t("dashboard.warehouse")}</FormLabel>
 										<FormControl>
-											<div className="relative">
-												<Input
-													value={warehouseSearch}
-													onChange={e => {
-														setWarehouseSearch(e.target.value);
-													}}
-													onClick={() => setIsWarehouseDropdownOpen(true)}
-													onInput={() => setIsWarehouseDropdownOpen(true)}
-													placeholder="Search warehouses"
-												/>
-												{/* Warehouse Dropdown */}
-												{isWarehouseDropdownOpen &&
-													filteredDestinations?.length > 0 && (
-														<div className="absolute w-full bg-white border rounded-md shadow-md mt-1 max-h-40 overflow-y-auto">
-															{filteredDestinations?.map(destination => (
-																<div
-																	key={destination.id}
-																	className="p-2 cursor-pointer hover:bg-gray-200"
-																	onClick={() => {
-																		field.onChange(destination.id);
-																		setWarehouseSearch(destination.state);
-																		setIsWarehouseDropdownOpen(false);
-																	}}
-																>
-																	{destination.state}
-																</div>
-															))}
-														</div>
-													)}
-											</div>
+											<Select
+												isSearchable={true}
+												options={formattedDestinations}
+												className="basic-single"
+												classNamePrefix="select"
+												name="source"
+												onChange={option => field.onChange(option?.value)}
+											/>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -192,11 +122,11 @@ export const CreateMaritimeTransport = () => {
 								name="cost"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Cost</FormLabel>
+										<FormLabel>{t("dashboard.cost")}</FormLabel>
 										<FormControl>
 											<Input
 												{...field}
-												placeholder="Cost"
+												placeholder={t("dashboard.cost")}
 												onChange={e => {
 													if (/^\d*$/.test(e.target.value))
 														field.onChange(Number(e.target.value));
@@ -210,13 +140,15 @@ export const CreateMaritimeTransport = () => {
 
 							<DialogFooter>
 								<Button
-									className="bg-blue hover:bg-cyan-800 text-white"
+									className="rtl:ml-auto bg-blue hover:bg-cyan-800 text-white"
 									type="submit"
-									disabled={isCreatingMaritimeTransport || !isFormValid}
+									disabled={isCreatingMaritimeTransport || !isValid}
 								>
 									{isCreatingMaritimeTransport
-										? "Creating..."
-										: "Create Inland transport"}
+										? t("dashboard.create.creating")
+										: t("dashboard.create.create", {
+												name: t("dashboard.maritimeTransport"),
+										  })}
 								</Button>
 							</DialogFooter>
 						</form>

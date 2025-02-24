@@ -25,17 +25,20 @@ import {
 import { useState } from "react";
 import { CreateSource } from "./CreateSource";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslation } from "react-i18next";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
 	pagination: PaginationState;
+	pageCount: number;
 	isLoading: boolean;
 	setPagination: React.Dispatch<React.SetStateAction<PaginationState>>;
 }
 
 export function SourceDataTable<TData, TValue>({
 	columns,
+	pageCount,
 	data,
 	pagination,
 	setPagination,
@@ -52,7 +55,7 @@ export function SourceDataTable<TData, TValue>({
 	const table = useReactTable({
 		data,
 		columns,
-		pageCount: 2,
+		pageCount: pageCount,
 		manualPagination: true,
 		onPaginationChange: setPagination,
 		getCoreRowModel: getCoreRowModel(),
@@ -72,11 +75,13 @@ export function SourceDataTable<TData, TValue>({
 		onRowSelectionChange: setRowSelection,
 	});
 
+	const { t } = useTranslation();
+
 	return (
 		<div>
 			<div className="flex items-center justify-between py-4 gap-10">
 				<Input
-					placeholder="Search state"
+					placeholder={t("dashboard.search.searchState")}
 					value={(table.getColumn("state")?.getFilterValue() as string) ?? ""}
 					onChange={event =>
 						table.getColumn("state")?.setFilterValue(event.target.value)
@@ -93,7 +98,7 @@ export function SourceDataTable<TData, TValue>({
 							<TableRow className="border border-gray-500" key={headerGroup.id}>
 								{headerGroup.headers.map(header => {
 									return (
-										<TableHead key={header.id}>
+										<TableHead className="rtl:text-right" key={header.id}>
 											{header.isPlaceholder
 												? null
 												: flexRender(
@@ -156,7 +161,7 @@ export function SourceDataTable<TData, TValue>({
 					onClick={() => table.previousPage()}
 					disabled={!table.getCanPreviousPage()}
 				>
-					Previous
+					{t("dashboard.previous")}
 				</Button>
 				<Button
 					className="bg-transparent hover:bg-black hover:text-white duration-200 border text-black border-gray-500 cursor-pointer"
@@ -164,7 +169,7 @@ export function SourceDataTable<TData, TValue>({
 					onClick={() => table.nextPage()}
 					disabled={!table.getCanNextPage()}
 				>
-					Next
+					{t("dashboard.next")}
 				</Button>
 			</div>
 		</div>

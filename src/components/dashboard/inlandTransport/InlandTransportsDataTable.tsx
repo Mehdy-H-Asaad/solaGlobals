@@ -25,6 +25,7 @@ import {
 import React, { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CreateInlandTransport } from "./CreateInlandTransport";
+import { t } from "i18next";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -78,7 +79,7 @@ export function InlandTransportsDataTable<TData, TValue>({
 		<div>
 			<div className="flex items-center justify-between py-4 gap-10">
 				<Input
-					placeholder="Search by state"
+					placeholder={t("dashboard.search.searchSourceState")}
 					value={
 						(table.getColumn("source_state")?.getFilterValue() as string) ?? ""
 					}
@@ -97,7 +98,7 @@ export function InlandTransportsDataTable<TData, TValue>({
 							<TableRow className="border border-gray-500" key={headerGroup.id}>
 								{headerGroup.headers.map(header => {
 									return (
-										<TableHead key={header.id}>
+										<TableHead className="rtl:text-right" key={header.id}>
 											{header.isPlaceholder
 												? null
 												: flexRender(
@@ -160,7 +161,7 @@ export function InlandTransportsDataTable<TData, TValue>({
 					onClick={() => table.previousPage()}
 					disabled={!table.getCanPreviousPage()}
 				>
-					Previous
+					{t("dashboard.previous")}
 				</Button>
 				<Button
 					className="bg-transparent hover:bg-black hover:text-white duration-200 border text-black border-gray-500 cursor-pointer"
@@ -168,7 +169,7 @@ export function InlandTransportsDataTable<TData, TValue>({
 					onClick={() => table.nextPage()}
 					disabled={!table.getCanNextPage()}
 				>
-					Next
+					{t("dashboard.next")}
 				</Button>
 			</div>
 		</div>

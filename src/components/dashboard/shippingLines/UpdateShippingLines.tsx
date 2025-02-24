@@ -19,6 +19,7 @@ import {
 import { TShippingLine } from "../types";
 import { useEffect } from "react";
 import { useUpdateShippingLine } from "../hooks/shppingLines/useUpdateShippingLine";
+import { t } from "i18next";
 
 export const UpdateShippingLine = (shippingLine: TShippingLine) => {
 	const {
@@ -37,15 +38,21 @@ export const UpdateShippingLine = (shippingLine: TShippingLine) => {
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Update shipping line
+					{t("dashboard.update.update", { name: t("dashboard.shippingLine") })}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Create shipping line</DialogTitle>
+					<DialogTitle>
+						{t("dashboard.update.update", {
+							name: t("dashboard.shippingLine"),
+						})}
+					</DialogTitle>
 					<DialogDescription>
-						Make changes to your shipping lines here. Click Create shipping line
-						when you're done.
+						{t("dashboard.update.updateDescription", {
+							name: t("dashboard.shippingLine"),
+							names: t("dashboard.Shipping lines"),
+						})}
 					</DialogDescription>
 				</DialogHeader>
 				<Form {...updateShippingLineForm}>
@@ -58,9 +65,9 @@ export const UpdateShippingLine = (shippingLine: TShippingLine) => {
 							name="name"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Shipping line</FormLabel>
+									<FormLabel>{t("dashboard.name")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="Name" />
+										<Input {...field} placeholder={t("dashboard.name")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -74,8 +81,10 @@ export const UpdateShippingLine = (shippingLine: TShippingLine) => {
 								disabled={isUpdatingShippingLine}
 							>
 								{isUpdatingShippingLine
-									? "Updating..."
-									: "Update shipping line"}
+									? t("dashboard.update.updating")
+									: t("dashboard.update.update", {
+											name: t("dashboard.shippingLine"),
+									  })}
 							</Button>
 						</DialogFooter>
 					</form>

@@ -19,7 +19,10 @@ export const ResponsiveNavBar = ({
 			: i18n.changeLanguage("ar");
 	};
 
-	const navLinks = t("navLinks", { returnObjects: true }) as any[];
+	const navLinks = t("navLinks", { returnObjects: true }) as Record<
+		string,
+		string
+	>[];
 
 	return (
 		<div className="block lg:hidden">

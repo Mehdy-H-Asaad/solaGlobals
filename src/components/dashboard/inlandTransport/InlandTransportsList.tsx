@@ -1,6 +1,7 @@
 import { InlandTransportsColumns } from "./InlandTransportsColumns";
 import { InlandTransportsDataTable } from "./InlandTransportsDataTable";
 import { useGetInlandTransports } from "../hooks/inlandTransports/useGetInlandTransports";
+import { t } from "i18next";
 
 export const InlandTransportsList = () => {
 	const {
@@ -14,7 +15,7 @@ export const InlandTransportsList = () => {
 	return (
 		<div className="container">
 			<div className="text-4xl font-bold w-fit mx-auto my-10">
-				<span className="text-blue">Inland Transports</span>
+				<span className="text-blue">{t("dashboard.Inland transports")}</span>
 			</div>
 
 			<InlandTransportsDataTable

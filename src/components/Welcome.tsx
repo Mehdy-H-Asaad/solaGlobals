@@ -14,7 +14,7 @@ export const Welcome = () => {
 
 	const welcomeIcons = t("welcome.WelcomeIcons", {
 		returnObjects: true,
-	}) as any[];
+	}) as Record<string, string>[];
 
 	const icons = [GiTakeMyMoney, GiCarWheel, GoChecklist];
 

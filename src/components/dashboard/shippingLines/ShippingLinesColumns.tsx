@@ -23,16 +23,24 @@ import {
 
 import { useDeleteShippingLine } from "../hooks/shppingLines/useDeleteShippingLine";
 import { UpdateShippingLine } from "./UpdateShippingLines";
+import { useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 export const ShippingLineColumns: ColumnDef<TShippingLine>[] = [
 	{
 		accessorKey: "name",
-		header: "Shipping line",
+		header: () => {
+			const { t } = useTranslation();
+			return t("dashboard.shippingLine");
+		},
 	},
 
 	{
 		id: "actions",
-		header: "Options",
+		header: () => {
+			const { t } = useTranslation();
+			return t("dashboard.options");
+		},
 		cell: ({ row }) => {
 			const shippingLineId = row.original.id;
 			const shippingLine = row.original;
@@ -50,30 +58,40 @@ export const ShippingLineColumns: ColumnDef<TShippingLine>[] = [
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end">
-						<DropdownMenuLabel>Options</DropdownMenuLabel>
+						<DropdownMenuLabel className="rtl:text-right">
+							{t("dashboard.options")}
+						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<AlertDialog>
 							<AlertDialogTrigger className="mb-2 bg-red-600 duration-200 text-white hover:!bg-red-800 text-sm hover:!text-white cursor-pointer w-full text-center justify-center p-2 flex rounded-sm">
-								Delete shipping line
+								{t("dashboard.delete.delete", {
+									name: t("dashboard.shippingLine"),
+								})}
 							</AlertDialogTrigger>
 							<AlertDialogContent className="bg-white text-black">
 								<AlertDialogHeader>
-									<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-									<AlertDialogDescription>
-										This action cannot be undone. This will permanently delete
-										your account and remove your data from our servers.
+									<AlertDialogTitle className="rtl:text-right">
+										{t("dashboard.delete.delete", {
+											name: t("dashboard.shippingLine"),
+										})}
+									</AlertDialogTitle>
+									<AlertDialogDescription className="rtl:text-right">
+										{t("dashboard.delete.deleteDescription", {
+											name: t("dashboard.shippingLine"),
+											names: t("dashboard.shipping lines"),
+										})}
 									</AlertDialogDescription>
 								</AlertDialogHeader>
-								<AlertDialogFooter>
+								<AlertDialogFooter className="rtl:justify-start rtl:gap-1">
 									<AlertDialogCancel className="bg-black text-white duration-200">
-										Cancel
+										{t("dashboard.delete.deleteCancel")}
 									</AlertDialogCancel>
 									<AlertDialogAction
 										asChild
 										onClick={() => deleteShippingLine()}
 									>
 										<Button className="!bg-golden duration-200 hover:bg-black hover:text-white text-white bg-red-600">
-											Delete
+											{t("dashboard.delete.deleteBtn")}
 										</Button>
 									</AlertDialogAction>
 								</AlertDialogFooter>

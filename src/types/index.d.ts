@@ -16,3 +16,20 @@ export type TSendEmailDTO = {
 	email: string;
 	message: string;
 };
+
+export type TCreateEstimateCostDTO = {
+	amount: number;
+	auction: number;
+	source: number;
+	warehouse: number;
+	shipping_line: number;
+	shipping_type: number;
+	vin?: string;
+};
+
+export type TGetEstimateCost = {
+	manufacturer: string;
+	country: string;
+	year: number;
+	cost: number;
+};

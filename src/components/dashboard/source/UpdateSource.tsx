@@ -19,6 +19,8 @@ import {
 import { useUpdateSource } from "../hooks/source/useUpdateSource";
 import { TSource } from "../types";
 import { useEffect } from "react";
+import { t } from "i18next";
+import { useFormState } from "react-hook-form";
 
 export const UpdateSource = (source: TSource) => {
 	const { updateSourceForm, isUpdatingSource, onUpdateSource } =
@@ -30,19 +32,25 @@ export const UpdateSource = (source: TSource) => {
 		}
 	}, []);
 
+	const { isValid } = useFormState({ control: updateSourceForm.control });
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					Update source
+				<Button className="bg-blue hover:bg-cyan-800 text-white w-full">
+					{t("dashboard.update.update", { name: t("dashboard.source") })}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Create source</DialogTitle>
+					<DialogTitle>
+						{t("dashboard.update.update", { name: t("dashboard.source") })}
+					</DialogTitle>
 					<DialogDescription>
-						Make changes to your sources here. Click Create source when you're
-						done.
+						{t("dashboard.update.updateDescription", {
+							names: t("dashboard.Sources"),
+							name: t("dashboard.source"),
+						})}
 					</DialogDescription>
 				</DialogHeader>
 				<Form {...updateSourceForm}>
@@ -55,9 +63,9 @@ export const UpdateSource = (source: TSource) => {
 							name="state"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>State</FormLabel>
+									<FormLabel>{t("dashboard.state")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="State" />
+										<Input {...field} placeholder={t("dashboard.state")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -68,9 +76,9 @@ export const UpdateSource = (source: TSource) => {
 							name="city"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>City</FormLabel>
+									<FormLabel>{t("dashboard.city")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="city" />
+										<Input {...field} placeholder={t("dashboard.city")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -81,9 +89,9 @@ export const UpdateSource = (source: TSource) => {
 							name="address"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Address</FormLabel>
+									<FormLabel>{t("dashboard.address")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="address" />
+										<Input {...field} placeholder={t("dashboard.addess")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -94,9 +102,9 @@ export const UpdateSource = (source: TSource) => {
 							name="zipcode"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Zip Code</FormLabel>
+									<FormLabel>{t("dashboard.zip")}</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="Zip Code" />
+										<Input {...field} placeholder={t("dashboard.zip")} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -105,11 +113,15 @@ export const UpdateSource = (source: TSource) => {
 
 						<DialogFooter>
 							<Button
-								className="bg-blue hover:bg-cyan-800 text-white"
+								className="bg-blue rtl:ml-auto hover:bg-cyan-800 text-white"
 								type="submit"
-								disabled={isUpdatingSource}
+								disabled={isUpdatingSource || !isValid}
 							>
-								{isUpdatingSource ? "Updating..." : "Update source"}
+								{isUpdatingSource
+									? t("dashboard.update.updating")
+									: t("dashboard.update.update", {
+											name: t("dashboard.source"),
+									  })}
 							</Button>
 						</DialogFooter>
 					</form>

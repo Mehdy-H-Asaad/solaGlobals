@@ -34,7 +34,10 @@ export const Navbar = () => {
 
 	const { staggerVariants } = useAnimationOptions();
 
-	const navLinks = t("navLinks", { returnObjects: true }) as any[];
+	const navLinks = t("navLinks", { returnObjects: true }) as Record<
+		string,
+		string
+	>[];
 
 	return (
 		<div
@@ -56,7 +59,8 @@ export const Navbar = () => {
 								initial="initial"
 								animate="animate"
 								custom={index}
-								href={link.id}
+								href={link.id || link.href}
+								target={link.href && "_blank"}
 								className="font-bold cursor-pointer nav-link"
 								key={link.id}
 							>

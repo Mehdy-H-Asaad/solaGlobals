@@ -5,10 +5,6 @@
 		"id": "#"
 	  },
 	  {
-		"title": "العمل",
-		"id": "#work"
-	  },
-	  {
 		"title": "الخدمات",
 		"id": "#services"
 	  },
@@ -19,7 +15,12 @@
 	  {
 		"title": "اتصل بنا",
 		"id": "#contact"
-	  },{
+	  },
+	  {
+		"title": "تسجيل الدخول",
+		"href":"https://www.hmmosoft.com/"
+	  },
+	  {
 		"title": "العربية"
 	  }
 	],
@@ -33,8 +34,27 @@
 
 	"hero": {
 		"title": "قد سيارة احلامك مع <0>مجموعة سولا</0>",
-	 "paraghraph": "مجموعات سولا: جسرك إلى السيارات ذات الجودة من الولايات المتحدة إلى ليبيا",
-	 "button" : "تتبع مركبتك"
+	 "paraghraph": "مجموعة سولا: جسرك إلى السيارات ذات الجودة من الولايات المتحدة إلى ليبيا",
+	 "button" : "تتبع مركبتك",
+	 "estimateCost": {
+				"dialogTitle": "حساب الكلفة التقديرية",
+				"dialogDescription" : "إضغط على حساب الكلفة التقديرية عندما تنتهي من الإدخال",
+				"source": "المصدر",
+				"warehouse": "الوجهة",
+				"shippingLine": "خط النقل",
+				"shippingType": "نوع النقل",
+				"auction": "المزاد",
+				"vin": "Vin",
+				"bid": "مبلغ المزايدة",
+				"calculate": "حساب الكلفة التقديرية",
+				"placeHolder":"إختار",
+				"cost": "الكلفة التقديرية",
+				"model": "سنة الصنع",
+				"manufacturer":"الشركة المصنعة",
+				"country":"البلد",
+				"nonValue":"غير متوفر",
+				"calculating": "جاري الحساب"
+		}
  },
 
 	"contact": {
@@ -183,11 +203,92 @@
 	},
 
 
+"dashboard": {
+		"state": "الولاية",
+		"city": "المدينة",
+		"address": "العنوان",
+		"zip":"الرمز البريدي",
+		"options":"الخيارات",
+		"sourceState":"ولاية المصدر",
+		"sourceCity": "مدينة المصدر",
+		"sourceAddress": "عنوان المصدر",
+		"sourceZip":"الرمز البريدي للمصدر",
+		"warehouseState": "ولاية الوجهة",
+		"warehouseZip": "الرمز البريدي للوجهة",
+		"cost":"الكلفة",
+		"shippingLine": "خط النقل",
+		"username":"اسم المستخدم",
+		"password":"كلمة السر",
+		"createdAt": "تاريخ الإنشاء",
+		"range":"المجال",
+		"fee":"الرسوم",
+		"additionalFee": "الرسوم الإضافية",
+		"Sources":"المصادر",
+		"source":"المصدر",
+		"inlandTransport": "النقل الداخلي",
+		"warehouse":"الوجهة",
+		"maritimeTransport": "النقل البحري",
+		"Warehouses":"الوجهات",
+		"Inland transports":"النقل الداخلي",
+		"Maritime transports":"النقل البحري",
+		"Shipping lines": "خطوط النقل",
+		"Settings":"الإعدادات",
+		"auctionFee": "رسوم المزاد",
+		"previous":"السابق",
+		"name":"الإسم",
+		"next":"التالي",
+		"newAdmin" : "أدمن جديد",
+		"user": "مستخدم",
+		"users": "مستخدمين",
+		"search": {
+			"searchState":"البحث عن الولاية",
+			"searchSourceState": "البحث عن ولاية المصدر",
+			"searchWarehouseState":"البحث عن ولاية الوجهة",
+			"searchShippingLine":"البحث عن خط النقل",
+			"searchUserName":"البحث عن المستخدمين",
+			"searchFee": "البحث عن الرسوم"
+		},
+		"create": {
+			"create": "إنشاء {{name}}",
+			"createDescription":"قم بإجراء التغييرات على {{names}} هنا. انقر فوق إنشاء {{name}} عندما تنتهي",
+			"creating":"قيد الإنشاء..."
+		},
+		"update": {
+			"update": "تعديل {{name}}",
+			"updateDescription": "قم بإجراء التغييرات على {{names}} هنا. انقر فوق تعديل {{name}} عندما تنتهي",
+			"updating":"قيد التعديل..."
+		},
+		"delete": {
+			"delete": "حذف {{name}}",
+			"deleteBtn":"حذف",
+			"deleteSource": "حذف المصدر",
+			"deleteWarehouse": "حذف الوجهة",
+			"deleteTitle": "هل أنت متأكد؟",
+			"deleteDescription":"هذا الإجراء لا يمكن التراجع عنه. سيتم حذفه بشكل دائم وإزالته من خوادمنا.",
+			"deleteCancel": "إلغاء"
+		},
+		"welcome": " مرحبا <0>بعودتك<0/>",
+		"login":"تسجيل الدخول",
+		"logging":"جاري تسجيل الدخول"
+	},
+
+
+
 	"validation": {
 		"name":"حقل الإسم مطلوب",
 		"phone": "حقل الهاتف مطلوب",
 		"email":"حقل الإيميل مطلوب",
 		"emailNotValid": "غير صالح",
-		"message":"حقل الرسالة مطلوب"
+		"message":"حقل الرسالة مطلوب",
+		"state": "حقل الولاية مطلوب",
+		"estimateCost": {
+			"source": "مطلوب",
+			"warehouse": "مطلوب",
+				"shippingLine": "مطلوب",
+				"shippingType": "مطلوب",
+				"auction": "مطلوب",
+				"vin": "يجب على الأقل إدخال 17 رقم",
+				"bid": "مطلوب"
+		}
 	}
   }

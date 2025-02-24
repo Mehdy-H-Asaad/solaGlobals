@@ -25,6 +25,7 @@ import {
 import React, { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CreateMaritimeTransport } from "./CreateMaritimeTransport";
+import { t } from "i18next";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -32,6 +33,7 @@ interface DataTableProps<TData, TValue> {
 	pagination: PaginationState;
 	isLoading: boolean;
 	setPagination: React.Dispatch<React.SetStateAction<PaginationState>>;
+	pageCount: number;
 }
 
 export function MaritimeTransportsDataTable<TData, TValue>({
@@ -40,6 +42,7 @@ export function MaritimeTransportsDataTable<TData, TValue>({
 	pagination,
 	isLoading,
 	setPagination,
+	pageCount,
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = useState<SortingState>([]);
 
@@ -53,7 +56,7 @@ export function MaritimeTransportsDataTable<TData, TValue>({
 		data,
 		columns,
 		manualPagination: true,
-		pageCount: 2,
+		pageCount: pageCount,
 		onPaginationChange: setPagination,
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
@@ -76,7 +79,7 @@ export function MaritimeTransportsDataTable<TData, TValue>({
 		<div>
 			<div className="flex items-center justify-between py-4 gap-10">
 				<Input
-					placeholder="Search by state"
+					placeholder={t("dashboard.search.searchWarehouseState")}
 					value={
 						(table.getColumn("warehouse_state")?.getFilterValue() as string) ??
 						""
@@ -98,7 +101,7 @@ export function MaritimeTransportsDataTable<TData, TValue>({
 							<TableRow className="border border-gray-500" key={headerGroup.id}>
 								{headerGroup.headers.map(header => {
 									return (
-										<TableHead key={header.id}>
+										<TableHead className="rtl:text-right" key={header.id}>
 											{header.isPlaceholder
 												? null
 												: flexRender(
@@ -161,7 +164,7 @@ export function MaritimeTransportsDataTable<TData, TValue>({
 					onClick={() => table.previousPage()}
 					disabled={!table.getCanPreviousPage()}
 				>
-					Previous
+					{t("dashboard.previous")}
 				</Button>
 				<Button
 					className="bg-transparent hover:bg-black hover:text-white duration-200 border text-black border-gray-500 cursor-pointer"
@@ -169,7 +172,7 @@ export function MaritimeTransportsDataTable<TData, TValue>({
 					onClick={() => table.nextPage()}
 					disabled={!table.getCanNextPage()}
 				>
-					Next
+					{t("dashboard.next")}
 				</Button>
 			</div>
 		</div>
