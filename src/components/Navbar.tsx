@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useAnimationOptions } from "@/animation/animationOptions";
 import { FaEarthAmericas, FaPhone } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
+import { TNavLinks } from "@/types/static";
 
 export const Navbar = () => {
 	const [isBackgroundVisible, setIsBackGroundVisible] = useState<boolean>(
@@ -34,10 +35,7 @@ export const Navbar = () => {
 
 	const { staggerVariants } = useAnimationOptions();
 
-	const navLinks = t("navLinks", { returnObjects: true }) as Record<
-		string,
-		string
-	>[];
+	const navLinks = t("navLinks", { returnObjects: true }) as TNavLinks[];
 
 	return (
 		<div
@@ -62,7 +60,7 @@ export const Navbar = () => {
 								href={link.id || link.href}
 								target={link.href && "_blank"}
 								className="font-bold cursor-pointer nav-link"
-								key={link.id}
+								key={link.key}
 							>
 								{index + 1 === navLinks.length ? (
 									<div
@@ -85,6 +83,7 @@ export const Navbar = () => {
 						<FaPhone size={18} />
 						<div className="flex flex-col gap-1">
 							<a
+								aria-label="Phone number"
 								dir="ltr"
 								className="text-sm duration-200 hover:text-blue"
 								href="tel:+218 91-4729090"
@@ -92,6 +91,7 @@ export const Navbar = () => {
 								+218 91-4729090
 							</a>
 							<a
+								aria-label="Phone number"
 								dir="ltr"
 								className="text-sm duration-200 hover:text-blue"
 								href="tel:+1 (912) 275-5983"

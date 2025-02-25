@@ -152,6 +152,7 @@ export const UpdateMaritimeTransport = (
 													if (/^\d*$/.test(e.target.value))
 														field.onChange(Number(e.target.value));
 												}}
+												value={field.value === 0 ? "" : field.value}
 											/>
 										</FormControl>
 										<FormMessage />

@@ -2,26 +2,32 @@
 	"navLinks": [
 	  {
 		"title": "الرئيسية",
-		"id": "#"
+		"id": "#",
+		"key": 1
 	  },
 	  {
 		"title": "الخدمات",
-		"id": "#services"
+		"id": "#services",
+		"key":2
 	  },
 	  {
 		"title": "الأسئلة الشائعة",
-		"id": "#faq"
+		"id": "#faq",
+		"key": 3
 	  },
 	  {
 		"title": "اتصل بنا",
-		"id": "#contact"
+		"id": "#contact",
+		"key": 4
 	  },
 	  {
 		"title": "تسجيل الدخول",
-		"href":"https://www.hmmosoft.com/"
+		"href":"https://hmosvr.hmmosoft.com/apex/r/cars/cars_app137/login?session=3029027814153",
+		"key": 5
 	  },
 	  {
-		"title": "العربية"
+		"title": "EN",
+		"key": 6
 	  }
 	],
 
@@ -39,15 +45,15 @@
 	 "estimateCost": {
 				"dialogTitle": "حساب الكلفة التقديرية",
 				"dialogDescription" : "إضغط على حساب الكلفة التقديرية عندما تنتهي من الإدخال",
-				"source": "المصدر",
-				"warehouse": "الوجهة",
+				"source": "فرع المزاد",
+				"warehouse": "الميناء",
 				"shippingLine": "خط النقل",
 				"shippingType": "نوع النقل",
 				"auction": "المزاد",
 				"vin": "Vin",
 				"bid": "مبلغ المزايدة",
 				"calculate": "حساب الكلفة التقديرية",
-				"placeHolder":"إختار",
+				"placeHolder":"إختر",
 				"cost": "الكلفة التقديرية",
 				"model": "سنة الصنع",
 				"manufacturer":"الشركة المصنعة",
@@ -209,12 +215,12 @@
 		"address": "العنوان",
 		"zip":"الرمز البريدي",
 		"options":"الخيارات",
-		"sourceState":"ولاية المصدر",
-		"sourceCity": "مدينة المصدر",
-		"sourceAddress": "عنوان المصدر",
+		"sourceState":"ولاية فرع المزاد",
+		"sourceCity": "مدينة فرع المزاد",
+		"sourceAddress": "عنوان فرع المزاد",
 		"sourceZip":"الرمز البريدي للمصدر",
-		"warehouseState": "ولاية الوجهة",
-		"warehouseZip": "الرمز البريدي للوجهة",
+		"warehouseState": "ولاية الميناء",
+		"warehouseZip": "الرمز البريدي للميناء",
 		"cost":"الكلفة",
 		"shippingLine": "خط النقل",
 		"username":"اسم المستخدم",
@@ -223,12 +229,12 @@
 		"range":"المجال",
 		"fee":"الرسوم",
 		"additionalFee": "الرسوم الإضافية",
-		"Sources":"المصادر",
-		"source":"المصدر",
+		"Sources":"فروع المزادات",
+		"source":"فرع المزاد",
 		"inlandTransport": "النقل الداخلي",
-		"warehouse":"الوجهة",
+		"warehouse":"الميناء",
 		"maritimeTransport": "النقل البحري",
-		"Warehouses":"الوجهات",
+		"Warehouses":"الموانئ",
 		"Inland transports":"النقل الداخلي",
 		"Maritime transports":"النقل البحري",
 		"Shipping lines": "خطوط النقل",
@@ -242,8 +248,8 @@
 		"users": "مستخدمين",
 		"search": {
 			"searchState":"البحث عن الولاية",
-			"searchSourceState": "البحث عن ولاية المصدر",
-			"searchWarehouseState":"البحث عن ولاية الوجهة",
+			"searchSourceState": "البحث عن ولاية فرع المزاد",
+			"searchWarehouseState":"البحث عن ولاية الميناء",
 			"searchShippingLine":"البحث عن خط النقل",
 			"searchUserName":"البحث عن المستخدمين",
 			"searchFee": "البحث عن الرسوم"
@@ -261,8 +267,8 @@
 		"delete": {
 			"delete": "حذف {{name}}",
 			"deleteBtn":"حذف",
-			"deleteSource": "حذف المصدر",
-			"deleteWarehouse": "حذف الوجهة",
+			"deleteSource": "حذف فرع المزاد",
+			"deleteWarehouse": "حذف الميناء",
 			"deleteTitle": "هل أنت متأكد؟",
 			"deleteDescription":"هذا الإجراء لا يمكن التراجع عنه. سيتم حذفه بشكل دائم وإزالته من خوادمنا.",
 			"deleteCancel": "إلغاء"

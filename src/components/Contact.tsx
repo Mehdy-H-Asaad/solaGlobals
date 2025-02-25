@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import { useAnimationOptions } from "@/animation/animationOptions";
 import { Trans, useTranslation } from "react-i18next";
 import { FaWhatsapp } from "react-icons/fa6";
+import { TContact } from "@/types/static";
 
 export const Contact = () => {
 	const { emailForm, onSendEmail } = useSendEmail();
@@ -24,6 +25,7 @@ export const Contact = () => {
 	const googleMap = useMemo(
 		() => (
 			<iframe
+				title=""
 				src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d206253.5324458531!2d-115.33981002985016!3d36.12488712378223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1706555913762!5m2!1sen!2s"
 				width="100%"
 				height="400px"
@@ -41,7 +43,7 @@ export const Contact = () => {
 
 	const contactDetails = t("contact.contactDetails", {
 		returnObjects: true,
-	}) as Record<string, string>[];
+	}) as TContact[];
 
 	return (
 		<div className="py-20" id="contact">

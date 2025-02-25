@@ -5,6 +5,7 @@ import { useAnimationOptions } from "@/animation/animationOptions";
 import { Trans, useTranslation } from "react-i18next";
 import { GiTakeMyMoney, GiCarWheel } from "react-icons/gi";
 import { GoChecklist } from "react-icons/go";
+import { TWelcome } from "@/types/static";
 
 export const Welcome = () => {
 	const { isInView, ref, staggerVariants, textAnimation } =
@@ -14,7 +15,7 @@ export const Welcome = () => {
 
 	const welcomeIcons = t("welcome.WelcomeIcons", {
 		returnObjects: true,
-	}) as Record<string, string>[];
+	}) as TWelcome[];
 
 	const icons = [GiTakeMyMoney, GiCarWheel, GoChecklist];
 

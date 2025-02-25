@@ -70,6 +70,7 @@ export const UpdateAuctionFee = (auctionFee: TAuctionFee) => {
 												}
 											}}
 											placeholder={t("dashboard.auctionFee")}
+											value={field.value === 0 ? "" : field.value}
 										/>
 									</FormControl>
 									<FormMessage />

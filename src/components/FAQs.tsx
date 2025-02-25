@@ -8,23 +8,21 @@ import FAQsImg from "../assets/imgs/faqs.jpg";
 import { motion } from "framer-motion";
 import { useAnimationOptions } from "@/animation/animationOptions";
 import { Trans, useTranslation } from "react-i18next";
+import { TFAQs } from "@/types/static";
 
 export const FAQs = () => {
 	const { staggerVariants } = useAnimationOptions();
 
 	const { t } = useTranslation();
 
-	const FAQsData = t("faqs.faqsData", { returnObjects: true }) as Record<
-		string,
-		string
-	>[];
+	const FAQsData = t("faqs.faqsData", { returnObjects: true }) as TFAQs[];
 
 	return (
 		<div className="py-20 bg-[#f1f5fa]" id="faq">
 			<div className="container">
 				<div className="text-4xl font-bold w-fit mx-auto mb-20 text-center lg:text-start">
 					<Trans i18nKey={"faqs.title"}>
-						<span className="text-blue "> Questions</span>
+						<span className="text-blue "></span>
 					</Trans>
 				</div>
 
@@ -33,6 +31,7 @@ export const FAQs = () => {
 						<div className="flex flex-col gap-4">
 							{FAQsData.map((faq, index) => (
 								<motion.div
+									key={faq.id}
 									viewport={{ once: true }}
 									variants={staggerVariants}
 									initial="initial"

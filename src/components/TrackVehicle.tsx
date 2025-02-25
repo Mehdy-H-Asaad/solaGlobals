@@ -98,6 +98,27 @@ export const TrackVehicle = () => {
 								>
 									<FormField
 										control={estimateCostForm.control}
+										name="auction"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>{t("hero.estimateCost.auction")}</FormLabel>
+												<FormControl>
+													<Select
+														placeholder={t("hero.estimateCost.placeHolder")}
+														className="basic-single"
+														classNamePrefix="select"
+														onChange={option => field.onChange(option?.value)}
+														isSearchable={true}
+														name="Auction"
+														options={formattedAuctions}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={estimateCostForm.control}
 										name="source"
 										render={({ field }) => (
 											<FormItem>
@@ -193,27 +214,6 @@ export const TrackVehicle = () => {
 
 									<FormField
 										control={estimateCostForm.control}
-										name="auction"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>{t("hero.estimateCost.auction")}</FormLabel>
-												<FormControl>
-													<Select
-														placeholder={t("hero.estimateCost.placeHolder")}
-														className="basic-single"
-														classNamePrefix="select"
-														onChange={option => field.onChange(option?.value)}
-														isSearchable={true}
-														name="Auction"
-														options={formattedAuctions}
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={estimateCostForm.control}
 										name="vin"
 										render={({ field }) => (
 											<FormItem>
@@ -240,6 +240,7 @@ export const TrackVehicle = () => {
 															if (/^\d*$/.test(e.target.value))
 																field.onChange(Number(e.target.value));
 														}}
+														value={field.value === 0 ? "" : field.value}
 													/>
 												</FormControl>
 												<FormMessage />
@@ -249,7 +250,7 @@ export const TrackVehicle = () => {
 								</div>
 								<DialogFooter>
 									<Button
-										className=" bg-blue rtl:ml-auto rtl:mr-0 hover:bg-cyan-800 text-white mt-8 mr-auto"
+										className=" bg-blue hover:bg-cyan-800 text-white mt-8 mx-auto"
 										type="submit"
 										disabled={isGettingEstimateCost}
 									>

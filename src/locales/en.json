@@ -2,26 +2,32 @@
 	"navLinks": [
 	  {
 		"title": "Home",
-		"id": "#"
+		"id": "#",
+		"key": 1
 	  },
 	  {
 		"title": "Services",
-		"id": "#services"
+		"id": "#services",
+		"key": 2
 	  },
 	  {
 		"title": "FAQs",
-		"id": "#faq"
+		"id": "#faq",
+		"key": 3
 	  },
 	  {
 		"title": "Contact",
-		"id": "#contact"
+		"id": "#contact",
+		"key": 4
 	  },
 	  {
 		"title": "Customer Login",
-		"href":"https://www.hmmosoft.com/"
+		"href":"https://hmosvr.hmmosoft.com/apex/r/cars/cars_app137/login?session=3029027814153",
+		"key": 5
 	  },
 	  {
-		"title": "English"
+		"title": "AR",
+		"key":6
 	  }
 	],
 
@@ -37,7 +43,7 @@
 		"estimateCost": {
 				"dialogTitle": "Calculate estimate cost",
 				"dialogDescription" : "Click Calculate estimate cost when you're done.",
-				"source": "Source",
+				"source": "Auction branches",
 				"warehouse": "Warehouse",
 				"shippingLine": "Shipping Line",
 				"shippingType": "Shipping type",
@@ -209,10 +215,10 @@
 		"address": "Address",
 		"zip":"Zip code",
 		"options":"Options",
-		"sourceState":"Source State",
-		"sourceCity": "Source City",
-		"sourceAddress": "Source Address",
-		"sourceZip":"Source zipcode",
+		"sourceState":"Auction branche State",
+		"sourceCity": "Auction branche City",
+		"sourceAddress": "Auction branche Address",
+		"sourceZip":"Auction branche zipcode",
 		"warehouseState": "Warehouse state",
 		"warehouseZip": "Warehouse zipcode",
 		"cost":"Cost",
@@ -223,8 +229,8 @@
 		"password":"Password",
 		"additionalFee": "Additional fee",
 		"fee":"Fee",
-		"Sources":"Sources",
-		"source":"Source",
+		"Sources":"Auction branches",
+		"source":"Auction branche",
 		"inlandTransport": "Inland Transport",
 		"warehouse":"Warehouse",
 		"name":"Name",
@@ -242,7 +248,7 @@
 		"users": "Users",
 		"search": {
 			"searchState":"Search State",
-			"searchSourceState": "Search source state",
+			"searchSourceState": "Search Auction branche state",
 			"searchWarehouseState":"Search warehouse state",
 			"searchShippingLine":"Search shipping line",
 			"searchUserName":"Search username",
@@ -281,7 +287,7 @@
 		"message":"Message is required",
 		"state": "state is required",
 		"estimateCost": {
-				"source": "Source is required",
+				"source": "Auction branche is required",
 				"warehouse": "Warehouse is required",
 				"shippingLine": "Shipping line is required",
 				"shippingType": "Shipping type is required",

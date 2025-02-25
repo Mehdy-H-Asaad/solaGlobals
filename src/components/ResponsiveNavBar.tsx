@@ -3,7 +3,7 @@ import { SheetTrigger, SheetContent, Sheet } from "./ui/sheet";
 import { CiMenuFries } from "react-icons/ci";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
-
+import { TNavLinks } from "@/types/static";
 export const ResponsiveNavBar = ({
 	isBackgroundVisible,
 }: {
@@ -19,15 +19,12 @@ export const ResponsiveNavBar = ({
 			: i18n.changeLanguage("ar");
 	};
 
-	const navLinks = t("navLinks", { returnObjects: true }) as Record<
-		string,
-		string
-	>[];
+	const navLinks = t("navLinks", { returnObjects: true }) as TNavLinks[];
 
 	return (
-		<div className="block lg:hidden">
+		<div className="flex flex-row-reverse gap-10 lg:hidden rtl:flex-row items-baseline">
 			<Sheet open={isOpen} onOpenChange={setIsOpen}>
-				<SheetTrigger asChild>
+				<SheetTrigger>
 					<CiMenuFries
 						size={24}
 						className={`${
@@ -37,31 +34,33 @@ export const ResponsiveNavBar = ({
 					/>
 				</SheetTrigger>
 				<SheetContent className="bg-main-color text-black">
-					<div className="rtl:items-end flex flex-col gap-10">
-						{navLinks.map(nav => (
+					<div className="rtl:items-end flex flex-col gap-10 mt-10">
+						{navLinks.map((nav, index) => (
 							<a
-								href={nav.id}
-								className="text-lg font-bold"
-								key={nav.id}
+								aria-label="Navbar links"
+								href={nav.id || nav.href}
+								target={nav.href && "_blank"}
+								className="text-lg font-bold cursor-pointer"
+								key={nav.key}
 								onClick={() => setIsOpen(false)}
 							>
-								{nav.title}
+								{index + 1 === navLinks.length ? "" : nav.title}
 							</a>
 						))}
-						<div
-							className="flex items-center gap-2"
-							onClick={() => {
-								changeLanguage(), setIsOpen(false);
-							}}
-						>
-							<FaEarthAmericas size={24} />
-							<div className="text-lg font-bold">
-								{i18n.language === "en" ? "English" : "العربية"}
-							</div>
-						</div>
 					</div>
 				</SheetContent>
 			</Sheet>
+			<div
+				className="flex items-center gap-2"
+				onClick={() => {
+					changeLanguage(), setIsOpen(false);
+				}}
+			>
+				<FaEarthAmericas size={24} />
+				<div className="text-lg font-bold">
+					{i18n.language === "en" ? "AR" : "EN"}
+				</div>
+			</div>
 		</div>
 	);
 };

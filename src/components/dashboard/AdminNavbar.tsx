@@ -13,10 +13,16 @@ import {
 } from "@/components/ui/select";
 import { EAuctionFee, useAuctionFeeStore } from "./state/auctionFee.state";
 import { useTranslation } from "react-i18next";
+import { FaEarthAmericas } from "react-icons/fa6";
 export const AdminNavbar = () => {
 	const { setAuctionFee } = useAuctionFeeStore();
 	const navigate = useNavigate();
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
+	const changeLanguage = () => {
+		i18n.language === "ar"
+			? i18n.changeLanguage("en")
+			: i18n.changeLanguage("ar");
+	};
 	return (
 		<>
 			<div className="flex items-center justify-between h-24 shadow-md bg-white">
@@ -24,9 +30,10 @@ export const AdminNavbar = () => {
 					<div className="flex items-center justify-between rtl:flex-row-reverse">
 						<img src={logo} className="w-32" alt="Not found" loading="lazy" />
 
-						<div className="hidden lg:flex items-center gap-10">
+						<div className="hidden lg:flex items-center gap-8">
 							{adminNavLinks.map(nav => (
 								<NavLink
+									aria-label="Admin navbar links"
 									to={`/admin${nav.href}`}
 									key={nav.id}
 									className={({ isActive }) =>
@@ -36,6 +43,7 @@ export const AdminNavbar = () => {
 									{t(`dashboard.${nav.title}`)}
 								</NavLink>
 							))}
+
 							<Select
 								onValueChange={value => {
 									setAuctionFee(
@@ -57,6 +65,15 @@ export const AdminNavbar = () => {
 									</SelectGroup>
 								</SelectContent>
 							</Select>
+							<div
+								className="flex items-center gap-2 cursor-pointer nav-link"
+								onClick={() => {
+									changeLanguage();
+								}}
+							>
+								<FaEarthAmericas size={24} />
+								<div>{i18n.language === "en" ? "AR" : "EN"}</div>
+							</div>
 						</div>
 
 						<AdminNavbarResponsive />

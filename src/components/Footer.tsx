@@ -2,7 +2,9 @@ import logo from "../assets/imgs/logo.png";
 import { motion } from "framer-motion";
 import { useAnimationOptions } from "@/animation/animationOptions";
 import { useTranslation } from "react-i18next";
-import { FaWhatsapp } from "react-icons/fa6";
+import { FaEarthAmericas, FaWhatsapp } from "react-icons/fa6";
+import i18n from "@/i18n";
+import { TContact, TNavLinks } from "@/types/static";
 
 export const Footer = () => {
 	const { isInView, ref, textAnimation } = useAnimationOptions();
@@ -11,12 +13,15 @@ export const Footer = () => {
 
 	const contactDetails = t("contact.contactDetails", {
 		returnObjects: true,
-	}) as Record<string, string>[];
+	}) as TContact[];
 
-	const navLinks = t("navLinks", { returnObjects: true }) as Record<
-		string,
-		string
-	>[];
+	const navLinks = t("navLinks", { returnObjects: true }) as TNavLinks[];
+
+	const changeLanguage = () => {
+		i18n.language === "ar"
+			? i18n.changeLanguage("en")
+			: i18n.changeLanguage("ar");
+	};
 
 	return (
 		<div ref={ref} className="bg-main-color py-10">
@@ -96,14 +101,6 @@ export const Footer = () => {
 											""
 										)}
 									</div>
-									// <div key={contact.id} className="flex flex-col  gap-1">
-									// 	{contact.contact}:
-									// 	<a href={contact.href} className="text-sm">
-									// 		{contact.hrefTitle}
-									// 	</a>
-									// 	<div className="text-sm">{contact.description}</div>
-									// 	<p className="text-sm">{contact.secAddress}</p>
-									// </div>
 								))}
 							</div>
 						</motion.div>
@@ -120,9 +117,31 @@ export const Footer = () => {
 							{t("footer.quickLinksTitle")}
 						</h1>
 						<div className="flex flex-col gap-4">
-							{navLinks.map(nav => (
-								<a href={nav.id} key={nav.id} className="text-lg nav-link">
-									{nav.title}
+							{navLinks.map((nav, index) => (
+								<a
+									href={nav.id || nav.href}
+									target={nav.href && "_blank"}
+									key={nav.key}
+									className={`text-lg nav-link cursor-pointer ${
+										nav.title == "Customer Login" ||
+										nav.title === "تسجيل الدخول"
+											? "-order-1"
+											: ""
+									} `}
+								>
+									{index + 1 === navLinks.length ? (
+										<div
+											className="flex items-center gap-2"
+											onClick={() => {
+												changeLanguage();
+											}}
+										>
+											<FaEarthAmericas size={20} />
+											<div>{nav.title}</div>
+										</div>
+									) : (
+										nav.title
+									)}
 								</a>
 							))}
 						</div>

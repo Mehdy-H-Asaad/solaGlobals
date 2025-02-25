@@ -49,7 +49,6 @@ export const AuctinFeeColumns: ColumnDef<TAuctionFee>[] = [
 		},
 		cell: ({ row }) => {
 			const auctionFee = row.original;
-			console.log(row.original);
 			return (
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>

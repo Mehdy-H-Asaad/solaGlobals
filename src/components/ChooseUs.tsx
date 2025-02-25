@@ -1,4 +1,5 @@
 import { useAnimationOptions } from "@/animation/animationOptions";
+import { TChooseUs } from "@/types/static";
 import { motion } from "framer-motion";
 import { Trans, useTranslation } from "react-i18next";
 import { AiOutlineSafety } from "react-icons/ai";
@@ -13,7 +14,7 @@ export const ChooseUs = () => {
 
 	const chooseUsDataTranslation = t("chooseUs.chooseUsData", {
 		returnObjects: true,
-	}) as Record<string, string>[];
+	}) as TChooseUs[];
 
 	const icons = [
 		FaHandshakeSimple,
@@ -34,7 +35,6 @@ export const ChooseUs = () => {
 							className="text-center font-[700] text-5xl"
 						>
 							<Trans i18nKey={"chooseUs.title"}>
-								{/* Choose */}
 								<span className="text-blue"> Us</span>
 							</Trans>
 						</motion.div>

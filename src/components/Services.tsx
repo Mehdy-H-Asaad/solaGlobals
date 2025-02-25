@@ -1,4 +1,5 @@
 import { useAnimationOptions } from "@/animation/animationOptions";
+import { TServices } from "@/types/static";
 import { motion } from "framer-motion";
 import { Trans, useTranslation } from "react-i18next";
 
@@ -9,7 +10,7 @@ export const Services = () => {
 	const { t } = useTranslation();
 	const servicesDataTranslate = t("services.servicesData", {
 		returnObjects: true,
-	}) as Record<string, string>[];
+	}) as TServices[];
 
 	return (
 		<div className="py-20 bg-[#f1f5fa]" id="services">
@@ -43,7 +44,7 @@ export const Services = () => {
 								<span className="how-we-work-num">0</span>
 								{index + 1}
 							</div>
-							<div className="font-bold text-xl">{work.titel}</div>
+							<div className="font-bold text-xl">{work.title}</div>
 							<p className="rtl:text-base text-sm text-center">
 								{work.description}
 							</p>
