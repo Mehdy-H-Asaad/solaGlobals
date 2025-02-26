@@ -2,7 +2,13 @@ import { useApiQuery } from "@/api/useApiQuery";
 import { PaginationState } from "@tanstack/react-table";
 import { useState } from "react";
 import { TInlandTransports } from "../../types";
-export const useGetInlandTransports = () => {
+
+type TFilters = {
+	source_id?: string;
+	warehouse_id?: string;
+};
+
+export const useGetInlandTransports = (filters: TFilters = {}) => {
 	const [pagination, setPagination] = useState<PaginationState>({
 		pageIndex: 0,
 		pageSize: 10,
@@ -11,12 +17,14 @@ export const useGetInlandTransports = () => {
 	const queryParams = {
 		page: (pagination.pageIndex + 1).toString(),
 		limit: pagination.pageSize.toString(),
+		...(filters.source_id && { source_id: filters.source_id }),
+		...(filters.warehouse_id && { warehouse_id: filters.warehouse_id }),
 	};
 
 	const { data, isLoading: isLoadingInlandTransports } = useApiQuery<
 		TInlandTransports[]
 	>({
-		queryKey: ["inlandTransports", queryParams],
+		queryKey: ["inlandTransports", queryParams, filters],
 		requestURL: `/inland-transport/get?${new URLSearchParams(queryParams)}`,
 	});
 

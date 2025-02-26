@@ -38,7 +38,7 @@ export const CreateInlandTransport = () => {
 		value: destination.id,
 	}));
 	const formattedSources = sources?.map(source => ({
-		label: source.state,
+		label: `${source.state} - ${source.city} ${source.address}`,
 		value: source.id,
 	}));
 
@@ -57,12 +57,12 @@ export const CreateInlandTransport = () => {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.create.create", {
 							name: t("dashboard.Inland transports"),
 						})}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.create.createDescription", {
 							names: t("dashboard.Inland transports"),
 							name: t("dashboard.inlandTransport"),

@@ -41,7 +41,7 @@
 	"hero": {
 		"title": "قد سيارة احلامك مع <0>مجموعة سولا</0>",
 	 "paraghraph": "مجموعة سولا: جسرك إلى السيارات ذات الجودة من الولايات المتحدة إلى ليبيا",
-	 "button" : "تتبع مركبتك",
+	 "button" : "احسب تكلفة سيارتك الآن",
 	 "estimateCost": {
 				"dialogTitle": "حساب الكلفة التقديرية",
 				"dialogDescription" : "إضغط على حساب الكلفة التقديرية عندما تنتهي من الإدخال",
@@ -59,7 +59,9 @@
 				"manufacturer":"الشركة المصنعة",
 				"country":"البلد",
 				"nonValue":"غير متوفر",
-				"calculating": "جاري الحساب"
+				"calculating": "جاري الحساب",
+				"triple":" ثلاثي",
+				"quadruple": "رباعي"
 		}
  },
 
@@ -75,23 +77,20 @@
 		"secondary": "416 Cardinal Dr, Statesboro, GA 30461"
 	  },
 	  {
-		"id": 2,
-		"type": "phone",
-		"label": "الهاتف",
-		"primary": "+218 91-4729090",
-		"secondary": "+1 (912) 275-5983"
-	  },
-	  {
 		"id": 3,
 		"type": "email",
 		"label": "البريد الإلكتروني",
 		"primary": "suoollibya2015@gmail.com"
+
 	  },
 	  {
 		"id": 4,
 		"type": "phone",
 		"label": "واتساب",
-		"primary": "+218 91-4729090"
+		"primary": "+218 91-4729090",
+		"secondary": "+1 (912) 275-5983",
+		"primaryHref": "+218914729090",
+		"secondaryHref": "+19122755983"
 	  }
 	]},
 
@@ -218,7 +217,7 @@
 		"sourceState":"ولاية فرع المزاد",
 		"sourceCity": "مدينة فرع المزاد",
 		"sourceAddress": "عنوان فرع المزاد",
-		"sourceZip":"الرمز البريدي للمصدر",
+		"sourceZip":"الرمز البريدي لفرع المزاد",
 		"warehouseState": "ولاية الميناء",
 		"warehouseZip": "الرمز البريدي للميناء",
 		"cost":"الكلفة",

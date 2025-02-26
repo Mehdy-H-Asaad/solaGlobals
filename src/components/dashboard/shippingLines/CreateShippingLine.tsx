@@ -39,12 +39,12 @@ export const CreateShippingLine = () => {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.create.create", {
 							name: t("dashboard.shippingLine"),
 						})}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.create.createDescription", {
 							name: t("dashboard.shippingLine"),
 							names: t("dashboard.Shipping lines"),

@@ -86,7 +86,8 @@ export const Navbar = () => {
 								aria-label="Phone number"
 								dir="ltr"
 								className="text-sm duration-200 hover:text-blue"
-								href="tel:+218 91-4729090"
+								href="https://wa.me/+218914729090"
+								target="_blank"
 							>
 								+218 91-4729090
 							</a>
@@ -94,7 +95,8 @@ export const Navbar = () => {
 								aria-label="Phone number"
 								dir="ltr"
 								className="text-sm duration-200 hover:text-blue"
-								href="tel:+1 (912) 275-5983"
+								href="https://wa.me/+19122755983"
+								target="_blank"
 							>
 								+1 (912) 275-5983
 							</a>

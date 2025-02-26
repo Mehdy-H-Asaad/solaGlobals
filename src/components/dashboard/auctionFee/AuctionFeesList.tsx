@@ -14,7 +14,7 @@ export const AuctionFeesList = () => {
 	} = useGetAuctionFees(auctionFee);
 
 	return (
-		<div className="container">
+		<div className="container h-auto sm:min-h-[calc(100vh-96px-40px)]">
 			<div className="text-4xl font-bold w-fit mx-auto my-10">
 				<span className="text-blue capitalize">{auctionFee}</span>
 			</div>

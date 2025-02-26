@@ -38,7 +38,7 @@ export const UpdateInlandTransport = (inlandTransport: TInlandTransports) => {
 		value: destination.id,
 	}));
 	const formattedSources = sources?.map(source => ({
-		label: source.state,
+		label: `${source.state} - ${source.city}`,
 		value: source.id,
 	}));
 
@@ -61,12 +61,12 @@ export const UpdateInlandTransport = (inlandTransport: TInlandTransports) => {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.update.update", {
 							name: t("dashboard.inlandTransport"),
 						})}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.update.updateDescription", {
 							name: t("dashboard.inlandTransport"),
 							names: t("dashboard.Inland transports"),

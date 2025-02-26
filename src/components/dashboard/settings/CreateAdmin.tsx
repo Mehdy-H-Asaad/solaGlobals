@@ -35,10 +35,10 @@ export const CreateAdmin = () => {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.create.create", { name: t("dashboard.newAdmin") })}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.create.createDescription", {
 							name: t("dashboard.user"),
 							names: t("dashboard.users"),

@@ -40,10 +40,10 @@ export const UpdateAuctionFee = (auctionFee: TAuctionFee) => {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.update.update", { name: t("dashboard.auctionFee") })}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.update.updateDescription", {
 							name: t("dashboard.auctionFee"),
 							names: t("dashboard.auctionFee"),

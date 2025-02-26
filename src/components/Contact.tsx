@@ -79,8 +79,9 @@ export const Contact = () => {
 												href={
 													contact.type === "email"
 														? `mailto:${contact.primary}`
-														: `tel:${contact.primary}`
+														: `https://wa.me/${contact.primaryHref}`
 												}
+												target="_blank"
 											>
 												{contact.primary}
 											</a>
@@ -90,8 +91,9 @@ export const Contact = () => {
 												href={
 													contact.type === "email"
 														? `mailto:${contact.secondary}`
-														: `tel:${contact.secondary}`
+														: `https://wa.me/${contact.secondaryHref}`
 												}
+												target="_blank"
 											>
 												{contact.secondary}
 											</a>

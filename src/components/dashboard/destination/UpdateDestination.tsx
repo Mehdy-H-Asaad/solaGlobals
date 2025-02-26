@@ -43,10 +43,10 @@ export const UpdateDestination = (destination: TDestination) => {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.update.update", { name: t("dashboard.warehouse") })}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.update.updateDescription", {
 							name: t("dashboard.warehouse"),
 							names: t("dashboard.Warehouses"),

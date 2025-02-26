@@ -65,11 +65,11 @@ export const TrackVehicle = () => {
 	const formattedShippingTypes = [
 		{
 			value: 1,
-			label: "Triple",
+			label: t("hero.estimateCost.triple"),
 		},
 		{
 			value: 2,
-			label: "Quadruple",
+			label: t("hero.estimateCost.quadruple"),
 		},
 	];
 
@@ -235,7 +235,7 @@ export const TrackVehicle = () => {
 												<FormControl>
 													<Input
 														{...field}
-														placeholder="Bid ammount"
+														placeholder={t("hero.estimateCost.bid")}
 														onChange={e => {
 															if (/^\d*$/.test(e.target.value))
 																field.onChange(Number(e.target.value));

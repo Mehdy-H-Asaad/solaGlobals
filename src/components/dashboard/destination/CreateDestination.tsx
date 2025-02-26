@@ -36,10 +36,10 @@ export const CreateDestination = () => {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.create.create", { name: t("dashboard.warehouse") })}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.create.createDescription", {
 							name: t("dashboard.warehouse"),
 							names: t("dashboard.Warehouses"),

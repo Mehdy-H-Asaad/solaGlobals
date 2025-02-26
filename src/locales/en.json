@@ -39,7 +39,7 @@
 	"hero": {
 		"title": "Drive Your Dreams With <0> Sola Groups</0>",
 		"paraghraph" : "Sola Groups: Your Bridge to Quality Cars From the USA to Libya",
-		"button" : "Track your vehicle",
+		"button" : "Calculate your vehicle's cost now",
 		"estimateCost": {
 				"dialogTitle": "Calculate estimate cost",
 				"dialogDescription" : "Click Calculate estimate cost when you're done.",
@@ -57,7 +57,9 @@
 				"manufacturer":"Manufacturer",
 				"country":"Country",
 				"nonValue":"N/A",
-				"calculating": "Calculating"
+				"calculating": "Calculating",
+				"triple":" Triple",
+				"quadruple": "Quadruple"
 		}
 	},
 
@@ -74,22 +76,18 @@
 	  },
 	  {
 		"id": 2,
-		"type": "phone",
-		"label": "Phone",
-		"primary": "+218 91-4729090",
-		"secondary": "+1 (912) 275-5983"
-	  },
-	  {
-		"id": 3,
 		"type": "email",
 		"label": "Email",
 		"primary": "suoollibya2015@gmail.com"
 	  },
 	  {
-		"id": 4,
+		"id":3,
 		"type": "phone",
 		"label": "WhatsApp",
-		"primary": "+218 91-4729090"
+		"primary": "+218 91-4729090",
+		"secondary": "+1 (912) 275-5983",
+		"primaryHref": "+218914729090",
+		"secondaryHref": "+19122755983"
 	  }
 	]},
 
@@ -215,10 +213,10 @@
 		"address": "Address",
 		"zip":"Zip code",
 		"options":"Options",
-		"sourceState":"Auction branche State",
-		"sourceCity": "Auction branche City",
-		"sourceAddress": "Auction branche Address",
-		"sourceZip":"Auction branche zipcode",
+		"sourceState":"Auction branch State",
+		"sourceCity": "Auction branch City",
+		"sourceAddress": "Auction branch Address",
+		"sourceZip":"Auction branch zipcode",
 		"warehouseState": "Warehouse state",
 		"warehouseZip": "Warehouse zipcode",
 		"cost":"Cost",
@@ -230,11 +228,11 @@
 		"additionalFee": "Additional fee",
 		"fee":"Fee",
 		"Sources":"Auction branches",
-		"source":"Auction branche",
+		"source":"Auction branch",
 		"inlandTransport": "Inland Transport",
 		"warehouse":"Warehouse",
 		"name":"Name",
-		"maritimeTransport": "MaritimeTransport",
+		"maritimeTransport": "Maritime Transport",
 		"Warehouses":"Warehouses",
 		"Inland transports":"Inland Transports",
 		"Maritime transports":"Maritime Transports",
@@ -248,7 +246,7 @@
 		"users": "Users",
 		"search": {
 			"searchState":"Search State",
-			"searchSourceState": "Search Auction branche state",
+			"searchSourceState": "Search Auction branch state",
 			"searchWarehouseState":"Search warehouse state",
 			"searchShippingLine":"Search shipping line",
 			"searchUserName":"Search username",
@@ -287,7 +285,7 @@
 		"message":"Message is required",
 		"state": "state is required",
 		"estimateCost": {
-				"source": "Auction branche is required",
+				"source": "Auction branch is required",
 				"warehouse": "Warehouse is required",
 				"shippingLine": "Shipping line is required",
 				"shippingType": "Shipping type is required",

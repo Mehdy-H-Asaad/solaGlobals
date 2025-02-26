@@ -66,12 +66,12 @@ export const UpdateMaritimeTransport = (
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.update.update", {
 							name: t("dashboard.maritimeTransport"),
 						})}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.update.updateDescription", {
 							name: t("dashboard.maritimeTransport"),
 							names: t("dashboard.Maritime transports"),

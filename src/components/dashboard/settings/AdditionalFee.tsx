@@ -50,12 +50,12 @@ export const AdditionalFee = () => {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.update.update", {
 							name: t("dashboard.additionalFee"),
 						})}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.update.updateDescription", {
 							name: t("dashboard.additionalFee"),
 							names: t("dashboard.additionalFee"),

@@ -75,8 +75,9 @@ export const Footer = () => {
 													href={
 														contact.type === "email"
 															? `mailto:${contact.primary}`
-															: `tel:${contact.primary}`
+															: `https://wa.me/${contact.primaryHref}`
 													}
+													target="_blank"
 												>
 													{contact.primary}
 												</a>
@@ -86,8 +87,9 @@ export const Footer = () => {
 													href={
 														contact.type === "email"
 															? `mailto:${contact.secondary}`
-															: `tel:${contact.secondary}`
+															: `https://wa.me/${contact.secondaryHref}`
 													}
+													target="_blank"
 												>
 													{contact.secondary}
 												</a>
@@ -154,7 +156,14 @@ export const Footer = () => {
 						animate={isInView ? "enter" : ""}
 						className="mx-auto w-fit font-bold"
 					>
-						© 2025 SOLA INC. All rights reserved.
+						© 2025 SOLA INC. All rights reserved. Powered by{" "}
+						<a
+							href="https://www.hmmosoft.com/"
+							target="_blank"
+							className="text-blue"
+						>
+							HmmoSoft
+						</a>
 					</motion.p>
 				</div>
 			</div>

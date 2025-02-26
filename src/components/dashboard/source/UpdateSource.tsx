@@ -43,10 +43,10 @@ export const UpdateSource = (source: TSource) => {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.update.update", { name: t("dashboard.source") })}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.update.updateDescription", {
 							names: t("dashboard.Sources"),
 							name: t("dashboard.source"),

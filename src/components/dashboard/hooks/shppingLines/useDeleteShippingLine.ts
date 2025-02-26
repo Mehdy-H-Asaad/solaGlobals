@@ -13,7 +13,7 @@ export const useDeleteShippingLine = (id: string) => {
 			toast.success("Shipping line deleted successfully");
 			queryClient.invalidateQueries({
 				queryKey: ["shippingLines"],
-				exact: true,
+				exact: false,
 			});
 		},
 	});

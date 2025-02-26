@@ -36,10 +36,10 @@ export const CreateSource = () => {
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>
+					<DialogTitle className="text-center">
 						{t("dashboard.create.create", { name: t("dashboard.Sources") })}
 					</DialogTitle>
-					<DialogDescription>
+					<DialogDescription className="text-center">
 						{t("dashboard.create.createDescription", {
 							names: t("dashboard.Sources"),
 							name: t("dashboard.source"),

@@ -26,6 +26,7 @@ import React, { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CreateInlandTransport } from "./CreateInlandTransport";
 import { t } from "i18next";
+import { FilterInlandTransports } from "./FilterInlandTransports";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -77,7 +78,7 @@ export function InlandTransportsDataTable<TData, TValue>({
 
 	return (
 		<div>
-			<div className="flex items-center justify-between py-4 gap-10">
+			<div className="flex flex-col md:flex-row  items-center justify-between py-4 gap-10">
 				<Input
 					placeholder={t("dashboard.search.searchSourceState")}
 					value={
@@ -88,8 +89,10 @@ export function InlandTransportsDataTable<TData, TValue>({
 					}
 					className="max-w-sm bg-transparent border-gray-500"
 				/>
-
-				<CreateInlandTransport />
+				<div className="flex flex-col md:flex-row gap-10 w-full justify-end">
+					<CreateInlandTransport />
+					<FilterInlandTransports />
+				</div>
 			</div>
 			<div className="rounded-md border border-gray-500">
 				<Table>
