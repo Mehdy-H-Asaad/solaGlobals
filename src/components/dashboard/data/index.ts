@@ -11,21 +11,26 @@ export const adminNavLinks = [
 	},
 	{
 		id: 3,
+		title: "destinations",
+		href: "/countries",
+	},
+	{
+		id: 4,
 		title: "Inland transports",
 		href: "/inland-transports",
 	},
 	{
-		id: 4,
+		id: 5,
 		title: "Maritime transports",
 		href: "/maritime-transports",
 	},
 	{
-		id: 5,
+		id: 6,
 		title: "Shipping lines",
 		href: "/shipping-lines",
 	},
 	{
-		id: 6,
+		id: 7,
 		title: "Settings",
 		href: "/settings",
 	},

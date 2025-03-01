@@ -1,5 +1,5 @@
 import { useApiMutation } from "@/api/useApiMutation";
-import { useShippingLineSchema } from "@/schema/shippingLine.schema";
+import { shippingLineSchema } from "@/schema/shippingLine.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -24,10 +24,9 @@ export const useUpdateShippingLine = (id: string) => {
 		},
 	});
 
-	const updateShippingLineSchema =
-		useShippingLineSchema().shippingLineSchema.extend({
-			name: z.string().min(1, "Shipping line is required"),
-		});
+	const updateShippingLineSchema = shippingLineSchema.extend({
+		name: z.string().min(1, "Shipping line is required"),
+	});
 
 	type TUpdateShippingLineSchema = z.infer<typeof updateShippingLineSchema>;
 

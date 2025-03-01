@@ -1,7 +1,7 @@
 import { useApiMutation } from "@/api/useApiMutation";
 import { TSource, TUpdateSourceDTO } from "../../types";
 import { z } from "zod";
-import { useSourceSchema } from "@/schema/source.schema";
+import { sourceSchema } from "@/schema/source.schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
@@ -21,7 +21,7 @@ export const useUpdateSource = (id: number) => {
 		},
 	});
 
-	const updateSourceSchema = useSourceSchema().sourceSchema;
+	const updateSourceSchema = sourceSchema;
 
 	type TUpdateSourceSchema = z.infer<typeof updateSourceSchema>;
 

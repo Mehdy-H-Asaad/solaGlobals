@@ -46,7 +46,7 @@
 				"dialogTitle": "حساب الكلفة التقديرية",
 				"dialogDescription" : "إضغط على حساب الكلفة التقديرية عندما تنتهي من الإدخال",
 				"source": "فرع المزاد",
-				"warehouse": "الميناء",
+				"warehouse": "ميناء التحميل",
 				"shippingLine": "خط النقل",
 				"shippingType": "نوع النقل",
 				"auction": "المزاد",
@@ -61,7 +61,12 @@
 				"nonValue":"غير متوفر",
 				"calculating": "جاري الحساب",
 				"triple":" ثلاثي",
-				"quadruple": "رباعي"
+				"quadruple": "رباعي",
+				"port":"ميناء الوصول",
+				"total":"التكلفة الإجمالية في ميناء الوجهة",
+				"toMaritimeTransport": "تكلفة الشحن البحري",
+				"toInland": "تكلفة النقل البري",
+				"auctionFee": "رسوم المزاد"
 		}
  },
 
@@ -220,6 +225,10 @@
 		"sourceZip":"الرمز البريدي لفرع المزاد",
 		"warehouseState": "ولاية الميناء",
 		"warehouseZip": "الرمز البريدي للميناء",
+		"destinations":"الوجهات",
+		"destination":"الوجهة",
+		"country":"البلد",
+		"port" : "الميناء",
 		"cost":"الكلفة",
 		"shippingLine": "خط النقل",
 		"username":"اسم المستخدم",
@@ -293,7 +302,10 @@
 				"shippingType": "مطلوب",
 				"auction": "مطلوب",
 				"vin": "يجب على الأقل إدخال 17 رقم",
-				"bid": "مطلوب"
+				"bid": "مطلوب",
+				"country":"مطلوب",
+				"port":"مطلوب"
+				
 		}
 	}
   }

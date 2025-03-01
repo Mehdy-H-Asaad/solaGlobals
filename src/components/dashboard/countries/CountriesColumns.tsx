@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { TMaritimeTransports } from "../types";
+import { TCountry } from "../types";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -20,59 +20,25 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useDeleteMaritimeTransport } from "../hooks/maritimeTransports/useDeleteMaritimeTransport";
-import { UpdateMaritimeTransport } from "./UpdateMaritimeTransport";
 import { useTranslation } from "react-i18next";
-import { t } from "i18next";
-import { formatCurrency } from "@/utils/formatCurrency";
+import { useDeleteCountry } from "../hooks/countries/useDeleteCountry";
+import { UpdateCountry } from "./UpdateCountry";
 
-export const MaritimeTransportsColumns: ColumnDef<TMaritimeTransports>[] = [
+export const CountriesColumns: ColumnDef<TCountry>[] = [
 	{
-		accessorKey: "warehouse_state",
-		header: () => {
-			const { t } = useTranslation();
-			return t("dashboard.warehouseState");
-		},
-	},
-	{
-		accessorKey: "warehouse_zipcode",
-		header: () => {
-			const { t } = useTranslation();
-			return t("dashboard.warehouseZip");
-		},
-	},
-	{
-		accessorKey: "shipping_line_name",
-		header: () => {
-			const { t } = useTranslation();
-			return t("dashboard.shippingLine");
-		},
-	},
-	{
-		accessorKey: "destination_country",
+		accessorKey: "country",
 		header: () => {
 			const { t } = useTranslation();
 			return t("dashboard.country");
 		},
 	},
 	{
-		accessorKey: "destination_port",
+		accessorKey: "port",
 		header: () => {
 			const { t } = useTranslation();
 			return t("dashboard.port");
 		},
 	},
-	{
-		accessorKey: "cost",
-		header: () => {
-			const { t } = useTranslation();
-			return t("dashboard.cost");
-		},
-		cell: ({ row }) => {
-			return formatCurrency(row.original.cost);
-		},
-	},
-
 	{
 		id: "actions",
 		header: () => {
@@ -80,13 +46,11 @@ export const MaritimeTransportsColumns: ColumnDef<TMaritimeTransports>[] = [
 			return t("dashboard.options");
 		},
 		cell: ({ row }) => {
-			const maritimeTransport = row.original;
-			const maritimeTransportId = row.original.id;
+			const countryId = row.original.id;
+			const country = row.original;
 
-			const { deleteMaritimeTransport } = useDeleteMaritimeTransport(
-				maritimeTransportId.toString()
-			);
-
+			const { deleteCountry } = useDeleteCountry(countryId);
+			const { t } = useTranslation();
 			return (
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
@@ -95,15 +59,15 @@ export const MaritimeTransportsColumns: ColumnDef<TMaritimeTransports>[] = [
 							<MoreHorizontal className="h-4 w-4" />
 						</Button>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end">
+					<DropdownMenuContent className="rtl:ml-auto" align="end">
 						<DropdownMenuLabel className="rtl:text-right">
 							{t("dashboard.options")}
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<AlertDialog>
-							<AlertDialogTrigger className=" mb-2 bg-red-600 duration-200 text-white hover:!bg-red-800 hover:!text-white cursor-pointer w-full text-sm text-center justify-center p-2 flex rounded-sm">
+							<AlertDialogTrigger className="mb-2 bg-red-600 duration-200 text-white hover:!bg-red-800 hover:!text-white cursor-pointer w-full text-sm text-center justify-center p-2 flex rounded-sm">
 								{t("dashboard.delete.delete", {
-									name: t("dashboard.maritimeTransport"),
+									name: t("dashboard.destination"),
 								})}
 							</AlertDialogTrigger>
 							<AlertDialogContent className="bg-white text-black">
@@ -119,18 +83,15 @@ export const MaritimeTransportsColumns: ColumnDef<TMaritimeTransports>[] = [
 									<AlertDialogCancel className="bg-black text-white duration-200">
 										{t("dashboard.delete.deleteCancel")}
 									</AlertDialogCancel>
-									<AlertDialogAction
-										asChild
-										onClick={() => deleteMaritimeTransport()}
-									>
-										<Button className="duration-200 hover:bg-black hover:text-white text-white bg-red-600 cursor-pointer flex rounded-sm text-sm">
+									<AlertDialogAction asChild onClick={() => deleteCountry()}>
+										<Button className=" duration-200 hover:bg-black hover:text-white text-white bg-red-600">
 											{t("dashboard.delete.deleteBtn")}
 										</Button>
 									</AlertDialogAction>
 								</AlertDialogFooter>
 							</AlertDialogContent>
 						</AlertDialog>
-						<UpdateMaritimeTransport {...maritimeTransport} />
+						<UpdateCountry {...country} />
 					</DropdownMenuContent>
 				</DropdownMenu>
 			);

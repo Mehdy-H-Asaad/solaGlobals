@@ -14,6 +14,7 @@ import { ShippingLinesPage } from "./pages/dashboard/ShippingLinesPage";
 import { AuctionFeesPage } from "./pages/dashboard/AuctionFeesPage";
 import { UsersPage } from "./pages/dashboard/UsersPage";
 import { useAxiosResponse } from "./api/useAxiosResponse";
+import { CountriesPage } from "./pages/dashboard/CountriesPage";
 function App() {
 	useAxiosResponse();
 
@@ -45,6 +46,7 @@ function App() {
 						<Route path="shipping-lines" element={<ShippingLinesPage />} />
 						<Route path="auction-fee" element={<AuctionFeesPage />} />
 						<Route path="settings" element={<UsersPage />} />
+						<Route path="countries" element={<CountriesPage />} />
 					</Route>
 				</Route>
 

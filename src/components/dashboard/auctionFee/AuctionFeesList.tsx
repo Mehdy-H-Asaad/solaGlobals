@@ -1,5 +1,5 @@
 import { useGetAuctionFees } from "../hooks/auctionFee/useGetAuctionFees";
-import { useAuctionFeeStore } from "../state/auctionFee.state";
+import { useAuctionFeeStore } from "../../../state/auctionFee.state";
 import { AuctinFeeColumns } from "./AuctionFeesColumns";
 import { AuctionFeeDataTable } from "./AuctionFeesDataTable";
 

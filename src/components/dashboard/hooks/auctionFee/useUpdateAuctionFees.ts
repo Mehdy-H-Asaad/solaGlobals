@@ -3,7 +3,7 @@ import {
 	TAuctionFee,
 	TUpdateAuctionFeeDTO,
 } from "@/components/dashboard/types";
-import { useAuctionFeeSchema } from "@/schema/auctionFee.schema";
+import { auctionFeeSchema } from "@/schema/auctionFee.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -27,7 +27,7 @@ export const useUpdateAuctionFees = (id: number) => {
 		},
 	});
 
-	const updateAuctionFeeSchema = useAuctionFeeSchema().auctionFeeSchema.pick({
+	const updateAuctionFeeSchema = auctionFeeSchema.pick({
 		fee: true,
 	});
 

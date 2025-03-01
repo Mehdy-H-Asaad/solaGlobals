@@ -3,7 +3,15 @@ import { PaginationState } from "@tanstack/react-table";
 import { useState } from "react";
 import { TMaritimeTransports } from "../../types";
 
-export const useGetMaritimeTransports = () => {
+export type TMaritimeTransportsFilters = {
+	shipping_line_id?: number;
+	destination_id?: number;
+	warehouse_id?: number;
+};
+
+export const useGetMaritimeTransports = (
+	filters: TMaritimeTransportsFilters = {}
+) => {
 	const [pagination, setPagination] = useState<PaginationState>({
 		pageIndex: 0,
 		pageSize: 10,
@@ -12,6 +20,15 @@ export const useGetMaritimeTransports = () => {
 	const queryParams = {
 		page: (pagination.pageIndex + 1).toString(),
 		limit: pagination.pageSize.toString(),
+		...(filters.destination_id && {
+			destination_id: filters.destination_id.toString(),
+		}),
+		...(filters.shipping_line_id && {
+			shipping_line_id: filters.shipping_line_id.toString(),
+		}),
+		...(filters.warehouse_id && {
+			warehouse_id: filters.warehouse_id.toString(),
+		}),
 	};
 
 	const { data, isLoading: isLoadingMaritimeTransports } = useApiQuery<

@@ -22,10 +22,10 @@ import {
 } from "@/components/ui/table";
 
 import { useState } from "react";
-import { CreateSource } from "./CreateSource";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
-import { FiltersSources } from "./FiltersSources";
+import { CreateCountry } from "./CreateCountry";
+import { FilterCountries } from "./FilterCountries";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -36,7 +36,7 @@ interface DataTableProps<TData, TValue> {
 	setPagination: React.Dispatch<React.SetStateAction<PaginationState>>;
 }
 
-export function SourceDataTable<TData, TValue>({
+export function CountriesDataTable<TData, TValue>({
 	columns,
 	pageCount,
 	data,
@@ -80,17 +80,9 @@ export function SourceDataTable<TData, TValue>({
 	return (
 		<div>
 			<div className="flex items-center justify-between py-4 gap-10">
-				{/* <Input
-					placeholder={t("dashboard.search.searchState")}
-					value={(table.getColumn("state")?.getFilterValue() as string) ?? ""}
-					onChange={event =>
-						table.getColumn("state")?.setFilterValue(event.target.value)
-					}
-					className="max-w-sm w-fit bg-transparent border-gray-500"
-				/> */}
-				<div className="flex flex-col gap-8 w-full flex-wrap py-4 justify-start">
-					<CreateSource />
-					<FiltersSources />
+				<div className="flex flex-col gap-8 w-full py-4 justify-start">
+					<CreateCountry />
+					<FilterCountries />
 				</div>
 			</div>
 			<div className="rounded-md border border-gray-500">
@@ -132,9 +124,9 @@ export function SourceDataTable<TData, TValue>({
 								</TableRow>
 							))
 						) : isLoading ? (
-							[...Array(5)].map((_, index) => (
+							[...Array(3)].map((_, index) => (
 								<TableRow key={index} className="border border-gray-500">
-									{[...Array(5)].map((_, cellIndex) => (
+									{[...Array(3)].map((_, cellIndex) => (
 										<TableCell key={cellIndex} className="h-24 text-center">
 											<div className="space-y-2">
 												<Skeleton className="h-4 w-[100px]" />

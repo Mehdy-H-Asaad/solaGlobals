@@ -1,4 +1,4 @@
-import { useAdminSchmea } from "@/schema/admin.schema";
+import { adminSchema } from "@/schema/admin.schema";
 import { TCreateAdminDTO, TUsers } from "../../types";
 import { useApiMutation } from "@/api/useApiMutation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +24,7 @@ export const useCreateAdmin = () => {
 		},
 	});
 
-	const createAdminSchema = useAdminSchmea().adminSchema;
+	const createAdminSchema = adminSchema;
 	type TCreateAdminSchema = z.infer<typeof createAdminSchema>;
 
 	const createAdminForm = useForm<TCreateAdminSchema>({

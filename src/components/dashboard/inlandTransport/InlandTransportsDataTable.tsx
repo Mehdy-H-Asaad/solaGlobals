@@ -12,7 +12,7 @@ import {
 	useReactTable,
 	PaginationState,
 } from "@tanstack/react-table";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import {
 	Table,
 	TableBody,
@@ -78,21 +78,9 @@ export function InlandTransportsDataTable<TData, TValue>({
 
 	return (
 		<div>
-			<div className="flex flex-col md:flex-row  items-center justify-between py-4 gap-10">
-				<Input
-					placeholder={t("dashboard.search.searchSourceState")}
-					value={
-						(table.getColumn("source_state")?.getFilterValue() as string) ?? ""
-					}
-					onChange={event =>
-						table.getColumn("source_state")?.setFilterValue(event.target.value)
-					}
-					className="max-w-sm bg-transparent border-gray-500"
-				/>
-				<div className="flex flex-col md:flex-row gap-10 w-full justify-end">
-					<CreateInlandTransport />
-					<FilterInlandTransports />
-				</div>
+			<div className="flex flex-col gap-8 w-full flex-wrap py-4 justify-start">
+				<CreateInlandTransport />
+				<FilterInlandTransports />
 			</div>
 			<div className="rounded-md border border-gray-500">
 				<Table>

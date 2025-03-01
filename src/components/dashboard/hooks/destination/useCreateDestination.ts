@@ -2,7 +2,7 @@ import { TCreateDestinationDTO, TDestination } from "../../types";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useDestinationSchema } from "@/schema/destination.schema";
+import { destinationSchema } from "@/schema/destination.schema";
 import { useApiMutation } from "@/api/useApiMutation";
 import toast from "react-hot-toast";
 
@@ -20,7 +20,7 @@ export const useCreateDestination = () => {
 		},
 	});
 
-	const createDestinationSchema = useDestinationSchema().destinationSchema;
+	const createDestinationSchema = destinationSchema;
 
 	type TCreateDestinationSchema = z.infer<typeof createDestinationSchema>;
 

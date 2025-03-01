@@ -1,5 +1,5 @@
 import { useApiMutation } from "@/api/useApiMutation";
-import { useEstimateCostSchema } from "@/schema/estimateCost.schema";
+import { CostSchema } from "@/schema/estimateCost.schema";
 import { TCreateEstimateCostDTO, TGetEstimateCost } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -15,17 +15,19 @@ export const useEstimateCost = () => {
 		requestURL: "/estimate-cost",
 	});
 
-	const estimateCostSchema = useEstimateCostSchema();
+	const estimateCostSchema = CostSchema;
 
 	const estimateCostForm = useForm<z.infer<typeof estimateCostSchema>>({
 		resolver: zodResolver(estimateCostSchema),
 		defaultValues: {
 			amount: 0,
-			auction: 0,
+			auction: "",
 			shipping_line: 0,
 			shipping_type: 0,
 			source: 0,
 			vin: "",
+			destination_country: "",
+			destination_port: "",
 			warehouse: 0,
 		},
 	});

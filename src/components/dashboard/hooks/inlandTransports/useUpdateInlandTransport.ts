@@ -1,5 +1,5 @@
 import { useApiMutation } from "@/api/useApiMutation";
-import { useInlandTransports } from "@/schema/InlandTransports.schema";
+import { InlandTransportsSchema } from "@/schema/InlandTransports.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -24,17 +24,11 @@ export const useUpdateInlandTransport = (id: string) => {
 		},
 	});
 
-	const updateInlandTransportSchema = useInlandTransports()
-		.InlandTransportsSchema.pick({
-			cost: true,
-			source_id: true,
-			warehouse_id: true,
-		})
-		.extend({
-			source_id: z.number().min(1, "Source is required"),
-			warehouse_id: z.number().min(1, "Warehouse is required"),
-			cost: z.number().min(1, "Cost is required"),
-		});
+	const updateInlandTransportSchema = InlandTransportsSchema.pick({
+		cost: true,
+		source_id: true,
+		warehouse_id: true,
+	});
 
 	type TUpdateInlandTransportSchema = z.infer<
 		typeof updateInlandTransportSchema

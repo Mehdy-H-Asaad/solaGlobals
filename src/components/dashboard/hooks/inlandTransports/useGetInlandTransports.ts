@@ -4,8 +4,12 @@ import { useState } from "react";
 import { TInlandTransports } from "../../types";
 
 type TFilters = {
-	source_id?: string;
-	warehouse_id?: string;
+	source_state?: string;
+	source_city?: string;
+	source_address?: string;
+	source_zipcode?: string;
+	warehouse_state?: string;
+	warehouse_zipcode?: string;
 };
 
 export const useGetInlandTransports = (filters: TFilters = {}) => {
@@ -17,9 +21,19 @@ export const useGetInlandTransports = (filters: TFilters = {}) => {
 	const queryParams = {
 		page: (pagination.pageIndex + 1).toString(),
 		limit: pagination.pageSize.toString(),
-		...(filters.source_id && { source_id: filters.source_id }),
-		...(filters.warehouse_id && { warehouse_id: filters.warehouse_id }),
+		...(filters.source_state && { source_state: filters.source_state }),
+		...(filters.source_city && { source_city: filters.source_city }),
+		...(filters.source_zipcode && { source_zipcode: filters.source_zipcode }),
+		...(filters.warehouse_zipcode && {
+			warehouse_zipcode: filters.warehouse_zipcode,
+		}),
+		...(filters.warehouse_state && {
+			warehouse_state: filters.warehouse_state,
+		}),
+		...(filters.source_address && { source_address: filters.source_address }),
 	};
+
+	console.log(queryParams);
 
 	const { data, isLoading: isLoadingInlandTransports } = useApiQuery<
 		TInlandTransports[]

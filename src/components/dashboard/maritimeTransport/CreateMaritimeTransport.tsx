@@ -49,7 +49,7 @@ export const CreateMaritimeTransport = () => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button className="bg-blue hover:bg-cyan-800 text-white">
+				<Button className="bg-blue hover:bg-cyan-800 text-white w-fit">
 					{t("dashboard.create.create", {
 						name: t("dashboard.maritimeTransport"),
 					})}

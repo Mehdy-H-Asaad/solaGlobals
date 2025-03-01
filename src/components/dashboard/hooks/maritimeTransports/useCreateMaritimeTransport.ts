@@ -1,7 +1,7 @@
 import { useApiMutation } from "@/api/useApiMutation";
 import { TCreateMaritimeTransportDTO, TMaritimeTransports } from "../../types";
 import toast from "react-hot-toast";
-import { useMaritimeTransportSchema } from "@/schema/maritimeTransport.schema";
+import { maritimeTransportSchema } from "@/schema/maritimeTransport.schema";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -24,17 +24,11 @@ export const useCreateMaritimeTransport = () => {
 		},
 	});
 
-	const createMaritimeTransportSchema = useMaritimeTransportSchema()
-		.maritimeTransportSchema.pick({
-			cost: true,
-			shipping_line_id: true,
-			warehouse_id: true,
-		})
-		.extend({
-			warehouse_id: z.number().min(1, "Warehouse is required"),
-			shipping_line_id: z.number().min(1, "Shipping line is required"),
-			cost: z.number().min(1, "Cost is required"),
-		});
+	const createMaritimeTransportSchema = maritimeTransportSchema.pick({
+		cost: true,
+		shipping_line_id: true,
+		warehouse_id: true,
+	});
 
 	type TCreateMaritimeTransportSchema = z.infer<
 		typeof createMaritimeTransportSchema

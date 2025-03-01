@@ -1,13 +1,9 @@
 import { t } from "i18next";
 import { z } from "zod";
 
-export const useSourceSchema = () => {
-	const sourceSchema = z.object({
-		state: z.string().min(1, t("validation.state")),
-		city: z.string().optional(),
-		address: z.string().optional(),
-		zipcode: z.string().optional(),
-	});
-
-	return { sourceSchema };
-};
+export const sourceSchema = z.object({
+	state: z.string().min(1, t("validation.state")),
+	city: z.string().optional(),
+	address: z.string().optional(),
+	zipcode: z.string().optional(),
+});

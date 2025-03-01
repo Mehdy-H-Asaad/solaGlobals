@@ -2,15 +2,22 @@ import { t } from "i18next";
 import { useGetMaritimeTransports } from "../hooks/maritimeTransports/useGetMaritimeTransports";
 import { MaritimeTransportsColumns } from "./MaritimeTransportColumns";
 import { MaritimeTransportsDataTable } from "./MaritimeTransportDataTable";
+import { useFiltersStore } from "@/state/filters.state";
 
 export const MaritimeTransportsList = () => {
+	const { warehouse_id, destination_id, shipping_line_id } = useFiltersStore();
+
 	const {
 		isLoadingMaritimeTransports,
 		maritimeTransports,
 		pagination,
 		total_pages,
 		setPagination,
-	} = useGetMaritimeTransports();
+	} = useGetMaritimeTransports({
+		destination_id,
+		shipping_line_id,
+		warehouse_id,
+	});
 
 	return (
 		<div className="container h-auto sm:min-h-[calc(100vh-96px-40px)]">

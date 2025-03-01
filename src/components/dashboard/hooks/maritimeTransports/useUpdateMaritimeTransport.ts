@@ -1,4 +1,4 @@
-import { useMaritimeTransportSchema } from "@/schema/maritimeTransport.schema";
+import { maritimeTransportSchema } from "@/schema/maritimeTransport.schema";
 import { TMaritimeTransports, TUpdateMaritimeTransportsDTO } from "../../types";
 import { useApiMutation } from "@/api/useApiMutation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,17 +24,11 @@ export const useUpdateMaritimeTransport = (id: string) => {
 		},
 	});
 
-	const updateMaritimeTransportSchema = useMaritimeTransportSchema()
-		.maritimeTransportSchema.pick({
-			cost: true,
-			shipping_line_id: true,
-			warehouse_id: true,
-		})
-		.extend({
-			shipping_line_id: z.number().min(1, "Shipping line is required"),
-			warehouse_id: z.number().min(1, "Warehouse is required"),
-			cost: z.number().min(1, "Cost is required"),
-		});
+	const updateMaritimeTransportSchema = maritimeTransportSchema.pick({
+		cost: true,
+		shipping_line_id: true,
+		warehouse_id: true,
+	});
 
 	type TUpdateMarriTimeTransportSchema = z.infer<
 		typeof updateMaritimeTransportSchema

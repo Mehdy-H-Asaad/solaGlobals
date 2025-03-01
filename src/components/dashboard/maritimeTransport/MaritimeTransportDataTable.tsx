@@ -12,7 +12,7 @@ import {
 	useReactTable,
 	PaginationState,
 } from "@tanstack/react-table";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import {
 	Table,
 	TableBody,
@@ -26,6 +26,7 @@ import React, { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CreateMaritimeTransport } from "./CreateMaritimeTransport";
 import { t } from "i18next";
+import { FilterMaritimeTransports } from "./FilterMaritimeTransports";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -77,22 +78,11 @@ export function MaritimeTransportsDataTable<TData, TValue>({
 
 	return (
 		<div>
-			<div className="flex items-center justify-between py-4 gap-10">
-				<Input
-					placeholder={t("dashboard.search.searchWarehouseState")}
-					value={
-						(table.getColumn("warehouse_state")?.getFilterValue() as string) ??
-						""
-					}
-					onChange={event =>
-						table
-							.getColumn("warehouse_state")
-							?.setFilterValue(event.target.value)
-					}
-					className="max-w-sm bg-transparent border-gray-500"
-				/>
-
+			{/* <div className="flex items-center justify-between py-4 gap-10"> */}
+			<div className="flex flex-col gap-8 w-full py-4 justify-start">
 				<CreateMaritimeTransport />
+				<FilterMaritimeTransports />
+				{/* </div> */}
 			</div>
 			<div className="rounded-md border border-gray-500">
 				<Table>

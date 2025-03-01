@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useApiMutation } from "@/api/useApiMutation";
 import toast from "react-hot-toast";
-import { useSourceSchema } from "@/schema/source.schema";
+import { sourceSchema } from "@/schema/source.schema";
 
 export const useCreateSource = () => {
 	const {
@@ -21,7 +21,7 @@ export const useCreateSource = () => {
 		},
 	});
 
-	const createSourceSchema = useSourceSchema().sourceSchema;
+	const createSourceSchema = sourceSchema;
 
 	type TCreateSourceSchema = z.infer<typeof createSourceSchema>;
 

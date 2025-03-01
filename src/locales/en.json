@@ -56,10 +56,15 @@
 				"model": "Model",
 				"manufacturer":"Manufacturer",
 				"country":"Country",
+				"port":"Port",
 				"nonValue":"N/A",
 				"calculating": "Calculating",
 				"triple":" Triple",
-				"quadruple": "Quadruple"
+				"quadruple": "Quadruple",
+				"total":"التكلفة الإجمالية في ميناء الوجهة",
+				"toMaritimeTransport": "الشحن البحري إلى ميناء {{name}}",
+				"toInland": "النقل إلى {{name}}",
+				"auctionFee": "رسوم المزاد"
 		}
 	},
 
@@ -212,6 +217,10 @@
 		"city": "City",
 		"address": "Address",
 		"zip":"Zip code",
+		"destinations":"Destinations",
+		"destination":"Destination",
+		"country":"Country",
+		"port" : "Port",
 		"options":"Options",
 		"sourceState":"Auction branch State",
 		"sourceCity": "Auction branch City",
@@ -291,7 +300,9 @@
 				"shippingType": "Shipping type is required",
 				"auction": "Auction is required",
 				"vin": "Vin must be at least 17 numbers",
-				"bid": "Bid amount is required"
+				"bid": "Bid amount is required",
+				"country":"Country is required",
+				"port":"Port is required"
 		}
 	}
   }

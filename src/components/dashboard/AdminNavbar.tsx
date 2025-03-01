@@ -11,7 +11,7 @@ import {
 	SelectLabel,
 	SelectItem,
 } from "@/components/ui/select";
-import { EAuctionFee, useAuctionFeeStore } from "./state/auctionFee.state";
+import { EAuctionFee, useAuctionFeeStore } from "../../state/auctionFee.state";
 import { useTranslation } from "react-i18next";
 import { FaEarthAmericas } from "react-icons/fa6";
 export const AdminNavbar = () => {
@@ -37,7 +37,7 @@ export const AdminNavbar = () => {
 									to={`/admin${nav.href}`}
 									key={nav.id}
 									className={({ isActive }) =>
-										`${isActive ? "active" : ""} nav-link`
+										`${isActive ? "active" : ""} nav-link capitalize`
 									}
 								>
 									{t(`dashboard.${nav.title}`)}
