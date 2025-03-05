@@ -3,20 +3,36 @@ import { PaginationState } from "@tanstack/react-table";
 import { useState } from "react";
 import { TUsers } from "../../types";
 
-export const useGetUsers = () => {
+type TUsersFilters = {
+	limit?: number | null;
+	page?: number | null;
+};
+
+export const useGetUsers = (filters: TUsersFilters = {}) => {
 	const [pagination, setPagination] = useState<PaginationState>({
-		pageIndex: 0,
-		pageSize: 10,
+		pageIndex: filters.page || 0,
+		pageSize: filters.limit || 10,
 	});
 
-	const queryParams = {
-		page: (pagination.pageIndex + 1).toString(),
-		limit: pagination.pageSize.toString(),
+	const params = {
+		...(filters.page !== null && {
+			page: (pagination.pageIndex + 1).toString(),
+		}),
+		...(filters.limit && {
+			limit: pagination.pageSize.toString(),
+		}),
 	};
-
+	const queryParams = params ? new URLSearchParams(params) : "";
 	const { data, isLoading: isLoadingUsers } = useApiQuery<TUsers[]>({
-		queryKey: ["admin", queryParams],
-		requestURL: `/users/get?${new URLSearchParams(queryParams)}`,
+		queryKey: [
+			"admin",
+			{
+				...params,
+				pageIndex: pagination.pageIndex,
+				pageSize: pagination.pageSize,
+			},
+		],
+		requestURL: `/users/get?${queryParams}`,
 	});
 
 	return {

@@ -3,21 +3,44 @@ import { TAuctionFee } from "@/components/dashboard/types";
 import { PaginationState } from "@tanstack/react-table";
 import { useState } from "react";
 
-export const useGetAuctionFees = (auction: "COPART" | "IAAI") => {
+type TAuctionFeesFilters = {
+	limit?: number | null;
+	page?: number | null;
+};
+
+export const useGetAuctionFees = (
+	filters: TAuctionFeesFilters = {},
+	auction: "COPART" | "IAAI" | null
+) => {
 	const [pagination, setPagination] = useState<PaginationState>({
-		pageIndex: 0,
-		pageSize: 10,
+		pageIndex: filters.page || 0,
+		pageSize: filters.limit || 10,
 	});
 
-	const queryParams = {
-		page: (pagination.pageIndex + 1).toString(),
-		limit: pagination.pageSize.toString(),
-		auction: auction,
+	const params = {
+		...(filters.page !== null && {
+			page: (pagination.pageIndex + 1).toString(),
+		}),
+		...(filters.limit && {
+			limit: pagination.pageSize.toString(),
+		}),
+		auction: auction ? auction : "",
 	};
 
+	const queryParams = params ? new URLSearchParams(params) : "";
+
 	const { data, isLoading: isLoadingAuctionFees } = useApiQuery<TAuctionFee[]>({
-		queryKey: ["auctionFees", queryParams, auction],
-		requestURL: `/auction-fees/get?${new URLSearchParams(queryParams)}`,
+		queryKey: [
+			"auctionFees",
+			{
+				...params,
+				pageIndex: pagination.pageIndex,
+				pageSize: pagination.pageSize,
+			},
+			,
+			auction,
+		],
+		requestURL: `/auction-fees/get?${queryParams}`,
 	});
 
 	return {

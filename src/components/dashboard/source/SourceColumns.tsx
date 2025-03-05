@@ -80,7 +80,7 @@ export const SourceColumns: ColumnDef<TSource>[] = [
 						<DropdownMenuSeparator />
 						<AlertDialog>
 							<AlertDialogTrigger className="mb-2 bg-red-600 duration-200 text-white hover:!bg-red-800 hover:!text-white cursor-pointer w-full text-sm text-center justify-center p-2 flex rounded-sm">
-								{t("dashboard.delete.deleteSource")}
+								{t("dashboard.delete.delete", { name: t("dashboard.source") })}
 							</AlertDialogTrigger>
 							<AlertDialogContent className="bg-white text-black">
 								<AlertDialogHeader>

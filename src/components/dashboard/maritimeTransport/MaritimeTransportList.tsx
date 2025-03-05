@@ -17,6 +17,8 @@ export const MaritimeTransportsList = () => {
 		destination_id,
 		shipping_line_id,
 		warehouse_id,
+		limit: 10,
+		page: 0,
 	});
 
 	return (

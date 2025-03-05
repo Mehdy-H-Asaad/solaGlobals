@@ -3,9 +3,10 @@ import { useGetCountries } from "../hooks/countries/useGetCountries";
 import Select from "react-select";
 import { t } from "i18next";
 export const FilterCountries = () => {
-	const { countries } = useGetCountries();
+	const { countries } = useGetCountries({ page: null, limit: null });
 
 	const filteredCountries = [
+		{ label: "None", value: "" },
 		...new Map(
 			countries?.map(country => [
 				country.country,
@@ -15,6 +16,7 @@ export const FilterCountries = () => {
 	];
 
 	const filteredPorts = [
+		{ label: "None", value: "" },
 		...new Map(
 			countries?.map(country => [
 				country.port,
@@ -26,7 +28,7 @@ export const FilterCountries = () => {
 	const { setFilters } = useFiltersStore();
 
 	return (
-		<div className="flex flex-col sm:flex-row-reverse gap-5 justify-end">
+		<div className="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5">
 			<Select
 				isSearchable={true}
 				options={filteredCountries}
@@ -34,7 +36,7 @@ export const FilterCountries = () => {
 				classNamePrefix="select"
 				name="country"
 				placeholder={t("dashboard.country")}
-				onChange={option => setFilters({ country: option?.value })}
+				onChange={option => setFilters({ country: option?.value ?? "" })}
 			/>
 			<Select
 				isSearchable={true}
@@ -43,7 +45,7 @@ export const FilterCountries = () => {
 				classNamePrefix="select"
 				name="port"
 				placeholder={t("dashboard.port")}
-				onChange={option => setFilters({ port: option?.value })}
+				onChange={option => setFilters({ port: option?.value ?? "" })}
 			/>
 		</div>
 	);

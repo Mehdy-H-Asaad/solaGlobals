@@ -14,6 +14,8 @@ import {
 import { EAuctionFee, useAuctionFeeStore } from "../../state/auctionFee.state";
 import { useTranslation } from "react-i18next";
 import { FaEarthAmericas } from "react-icons/fa6";
+import { Fragment } from "react/jsx-runtime";
+
 export const AdminNavbar = () => {
 	const { setAuctionFee } = useAuctionFeeStore();
 	const navigate = useNavigate();
@@ -23,6 +25,7 @@ export const AdminNavbar = () => {
 			? i18n.changeLanguage("en")
 			: i18n.changeLanguage("ar");
 	};
+
 	return (
 		<>
 			<div className="flex items-center justify-between h-24 shadow-md bg-white">
@@ -30,41 +33,56 @@ export const AdminNavbar = () => {
 					<div className="flex items-center justify-between rtl:flex-row-reverse">
 						<img src={logo} className="w-32" alt="Not found" loading="lazy" />
 
-						<div className="hidden lg:flex items-center gap-8">
-							{adminNavLinks.map(nav => (
-								<NavLink
-									aria-label="Admin navbar links"
-									to={`/admin${nav.href}`}
-									key={nav.id}
-									className={({ isActive }) =>
-										`${isActive ? "active" : ""} nav-link capitalize`
-									}
-								>
-									{t(`dashboard.${nav.title}`)}
-								</NavLink>
-							))}
+						<div className="hidden lg:flex items-center gap-6">
+							{adminNavLinks.map((nav, index) =>
+								index === adminNavLinks.length - 2 ? (
+									<Fragment key={nav.id}>
+										<NavLink
+											aria-label="Admin navbar links"
+											to={`/admin${nav.href}`}
+											key={nav.id}
+											className={({ isActive }) =>
+												`${isActive ? "active" : ""} nav-link capitalize`
+											}
+										>
+											{t(`dashboard.${nav.title}`)}
+										</NavLink>
+										<Select
+											onValueChange={value => {
+												setAuctionFee(
+													value.toLowerCase() === "copart"
+														? EAuctionFee.COPART
+														: EAuctionFee.IAAI
+												);
+												navigate(`/admin/auction-fee`, { replace: true });
+											}}
+										>
+											<SelectTrigger className="nav-link !border-b-[1px] w-fit p-0 justify-start gap-x-1 focus:ring-0 border-none outline-none shadow-none text-base">
+												<SelectValue placeholder={t("dashboard.auctionFee")} />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectGroup>
+													<SelectLabel>{t("dashboard.auctionFee")}</SelectLabel>
+													<SelectItem value="copart">Copart</SelectItem>
+													<SelectItem value="iaai">IAAI</SelectItem>
+												</SelectGroup>
+											</SelectContent>
+										</Select>
+									</Fragment>
+								) : (
+									<NavLink
+										aria-label="Admin navbar links"
+										to={`/admin${nav.href}`}
+										key={nav.id}
+										className={({ isActive }) =>
+											`${isActive ? "active" : ""} nav-link capitalize`
+										}
+									>
+										{t(`dashboard.${nav.title}`)}
+									</NavLink>
+								)
+							)}
 
-							<Select
-								onValueChange={value => {
-									setAuctionFee(
-										value.toLowerCase() === "copart"
-											? EAuctionFee.COPART
-											: EAuctionFee.IAAI
-									),
-										navigate(`/admin/auction-fee`);
-								}}
-							>
-								<SelectTrigger className="nav-link !border-b-[1px] w-fit p-0 justify-start gap-x-5 focus:ring-0 border-none outline-none shadow-none text-base">
-									<SelectValue placeholder={t("dashboard.auctionFee")} />
-								</SelectTrigger>
-								<SelectContent>
-									<SelectGroup>
-										<SelectLabel>{t("dashboard.auctionFee")}</SelectLabel>
-										<SelectItem value="copart">Copart</SelectItem>
-										<SelectItem value="iaai">IAAI</SelectItem>
-									</SelectGroup>
-								</SelectContent>
-							</Select>
 							<div
 								className="flex items-center gap-2 cursor-pointer nav-link"
 								onClick={() => {

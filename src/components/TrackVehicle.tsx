@@ -15,6 +15,7 @@ import {
 	FormLabel,
 	FormControl,
 	FormMessage,
+	FormDescription,
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { useEstimateCost } from "@/hooks/useEstimateCost";
@@ -45,7 +46,7 @@ export const TrackVehicle = () => {
 			sources?.map(source => [
 				source.state,
 				{
-					label: source.state,
+					label: `${source.state} - ${source.city}`,
 					value: source.id,
 				},
 			])
@@ -118,15 +119,15 @@ export const TrackVehicle = () => {
 			</DialogTrigger>
 
 			<DialogContent className="max-w-full size-full">
-				{/*sm:max-w-[625px]*/}
-				<ScrollArea className="max-h-[650px] px-2">
+				{/*sm:max-h-[650px]*/}
+				<ScrollArea className="max-h-full px-2">
 					<DialogHeader className="rtl:items-center">
 						<DialogTitle>{t("hero.estimateCost.dialogTitle")}</DialogTitle>
 						<DialogDescription>
 							{t("hero.estimateCost.dialogDescription")}
 						</DialogDescription>
 					</DialogHeader>
-					<div className="flex flex-col md:flex-row gap-10">
+					<div className="flex flex-col lg:flex-row gap-10">
 						<Form {...estimateCostForm}>
 							<form
 								className="flex-1"
@@ -153,6 +154,9 @@ export const TrackVehicle = () => {
 														value={field.value === 0 ? "" : field.value}
 													/>
 												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.bid")}
+												</FormDescription>
 												<FormMessage />
 											</FormItem>
 										)}
@@ -174,6 +178,9 @@ export const TrackVehicle = () => {
 														options={formattedAuctions}
 													/>
 												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.auction")}
+												</FormDescription>
 												<FormMessage />
 											</FormItem>
 										)}
@@ -198,6 +205,9 @@ export const TrackVehicle = () => {
 														options={formattedSources}
 													/>
 												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.source")}
+												</FormDescription>
 												<FormMessage />
 											</FormItem>
 										)}
@@ -224,6 +234,9 @@ export const TrackVehicle = () => {
 														options={formattedCountries}
 													/>
 												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.country")}
+												</FormDescription>
 												<FormMessage />
 											</FormItem>
 										)}
@@ -248,6 +261,9 @@ export const TrackVehicle = () => {
 														options={formattedPorts}
 													/>
 												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.port")}
+												</FormDescription>
 												<FormMessage />
 											</FormItem>
 										)}
@@ -274,6 +290,9 @@ export const TrackVehicle = () => {
 														options={formattedShippingLines}
 													/>
 												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.shippingLine")}
+												</FormDescription>
 												<FormMessage />
 											</FormItem>
 										)}
@@ -299,6 +318,9 @@ export const TrackVehicle = () => {
 														options={formattedShippingTypes}
 													/>
 												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.shippingType")}
+												</FormDescription>
 												<FormMessage />
 											</FormItem>
 										)}
@@ -322,6 +344,9 @@ export const TrackVehicle = () => {
 														options={formattedDestinationsOrderCost}
 													/>
 												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.warehouse")}
+												</FormDescription>
 												<FormMessage />
 											</FormItem>
 										)}
@@ -336,6 +361,9 @@ export const TrackVehicle = () => {
 												<FormControl>
 													<Input {...field} placeholder="Vin" />
 												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.vin")}
+												</FormDescription>
 												<FormMessage />
 											</FormItem>
 										)}

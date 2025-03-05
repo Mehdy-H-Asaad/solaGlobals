@@ -8,26 +8,41 @@ type TSourceFilters = {
 	source_city?: string;
 	source_address?: string;
 	source_zipcode?: string;
+	limit?: number | null;
+	page?: number | null;
 };
 
 export const useGetSources = (filters: TSourceFilters = {}) => {
 	const [pagination, setPagination] = useState<PaginationState>({
-		pageIndex: 0,
-		pageSize: 10,
+		pageIndex: filters.page || 0,
+		pageSize: filters.limit || 10,
 	});
 
-	const queryParams = {
-		page: (pagination.pageIndex + 1).toString(),
-		limit: pagination.pageSize.toString(),
+	const params = {
+		...(filters.page !== null && {
+			page: (pagination.pageIndex + 1).toString(),
+		}),
+		...(filters.limit && {
+			limit: pagination.pageSize.toString(),
+		}),
 		...(filters.source_state && { source_state: filters.source_state }),
 		...(filters.source_city && { source_city: filters.source_city }),
 		...(filters.source_zipcode && { source_zipcode: filters.source_zipcode }),
 		...(filters.source_address && { source_address: filters.source_address }),
 	};
 
+	const queryParams = params ? new URLSearchParams(params) : "";
+
 	const { data, isLoading: isLoadingSources } = useApiQuery<TSource[]>({
-		queryKey: ["sources", queryParams],
-		requestURL: `/sources/get?${new URLSearchParams(queryParams)}`,
+		queryKey: [
+			"sources",
+			{
+				...params,
+				pageIndex: pagination.pageIndex,
+				pageSize: pagination.pageSize,
+			},
+		],
+		requestURL: `/sources/get?${queryParams}`,
 	});
 
 	return {

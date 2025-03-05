@@ -12,5 +12,5 @@ export type TAuctionFeeStore = {
 
 export const useAuctionFeeStore = create<TAuctionFeeStore>(set => ({
 	setAuctionFee: (auctionFee: EAuctionFee) => set(() => ({ auctionFee })),
-	auctionFee: EAuctionFee.COPART,
+	auctionFee: EAuctionFee.COPART || null,
 }));

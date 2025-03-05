@@ -5,7 +5,7 @@ export const useDeleteCountry = (id: string) => {
 	const { mutate: deleteCountry, queryClient } = useApiMutation<string, void>({
 		axiosRequestMethod: "delete",
 		queryKey: ["countries"],
-		requestURL: `/warehouses/delete/${id}`,
+		requestURL: `/destinations/delete/${id}`,
 		onSuccess: () => {
 			toast.success("Destination deleted successfully");
 			queryClient.invalidateQueries({ queryKey: ["countries"], exact: false });

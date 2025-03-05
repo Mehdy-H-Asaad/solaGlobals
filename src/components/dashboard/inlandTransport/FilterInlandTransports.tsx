@@ -7,6 +7,7 @@ export const FilterInlandTransports = () => {
 	const { inlandTransports } = useGetInlandTransports();
 
 	const filteredSourceStates = [
+		{ label: "None", value: "" },
 		...new Map(
 			inlandTransports?.map(source => [
 				source.source_state,
@@ -16,6 +17,7 @@ export const FilterInlandTransports = () => {
 	];
 
 	const filteredSourcesZipCode = [
+		{ label: "None", value: "" },
 		...new Map(
 			inlandTransports?.map(source => [
 				source.source_zipcode,
@@ -25,6 +27,7 @@ export const FilterInlandTransports = () => {
 	];
 
 	const filteredSourcesAddress = [
+		{ label: "None", value: "" },
 		...new Map(
 			inlandTransports?.map(source => [
 				source.source_address,
@@ -33,6 +36,7 @@ export const FilterInlandTransports = () => {
 		).values(),
 	];
 	const filteredSourcesCities = [
+		{ label: "None", value: "" },
 		...new Map(
 			inlandTransports?.map(source => [
 				source.source_city,
@@ -42,6 +46,7 @@ export const FilterInlandTransports = () => {
 	];
 
 	const filteredDestinationsStates = [
+		{ label: "None", value: "" },
 		...new Map(
 			inlandTransports?.map(warehouse => [
 				warehouse.warehouse_state,
@@ -51,6 +56,7 @@ export const FilterInlandTransports = () => {
 	];
 
 	const filteredDestinationsZipcode = [
+		{ label: "None", value: "" },
 		...new Map(
 			inlandTransports?.map(warehouse => [
 				warehouse.source_zipcode,
@@ -62,60 +68,63 @@ export const FilterInlandTransports = () => {
 	const { setFilters } = useFiltersStore();
 
 	return (
-		<div className="flex flex-col sm:flex-row-reverse gap-5 justify-end flex-wrap">
+		<div className="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5">
 			<Select
 				isSearchable={true}
 				options={filteredSourceStates}
-				className="w-full sm:basis-full md:basis-1/4 basic-single"
+				className="basic-single"
 				classNamePrefix="select"
 				name="sourceState"
 				placeholder={t("dashboard.sourceState")}
-				onChange={option => setFilters({ source_state: option?.value })}
-			/>
-			<Select
-				isSearchable={true}
-				options={filteredDestinationsStates}
-				className="w-full sm:basis-full md:basis-1/4 basic-single"
-				classNamePrefix="select"
-				name="warehouseStates"
-				placeholder={t("dashboard.warehouseState")}
-				onChange={option => setFilters({ warehouse_state: option?.value })}
+				onChange={option => setFilters({ source_state: option?.value ?? "" })}
 			/>
 			<Select
 				isSearchable={true}
 				options={filteredSourcesCities}
-				className="w-full sm:basis-full md:basis-1/4 basic-single"
+				className="basic-single"
 				classNamePrefix="select"
 				name="sourceCity"
 				placeholder={t("dashboard.sourceCity")}
-				onChange={option => setFilters({ source_city: option?.value })}
+				onChange={option => setFilters({ source_city: option?.value ?? "" })}
 			/>
 			<Select
 				isSearchable={true}
 				options={filteredSourcesAddress}
-				className="w-full sm:basis-full md:basis-1/4 basic-single"
+				className="basic-single"
 				classNamePrefix="select"
 				name="sourceAddress"
 				placeholder={t("dashboard.sourceAddress")}
-				onChange={option => setFilters({ source_address: option?.value })}
+				onChange={option => setFilters({ source_address: option?.value ?? "" })}
 			/>
 			<Select
 				isSearchable={true}
 				options={filteredSourcesZipCode}
-				className="w-full sm:basis-full md:basis-1/4 basic-single"
+				className="basic-single"
 				classNamePrefix="select"
 				name="sourceZipcode"
 				placeholder={t("dashboard.sourceZip")}
-				onChange={option => setFilters({ source_zipcode: option?.value })}
+				onChange={option => setFilters({ source_zipcode: option?.value ?? "" })}
 			/>
 			<Select
 				isSearchable={true}
+				options={filteredDestinationsStates}
+				className="basic-single"
+				classNamePrefix="select"
+				name="warehouseStates"
+				placeholder={t("dashboard.warehouseState")}
+				onChange={option =>
+					setFilters({ warehouse_state: option?.value ?? "" })
+				}
+			/>
+
+			<Select
+				isSearchable={true}
 				options={filteredDestinationsZipcode}
-				className="w-full sm:basis-full md:basis-1/4 basic-single"
+				className="basic-single"
 				classNamePrefix="select"
 				name="warehouseZipcode"
 				placeholder={t("dashboard.warehouseZip")}
-				onChange={option => setFilters({ source_zipcode: option?.value })}
+				onChange={option => setFilters({ source_zipcode: option?.value ?? "" })}
 			/>
 		</div>
 	);

@@ -6,16 +6,12 @@ import { useFiltersStore } from "@/state/filters.state";
 
 export const InlandTransportsList = () => {
 	const {
-		// source_id,
-		// warehouse_state,
 		source_address,
 		source_city,
 		source_zipcode,
-		// warehouse_id,
 		warehouse_state,
 		warehouse_zipcode,
 		source_state,
-		// },
 	} = useFiltersStore();
 
 	const {
@@ -25,14 +21,14 @@ export const InlandTransportsList = () => {
 		total_pages,
 		setPagination,
 	} = useGetInlandTransports({
-		// source_id,
 		source_state,
-		// warehouse_id,
 		warehouse_state,
 		warehouse_zipcode,
 		source_address,
 		source_city,
 		source_zipcode,
+		limit: 10,
+		page: 0,
 	});
 
 	return (

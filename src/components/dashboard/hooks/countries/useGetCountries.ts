@@ -6,24 +6,39 @@ import { TCountry } from "../../types";
 export type TCountriesFilters = {
 	country?: string;
 	port?: string;
+	limit?: number | null;
+	page?: number | null;
 };
 
 export const useGetCountries = (filters: TCountriesFilters = {}) => {
 	const [pagination, setPagination] = useState<PaginationState>({
-		pageIndex: 0,
-		pageSize: 10,
+		pageIndex: filters.page || 0,
+		pageSize: filters.limit || 10,
 	});
 
-	const queryParams = {
-		page: (pagination.pageIndex + 1).toString(),
-		limit: pagination.pageSize.toString(),
+	const params = {
+		...(filters.page !== null && {
+			page: (pagination.pageIndex + 1).toString(),
+		}),
+		...(filters.limit && {
+			limit: pagination.pageSize.toString(),
+		}),
 		...(filters.country && { country: filters.country }),
 		...(filters.port && { port: filters.port }),
 	};
 
+	const queryParams = params ? new URLSearchParams(params) : "";
+
 	const { data, isLoading: isLoadingCountries } = useApiQuery<TCountry[]>({
-		queryKey: ["countries", queryParams],
-		requestURL: `/destinations/get?${new URLSearchParams(queryParams)}`,
+		queryKey: [
+			"countries",
+			{
+				...params,
+				pageIndex: pagination.pageIndex,
+				pageSize: pagination.pageSize,
+			},
+		],
+		requestURL: `/destinations/get?${queryParams}`,
 	});
 
 	return {

@@ -10,17 +10,23 @@ type TFilters = {
 	source_zipcode?: string;
 	warehouse_state?: string;
 	warehouse_zipcode?: string;
+	limit?: number | null;
+	page?: number | null;
 };
 
 export const useGetInlandTransports = (filters: TFilters = {}) => {
 	const [pagination, setPagination] = useState<PaginationState>({
-		pageIndex: 0,
-		pageSize: 10,
+		pageIndex: filters.page || 0,
+		pageSize: filters.limit || 10,
 	});
 
-	const queryParams = {
-		page: (pagination.pageIndex + 1).toString(),
-		limit: pagination.pageSize.toString(),
+	const params = {
+		...(filters.page !== null && {
+			page: (pagination.pageIndex + 1).toString(),
+		}),
+		...(filters.limit && {
+			limit: pagination.pageSize.toString(),
+		}),
 		...(filters.source_state && { source_state: filters.source_state }),
 		...(filters.source_city && { source_city: filters.source_city }),
 		...(filters.source_zipcode && { source_zipcode: filters.source_zipcode }),
@@ -33,13 +39,20 @@ export const useGetInlandTransports = (filters: TFilters = {}) => {
 		...(filters.source_address && { source_address: filters.source_address }),
 	};
 
-	console.log(queryParams);
+	const queryParams = params ? new URLSearchParams(params) : "";
 
 	const { data, isLoading: isLoadingInlandTransports } = useApiQuery<
 		TInlandTransports[]
 	>({
-		queryKey: ["inlandTransports", queryParams, filters],
-		requestURL: `/inland-transport/get?${new URLSearchParams(queryParams)}`,
+		queryKey: [
+			"inlandTransports",
+			{
+				...params,
+				pageIndex: pagination.pageIndex,
+				pageSize: pagination.pageSize,
+			},
+		],
+		requestURL: `/inland-transport/get?${queryParams}`,
 	});
 
 	return {

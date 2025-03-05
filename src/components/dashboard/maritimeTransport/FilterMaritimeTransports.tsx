@@ -6,6 +6,7 @@ export const FilterMaritimeTransports = () => {
 	const { maritimeTransports } = useGetMaritimeTransports();
 
 	const filteredWarehouses = [
+		{ label: "None", value: 0 },
 		...new Map(
 			maritimeTransports?.map(maritimeTransport => [
 				maritimeTransport.warehouse_id,
@@ -18,6 +19,7 @@ export const FilterMaritimeTransports = () => {
 	];
 
 	const filteredShippingLines = [
+		{ label: "None", value: 0 },
 		...new Map(
 			maritimeTransports?.map(maritimeTransport => [
 				maritimeTransport.shipping_line_id,
@@ -30,6 +32,7 @@ export const FilterMaritimeTransports = () => {
 	];
 
 	const filteredDestinations = [
+		{ label: "None", value: 0 },
 		...new Map(
 			maritimeTransports?.map(maritimeTransport => [
 				maritimeTransport.destination_id,
@@ -44,7 +47,7 @@ export const FilterMaritimeTransports = () => {
 	const { setFilters } = useFiltersStore();
 
 	return (
-		<div className="flex flex-col sm:flex-row-reverse gap-5 justify-end flex-wrap">
+		<div className="grid sm:grid-cols-3 lg:grid-cols-3 gap-5">
 			<Select
 				isSearchable={true}
 				options={filteredWarehouses}
@@ -52,7 +55,7 @@ export const FilterMaritimeTransports = () => {
 				classNamePrefix="select"
 				name="warehouse"
 				placeholder={t("dashboard.warehouseState")}
-				onChange={option => setFilters({ warehouse_id: option?.value })}
+				onChange={option => setFilters({ warehouse_id: option?.value ?? 0 })}
 			/>
 			<Select
 				isSearchable={true}
@@ -61,7 +64,9 @@ export const FilterMaritimeTransports = () => {
 				classNamePrefix="select"
 				name="shippingLine"
 				placeholder={t("dashboard.shippingLine")}
-				onChange={option => setFilters({ shipping_line_id: option?.value })}
+				onChange={option =>
+					setFilters({ shipping_line_id: option?.value ?? 0 })
+				}
 			/>
 			<Select
 				isSearchable={true}
@@ -69,8 +74,8 @@ export const FilterMaritimeTransports = () => {
 				className="w-full sm:basis-full md:basis-1/4 basic-single"
 				classNamePrefix="select"
 				name="destination"
-				placeholder={t("dashboard.country")}
-				onChange={option => setFilters({ destination_id: option?.value })}
+				placeholder={t("dashboard.port")}
+				onChange={option => setFilters({ destination_id: option?.value ?? 0 })}
 			/>
 		</div>
 	);

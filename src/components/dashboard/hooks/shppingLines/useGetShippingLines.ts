@@ -3,22 +3,40 @@ import { PaginationState } from "@tanstack/react-table";
 import { useState } from "react";
 import { TShippingLine } from "../../types";
 
-export const useGetShippingLines = () => {
+type TShippingLinesFilters = {
+	limit?: number | null;
+	page?: number | null;
+};
+
+export const useGetShippingLines = (filters: TShippingLinesFilters = {}) => {
 	const [pagination, setPagination] = useState<PaginationState>({
-		pageIndex: 0,
-		pageSize: 10,
+		pageIndex: filters.page || 0,
+		pageSize: filters.limit || 10,
 	});
 
-	const queryParams = {
-		page: (pagination.pageIndex + 1).toString(),
-		limit: pagination.pageSize.toString(),
+	const params = {
+		...(filters.page !== null && {
+			page: (pagination.pageIndex + 1).toString(),
+		}),
+		...(filters.limit && {
+			limit: pagination.pageSize.toString(),
+		}),
 	};
+
+	const queryParams = params ? new URLSearchParams(params) : "";
 
 	const { data, isLoading: isLoadingShippingLines } = useApiQuery<
 		TShippingLine[]
 	>({
-		queryKey: ["shippingLines", queryParams],
-		requestURL: `/shipping-lines/get?${new URLSearchParams(queryParams)}`,
+		queryKey: [
+			"shippingLines",
+			{
+				...params,
+				pageIndex: pagination.pageIndex,
+				pageSize: pagination.pageSize,
+			},
+		],
+		requestURL: `/shipping-lines/get?${queryParams}`,
 	});
 
 	return {

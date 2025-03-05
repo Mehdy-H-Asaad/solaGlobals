@@ -3,20 +3,38 @@ import { PaginationState } from "@tanstack/react-table";
 import { useState } from "react";
 import { TDestination } from "../../types";
 
-export const useGetDestinations = () => {
+type TDestinationFilters = {
+	limit?: number | null;
+	page?: number | null;
+};
+
+export const useGetDestinations = (filters: TDestinationFilters = {}) => {
 	const [pagination, setPagination] = useState<PaginationState>({
-		pageIndex: 0,
-		pageSize: 10,
+		pageIndex: filters.page || 0,
+		pageSize: filters.limit || 10,
 	});
 
-	const queryParams = {
-		page: (pagination.pageIndex + 1).toString(),
-		limit: pagination.pageSize.toString(),
+	const params = {
+		...(filters.page !== null && {
+			page: (pagination.pageIndex + 1).toString(),
+		}),
+		...(filters.limit && {
+			limit: pagination.pageSize.toString(),
+		}),
 	};
 
+	const queryParams = params ? new URLSearchParams(params) : "";
+
 	const { data, isLoading: isLoadingWarehouses } = useApiQuery<TDestination[]>({
-		queryKey: ["warehouses", queryParams],
-		requestURL: `/warehouses/get?${new URLSearchParams(queryParams)}`,
+		queryKey: [
+			"warehouses",
+			{
+				...params,
+				pageIndex: pagination.pageIndex,
+				pageSize: pagination.pageSize,
+			},
+		],
+		requestURL: `/warehouses/get?${queryParams}`,
 	});
 
 	return {

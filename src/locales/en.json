@@ -38,13 +38,13 @@
 
 	"hero": {
 		"title": "Drive Your Dreams With <0> Sola Groups</0>",
-		"paraghraph" : "Sola Groups: Your Bridge to Quality Cars From the USA to Libya",
+		"paraghraph" : "Sola Groups: Your Bridge to Quality Cars From the USA to worldwide",
 		"button" : "Calculate your vehicle's cost now",
 		"estimateCost": {
 				"dialogTitle": "Calculate estimate cost",
 				"dialogDescription" : "Click Calculate estimate cost when you're done.",
 				"source": "Auction branches",
-				"warehouse": "Warehouse",
+				"warehouse": "Loading port",
 				"shippingLine": "Shipping Line",
 				"shippingType": "Shipping type",
 				"auction": "Auction",
@@ -226,8 +226,8 @@
 		"sourceCity": "Auction branch City",
 		"sourceAddress": "Auction branch Address",
 		"sourceZip":"Auction branch zipcode",
-		"warehouseState": "Warehouse state",
-		"warehouseZip": "Warehouse zipcode",
+		"warehouseState": "Loading port state",
+		"warehouseZip": "Loading port zipcode",
 		"cost":"Cost",
 		"shippingLine": "Shipping line",
 		"username":"Username",
@@ -239,10 +239,10 @@
 		"Sources":"Auction branches",
 		"source":"Auction branch",
 		"inlandTransport": "Inland Transport",
-		"warehouse":"Warehouse",
+		"warehouse":"Loading port",
 		"name":"Name",
 		"maritimeTransport": "Maritime Transport",
-		"Warehouses":"Warehouses",
+		"Warehouses":"Loading ports",
 		"Inland transports":"Inland Transports",
 		"Maritime transports":"Maritime Transports",
 		"Shipping lines": "Shipping Lines",
@@ -256,7 +256,7 @@
 		"search": {
 			"searchState":"Search State",
 			"searchSourceState": "Search Auction branch state",
-			"searchWarehouseState":"Search warehouse state",
+			"searchWarehouseState":"Search Loading ports state",
 			"searchShippingLine":"Search shipping line",
 			"searchUserName":"Search username",
 			"searchFee": "Search fee"
@@ -295,7 +295,7 @@
 		"state": "state is required",
 		"estimateCost": {
 				"source": "Auction branch is required",
-				"warehouse": "Warehouse is required",
+				"warehouse": "Loading port is required",
 				"shippingLine": "Shipping line is required",
 				"shippingType": "Shipping type is required",
 				"auction": "Auction is required",

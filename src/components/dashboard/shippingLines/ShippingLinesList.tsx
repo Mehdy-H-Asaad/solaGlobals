@@ -10,7 +10,7 @@ export const ShippingLinesList = () => {
 		total_pages,
 		setPagination,
 		shippingLines,
-	} = useGetShippingLines();
+	} = useGetShippingLines({ limit: 10, page: 0 });
 
 	return (
 		<div className="container h-auto sm:min-h-[calc(100vh-96px-40px)]">

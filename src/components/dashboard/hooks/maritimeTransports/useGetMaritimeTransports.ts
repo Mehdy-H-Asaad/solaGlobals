@@ -7,21 +7,24 @@ export type TMaritimeTransportsFilters = {
 	shipping_line_id?: number;
 	destination_id?: number;
 	warehouse_id?: number;
+	limit?: number | null;
+	page?: number | null;
 };
 
 export const useGetMaritimeTransports = (
 	filters: TMaritimeTransportsFilters = {}
 ) => {
 	const [pagination, setPagination] = useState<PaginationState>({
-		pageIndex: 0,
-		pageSize: 10,
+		pageIndex: filters.page || 0,
+		pageSize: filters.limit || 10,
 	});
 
-	const queryParams = {
-		page: (pagination.pageIndex + 1).toString(),
-		limit: pagination.pageSize.toString(),
-		...(filters.destination_id && {
-			destination_id: filters.destination_id.toString(),
+	const params = {
+		...(filters.page !== null && {
+			page: (pagination.pageIndex + 1).toString(),
+		}),
+		...(filters.limit && {
+			limit: pagination.pageSize.toString(),
 		}),
 		...(filters.shipping_line_id && {
 			shipping_line_id: filters.shipping_line_id.toString(),
@@ -31,11 +34,20 @@ export const useGetMaritimeTransports = (
 		}),
 	};
 
+	const queryParams = params ? new URLSearchParams(params) : "";
+
 	const { data, isLoading: isLoadingMaritimeTransports } = useApiQuery<
 		TMaritimeTransports[]
 	>({
-		queryKey: ["maritimeTransports", queryParams],
-		requestURL: `/maritime-transport/get?${new URLSearchParams(queryParams)}`,
+		queryKey: [
+			"maritimeTransports",
+			{
+				...params,
+				pageIndex: pagination.pageIndex,
+				pageSize: pagination.pageSize,
+			},
+		],
+		requestURL: `/maritime-transport/get?${queryParams}`,
 	});
 
 	return {

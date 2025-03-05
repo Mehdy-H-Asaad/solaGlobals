@@ -16,18 +16,18 @@ export const adminNavLinks = [
 	},
 	{
 		id: 4,
+		title: "Shipping lines",
+		href: "/shipping-lines",
+	},
+	{
+		id: 5,
 		title: "Inland transports",
 		href: "/inland-transports",
 	},
 	{
-		id: 5,
+		id: 6,
 		title: "Maritime transports",
 		href: "/maritime-transports",
-	},
-	{
-		id: 6,
-		title: "Shipping lines",
-		href: "/shipping-lines",
 	},
 	{
 		id: 7,
