@@ -41,8 +41,8 @@
 		"paraghraph" : "Sola Groups: Your Bridge to Quality Cars From the USA to worldwide",
 		"button" : "Calculate your vehicle's cost now",
 		"estimateCost": {
-				"dialogTitle": "Calculate estimate cost",
-				"dialogDescription" : "Click Calculate estimate cost when you're done.",
+				"dialogTitle": "Calculate cost",
+				"dialogDescription" : "Click Calculate cost when you're done.",
 				"source": "Auction branches",
 				"warehouse": "Loading port",
 				"shippingLine": "Shipping Line",
@@ -50,9 +50,9 @@
 				"auction": "Auction",
 				"vin": "Vin",
 				"bid": "Bid ammount",
-				"calculate": "Calculate Estimate cost",
+				"calculate": "Calculate cost",
 				"placeHolder":"Select",
-				"cost": "Estimate cost",
+				"cost": "Total cost",
 				"model": "Model",
 				"manufacturer":"Manufacturer",
 				"country":"Country",
@@ -61,10 +61,28 @@
 				"calculating": "Calculating",
 				"triple":" Triple",
 				"quadruple": "Quadruple",
-				"total":"التكلفة الإجمالية في ميناء الوجهة",
-				"toMaritimeTransport": "الشحن البحري إلى ميناء {{name}}",
-				"toInland": "النقل إلى {{name}}",
-				"auctionFee": "رسوم المزاد"
+				"total":"The total cost at the destination port.",
+				"toMaritimeTransport": "Maritime transport cost",
+				"toInland": "Inland transport cost",
+				"auctionFee": "Auction fee",
+				"description": {
+					"bid":"Enter the amount you want to bid on the car",
+					"auction":"Choose the auction in which the car is located.",
+					"source": "Select the auction location where the car is located. You can find it in the car's details on the auction website.",
+					"country": "Select the auction location where the car is located. You can find it in the car's details on the auction website.",
+					"port": "Choose the port where you want the car to be delivered to you.",
+					"shippingLine": "Choose the shipping line that will be used to transport the car.",
+					"shippingType": "If you choose triple, the car will be shipped with two other cars in the same container. If you choose quadruple, it will be shipped with three other cars in the same container.",
+					"warehouse" : "Choose the port in the United States from which the car will be loaded. Note: The ports are listed from the least expensive to the most expensive.",
+					"vin":"Enter the car's VIN number to get additional information about the car."
+					},
+				"response":{
+					"cost": "The total cost of the car after calculating land and sea transportation costs and all fees.",
+					"inland": "The cost of transporting the car within the United States from the auction branch to the loading port.",
+					"maritime":"The cost of shipping the car from the United States to the destination port.",
+					"auctionFee":"The fees for the auction from which the car was purchased. The fees vary depending on the bid amount.",
+					"additional": "Car information based on the VIN."
+				}
 		}
 	},
 

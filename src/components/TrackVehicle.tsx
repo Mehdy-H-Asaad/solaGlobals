@@ -124,7 +124,7 @@ export const TrackVehicle = () => {
 			<DialogContent className="max-w-full size-full">
 				{/*sm:max-h-[650px]*/}
 				<ScrollArea className="max-h-full px-2">
-					<DialogHeader className="rtl:items-center">
+					<DialogHeader className="items-center">
 						<DialogTitle>{t("hero.estimateCost.dialogTitle")}</DialogTitle>
 						<DialogDescription>
 							{t("hero.estimateCost.dialogDescription")}
@@ -138,7 +138,7 @@ export const TrackVehicle = () => {
 							>
 								<div
 									dir={lang}
-									className="grid flex-1 py-10 grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10"
+									className="ltr:pl-1 grid flex-1 py-10 grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10"
 								>
 									<FormField
 										control={estimateCostForm.control}
