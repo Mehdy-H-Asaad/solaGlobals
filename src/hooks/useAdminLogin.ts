@@ -20,7 +20,7 @@ export const useAdminLogin = () => {
 		axiosRequestMethod: "post",
 		queryKey: ["user"],
 		requestURL: "/auth/login",
-		onSuccess: () => toast.success("LoggedIn successfully"),
+		onSuccess: () => toast.success("Logged In successfully"),
 	});
 
 	const adminLoginSchema = z.object({
