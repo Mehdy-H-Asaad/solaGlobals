@@ -29,6 +29,7 @@ import { useGetCountries } from "./dashboard/hooks/countries/useGetCountries";
 import { useGetDestinationsOrderCost } from "./dashboard/hooks/destination/useGetDestinationsOrderCost";
 import { useFiltersStore } from "@/state/filters.state";
 import { TrackVehicleResponse } from "./TrackVehicleResponse";
+import { useGetPortsCountriesBy } from "./dashboard/hooks/countries/useGetPortsByCountries";
 export const TrackVehicle = () => {
 	const { t } = useTranslation();
 	const {
@@ -37,10 +38,19 @@ export const TrackVehicle = () => {
 		isGettingEstimateCost,
 		onGetEstimateCost,
 	} = useEstimateCost();
+	const {
+		destination_country,
+		shipping_line_id,
+		destination_port,
+		source_id,
+		country,
+		setFilters,
+	} = useFiltersStore();
 
 	const { sources } = useGetSources();
 	const { shippingLines } = useGetShippingLines();
 	const { countries } = useGetCountries();
+	const { ports } = useGetPortsCountriesBy({ country });
 	const formattedSources = [
 		...new Map(
 			sources?.map(source => [
@@ -52,14 +62,6 @@ export const TrackVehicle = () => {
 			])
 		).values(),
 	];
-
-	const {
-		destination_country,
-		shipping_line_id,
-		destination_port,
-		source_id,
-		setFilters,
-	} = useFiltersStore();
 
 	const { destinationsByOrderCost } = useGetDestinationsOrderCost({
 		destination_country,
@@ -104,7 +106,8 @@ export const TrackVehicle = () => {
 		label: country.country,
 		value: country.country,
 	}));
-	const formattedPorts = countries?.map(country => ({
+
+	const formattedPorts = ports?.map(country => ({
 		label: country.port,
 		value: country.port,
 	}));
@@ -227,6 +230,7 @@ export const TrackVehicle = () => {
 															field.onChange(option?.value);
 															setFilters({
 																destination_country: option?.label,
+																country: option?.label,
 															});
 														}}
 														isSearchable={true}

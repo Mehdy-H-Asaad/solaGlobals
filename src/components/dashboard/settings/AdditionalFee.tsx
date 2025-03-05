@@ -19,9 +19,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { useUpdateAdditionalFee } from "../hooks/users/useUpdateAdditionalFee";
 import { t } from "i18next";
-// import { useEffect } from "react";
-// import { useApiQuery } from "@/api/useApiQuery";
-// import { TAdditionalFee } from "../types";
+import { useEffect } from "react";
+import { useApiQuery } from "@/api/useApiQuery";
+import { TAdditionalFee } from "../types";
+import { formatCurrency } from "@/utils/formatCurrency";
 
 export const AdditionalFee = () => {
 	const {
@@ -30,22 +31,25 @@ export const AdditionalFee = () => {
 		updateAdditionalFeeForm,
 	} = useUpdateAdditionalFee();
 
-	// const { data: additionalFee } = useApiQuery<TAdditionalFee>({
-	// 	queryKey: ["additionalFee"],
-	// 	requestURL: "/additional-settings/get",
-	// });
+	const { data: additionalFee } = useApiQuery<TAdditionalFee[]>({
+		queryKey: ["additionalFee"],
+		requestURL: "/additional-settings/get",
+	});
 
-	// useEffect(() => {
-	// 	if (additionalFee) {
-	// 		updateAdditionalFeeForm.reset(additionalFee.data.additional_fee);
-	// 	}
-	// }, []);
+	useEffect(() => {
+		if (additionalFee) {
+			updateAdditionalFeeForm.reset({
+				additional_fee: additionalFee.data[0].additional_fee,
+			});
+		}
+	}, [additionalFee]);
 
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					{t("dashboard.additionalFee")}
+					{t("dashboard.additionalFee")}:{" "}
+					{formatCurrency(additionalFee?.data[0].additional_fee || 0)}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
@@ -83,6 +87,7 @@ export const AdditionalFee = () => {
 													field.onChange(Number(e.target.value));
 											}}
 											placeholder={t("dashboard.additionalFee")}
+											value={field.value === 0 ? "" : field.value}
 										/>
 									</FormControl>
 									<FormMessage />
