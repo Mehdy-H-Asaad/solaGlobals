@@ -61,7 +61,7 @@ export const CreateShippingLine = () => {
 							name="name"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.name")}</FormLabel>
+									<FormLabel>{t("dashboard.name")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.name")} />
 									</FormControl>

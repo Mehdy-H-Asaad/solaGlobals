@@ -63,7 +63,7 @@ export type TCreateInlandTransportDTO = Pick<
 >;
 export type TCreateMaritimeTransportDTO = Pick<
 	TMaritimeTransports,
-	"shipping_line_id" | "warehouse_id" | "cost"
+	"shipping_line_id" | "warehouse_id" | "cost" | "destination_id"
 >;
 export type TCreateShippingLineDTO = Pick<TShippingLine, "name">;
 export type TCreateAdminDTO = {

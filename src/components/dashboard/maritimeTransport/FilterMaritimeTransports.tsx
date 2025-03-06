@@ -37,7 +37,7 @@ export const FilterMaritimeTransports = () => {
 			maritimeTransports?.map(maritimeTransport => [
 				maritimeTransport.destination_id,
 				{
-					label: maritimeTransport.destination_country,
+					label: `${maritimeTransport.destination_country} - ${maritimeTransport.destination_port}`,
 					value: maritimeTransport.destination_id,
 				},
 			])
@@ -74,7 +74,7 @@ export const FilterMaritimeTransports = () => {
 				className="w-full sm:basis-full md:basis-1/4 basic-single"
 				classNamePrefix="select"
 				name="destination"
-				placeholder={t("dashboard.port")}
+				placeholder={t("dashboard.destination")}
 				onChange={option => setFilters({ destination_id: option?.value ?? 0 })}
 			/>
 		</div>

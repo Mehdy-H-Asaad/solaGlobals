@@ -20,6 +20,7 @@ import { TShippingLine } from "../types";
 import { useEffect } from "react";
 import { useUpdateShippingLine } from "../hooks/shppingLines/useUpdateShippingLine";
 import { t } from "i18next";
+import { useFormState } from "react-hook-form";
 
 export const UpdateShippingLine = (shippingLine: TShippingLine) => {
 	const {
@@ -33,6 +34,8 @@ export const UpdateShippingLine = (shippingLine: TShippingLine) => {
 			updateShippingLineForm.reset(shippingLine);
 		}
 	}, []);
+
+	const { isValid } = useFormState({ control: updateShippingLineForm.control });
 
 	return (
 		<Dialog>
@@ -65,7 +68,7 @@ export const UpdateShippingLine = (shippingLine: TShippingLine) => {
 							name="name"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.name")}</FormLabel>
+									<FormLabel>{t("dashboard.name")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.name")} />
 									</FormControl>
@@ -78,7 +81,7 @@ export const UpdateShippingLine = (shippingLine: TShippingLine) => {
 							<Button
 								className="bg-blue hover:bg-cyan-800 text-white"
 								type="submit"
-								disabled={isUpdatingShippingLine}
+								disabled={isUpdatingShippingLine || !isValid}
 							>
 								{isUpdatingShippingLine
 									? t("dashboard.update.updating")

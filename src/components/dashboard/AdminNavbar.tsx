@@ -13,18 +13,18 @@ import {
 } from "@/components/ui/select";
 import { EAuctionFee, useAuctionFeeStore } from "../../state/auctionFee.state";
 import { useTranslation } from "react-i18next";
-import { FaEarthAmericas } from "react-icons/fa6";
+// import { FaEarthAmericas } from "react-icons/fa6";
 import { Fragment } from "react/jsx-runtime";
 
 export const AdminNavbar = () => {
 	const { setAuctionFee } = useAuctionFeeStore();
 	const navigate = useNavigate();
-	const { t, i18n } = useTranslation();
-	const changeLanguage = () => {
-		i18n.language === "ar"
-			? i18n.changeLanguage("en")
-			: i18n.changeLanguage("ar");
-	};
+	const { t } = useTranslation();
+	// const changeLanguage = () => {
+	// 	i18n.language === "ar"
+	// 		? i18n.changeLanguage("en")
+	// 		: i18n.changeLanguage("ar");
+	// };
 
 	return (
 		<>
@@ -83,7 +83,7 @@ export const AdminNavbar = () => {
 								)
 							)}
 
-							<div
+							{/* <div
 								className="flex items-center gap-2 cursor-pointer nav-link"
 								onClick={() => {
 									changeLanguage();
@@ -91,7 +91,7 @@ export const AdminNavbar = () => {
 							>
 								<FaEarthAmericas size={24} />
 								<div>{i18n.language === "en" ? "AR" : "EN"}</div>
-							</div>
+							</div> */}
 						</div>
 
 						<AdminNavbarResponsive />

@@ -123,9 +123,9 @@ export function MaritimeTransportsDataTable<TData, TValue>({
 								</TableRow>
 							))
 						) : isLoading ? (
-							[...Array(5)].map((_, index) => (
+							[...Array(7)].map((_, index) => (
 								<TableRow key={index} className="border border-gray-500">
-									{[...Array(5)].map((_, cellIndex) => (
+									{[...Array(7)].map((_, cellIndex) => (
 										<TableCell key={cellIndex} className="h-24 text-center">
 											<div className="space-y-2">
 												<Skeleton className="h-4 w-[100px]" />

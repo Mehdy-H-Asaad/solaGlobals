@@ -23,6 +23,7 @@ import { useEffect } from "react";
 import { useApiQuery } from "@/api/useApiQuery";
 import { TAdditionalFee } from "../types";
 import { formatCurrency } from "@/utils/formatCurrency";
+import { useFormState } from "react-hook-form";
 
 export const AdditionalFee = () => {
 	const {
@@ -43,6 +44,10 @@ export const AdditionalFee = () => {
 			});
 		}
 	}, [additionalFee]);
+
+	const { isValid } = useFormState({
+		control: updateAdditionalFeeForm.control,
+	});
 
 	return (
 		<Dialog>
@@ -78,7 +83,7 @@ export const AdditionalFee = () => {
 							name="additional_fee"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.additionalFee")}</FormLabel>
+									<FormLabel>{t("dashboard.additionalFee")} *</FormLabel>
 									<FormControl>
 										<Input
 											{...field}
@@ -99,7 +104,7 @@ export const AdditionalFee = () => {
 							<Button
 								className="bg-blue hover:bg-cyan-800 text-white rtl:ml-auto"
 								type="submit"
-								disabled={isUpdatingAdditionalFee}
+								disabled={isUpdatingAdditionalFee || !isValid}
 							>
 								{isUpdatingAdditionalFee
 									? t("dashboard.update.updating")

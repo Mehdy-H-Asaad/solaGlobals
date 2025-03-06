@@ -59,8 +59,8 @@ export const FilterInlandTransports = () => {
 		{ label: "None", value: "" },
 		...new Map(
 			inlandTransports?.map(warehouse => [
-				warehouse.source_zipcode,
-				{ label: warehouse.source_zipcode, value: warehouse.source_zipcode },
+				warehouse.warehouse_zipcode,
+				{ label: warehouse.warehouse_zipcode, value: warehouse.source_zipcode },
 			])
 		).values(),
 	];

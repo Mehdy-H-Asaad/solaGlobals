@@ -57,7 +57,7 @@ export const CreateDestination = () => {
 							name="state"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.state")}</FormLabel>
+									<FormLabel>{t("dashboard.state")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.state")} />
 									</FormControl>

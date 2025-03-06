@@ -56,7 +56,7 @@ export const CreateSource = () => {
 							name="state"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.state")}</FormLabel>
+									<FormLabel>{t("dashboard.state")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.state")} />
 									</FormControl>
@@ -69,7 +69,7 @@ export const CreateSource = () => {
 							name="city"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.city")}</FormLabel>
+									<FormLabel>{t("dashboard.city")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.city")} />
 									</FormControl>
@@ -82,7 +82,7 @@ export const CreateSource = () => {
 							name="address"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.address")}</FormLabel>
+									<FormLabel>{t("dashboard.address")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.address")} />
 									</FormControl>
@@ -95,7 +95,7 @@ export const CreateSource = () => {
 							name="zipcode"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.zip")}</FormLabel>
+									<FormLabel>{t("dashboard.zip")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.zip")} />
 									</FormControl>

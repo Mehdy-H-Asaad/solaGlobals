@@ -22,10 +22,14 @@ export const AuctinFeeColumns: ColumnDef<TAuctionFee>[] = [
 			return t("dashboard.range");
 		},
 		cell: ({ row }) => {
-			const range = `${formatCurrency(
-				Number(row.original.range_from)
-			)} - ${formatCurrency(Number(row.original.range_to))}`;
-
+			var range;
+			if (row.original.range_to !== -1)
+				range = `${formatCurrency(
+					Number(row.original.range_from)
+				)} - ${formatCurrency(Number(row.original.range_to))}`;
+			else {
+				range = `${formatCurrency(Number(row.original.range_from))} +`;
+			}
 			return <div>{range}</div>;
 		},
 	},
@@ -38,7 +42,13 @@ export const AuctinFeeColumns: ColumnDef<TAuctionFee>[] = [
 			return t("dashboard.fee");
 		},
 		cell: ({ row }) => {
-			return <div>{formatCurrency(row.original.fee)}</div>;
+			return (
+				<div>
+					{row.original.range_to !== -1
+						? formatCurrency(row.original.fee)
+						: `${row.original.fee}%`}
+				</div>
+			);
 		},
 	},
 	{

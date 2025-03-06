@@ -28,6 +28,7 @@ export const useCreateMaritimeTransport = () => {
 		cost: true,
 		shipping_line_id: true,
 		warehouse_id: true,
+		destination_id: true,
 	});
 
 	type TCreateMaritimeTransportSchema = z.infer<
@@ -37,9 +38,10 @@ export const useCreateMaritimeTransport = () => {
 	const createMaritimeTransportForm = useForm<TCreateMaritimeTransportSchema>({
 		resolver: zodResolver(createMaritimeTransportSchema),
 		defaultValues: {
-			cost: 0,
+			cost: undefined,
 			shipping_line_id: 0,
 			warehouse_id: 0,
+			destination_id: 0,
 		},
 	});
 

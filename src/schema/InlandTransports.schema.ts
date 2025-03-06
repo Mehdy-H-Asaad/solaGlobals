@@ -9,5 +9,5 @@ export const InlandTransportsSchema = z.object({
 	warehouse_id: z.number().min(1, "Warehouse is required"),
 	warehouse_state: z.string(),
 	warehouse_zipcode: z.string(),
-	cost: z.number().min(1, "Cost is required"),
+	cost: z.number().min(0, "Cost is required"),
 });

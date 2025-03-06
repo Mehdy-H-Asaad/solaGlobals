@@ -37,7 +37,7 @@ export const useCreateInlandTransport = () => {
 	const createInlandTransportForm = useForm<TCreateInlandTransportSchema>({
 		resolver: zodResolver(createInlandTransportSchema),
 		defaultValues: {
-			cost: 0,
+			cost: undefined,
 			source_id: 0,
 			warehouse_id: 0,
 		},

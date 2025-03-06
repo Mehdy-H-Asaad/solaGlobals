@@ -82,7 +82,7 @@ export const CreateInlandTransport = () => {
 								name="source_id"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>{t("dashboard.source")}</FormLabel>
+										<FormLabel>{t("dashboard.source")} *</FormLabel>
 										<FormControl>
 											<Select
 												isSearchable={true}
@@ -102,7 +102,7 @@ export const CreateInlandTransport = () => {
 								name="warehouse_id"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>{t("dashboard.warehouse")}</FormLabel>
+										<FormLabel>{t("dashboard.warehouse")} *</FormLabel>
 										<FormControl>
 											<Select
 												isSearchable={true}
@@ -122,16 +122,20 @@ export const CreateInlandTransport = () => {
 								name="cost"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>{t("dashboard.cost")}</FormLabel>
+										<FormLabel>{t("dashboard.cost")} *</FormLabel>
 										<FormControl>
 											<Input
 												{...field}
 												placeholder={t("dashboard.cost")}
 												onChange={e => {
-													if (/^\d*$/.test(e.target.value))
-														field.onChange(Number(e.target.value));
+													const value = e.target.value;
+													if (/^\d*$/.test(value)) {
+														field.onChange(
+															value === "" ? undefined : Number(value)
+														);
+													}
 												}}
-												value={field.value === 0 ? "" : field.value}
+												value={field.value === undefined ? "" : field.value}
 											/>
 										</FormControl>
 										<FormMessage />

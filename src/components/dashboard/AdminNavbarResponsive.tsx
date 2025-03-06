@@ -10,17 +10,17 @@ import { useState } from "react";
 import { adminNavLinks } from "./data";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { FaEarthAmericas } from "react-icons/fa6";
+// import { FaEarthAmericas } from "react-icons/fa6";
 
 export const AdminNavbarResponsive = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
-	const { t, i18n } = useTranslation();
-	const changeLanguage = () => {
-		i18n.language === "ar"
-			? i18n.changeLanguage("en")
-			: i18n.changeLanguage("ar");
-	};
+	const { t } = useTranslation();
+	// const changeLanguage = () => {
+	// 	i18n.language === "ar"
+	// 		? i18n.changeLanguage("en")
+	// 		: i18n.changeLanguage("ar");
+	// };
 
 	return (
 		<div className="flex flex-row-reverse gap-4 lg:hidden rtl:flex-row items-baseline">
@@ -51,7 +51,7 @@ export const AdminNavbarResponsive = () => {
 					</SheetContent>
 				</SheetDescription>
 			</Sheet>
-			<div
+			{/* <div
 				className="flex items-center gap-2"
 				onClick={() => {
 					changeLanguage(), setIsOpen(false);
@@ -61,7 +61,7 @@ export const AdminNavbarResponsive = () => {
 				<div className="text-lg font-bold">
 					{i18n.language === "en" ? "AR" : "EN"}
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

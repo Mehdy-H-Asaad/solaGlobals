@@ -28,6 +28,7 @@ export const useUpdateMaritimeTransport = (id: string) => {
 		cost: true,
 		shipping_line_id: true,
 		warehouse_id: true,
+		destination_id: true,
 	});
 
 	type TUpdateMarriTimeTransportSchema = z.infer<
@@ -40,6 +41,7 @@ export const useUpdateMaritimeTransport = (id: string) => {
 			cost: 0,
 			shipping_line_id: 0,
 			warehouse_id: 0,
+			destination_id: 0,
 		},
 	});
 

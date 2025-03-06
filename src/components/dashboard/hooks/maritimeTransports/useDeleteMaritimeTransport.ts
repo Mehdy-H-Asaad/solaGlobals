@@ -13,7 +13,7 @@ export const useDeleteMaritimeTransport = (id: string) => {
 			toast.success("Maritime transport deleted successfully");
 			queryClient.invalidateQueries({
 				queryKey: ["maritimeTransports"],
-				exact: true,
+				exact: false,
 			});
 		},
 	});

@@ -32,6 +32,9 @@ export const useGetMaritimeTransports = (
 		...(filters.warehouse_id && {
 			warehouse_id: filters.warehouse_id.toString(),
 		}),
+		...(filters.destination_id && {
+			destination_id: filters.destination_id.toString(),
+		}),
 	};
 
 	const queryParams = params ? new URLSearchParams(params) : "";

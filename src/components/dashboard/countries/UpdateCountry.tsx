@@ -63,7 +63,7 @@ export const UpdateCountry = (country: TCountry) => {
 							name="country"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.country")}</FormLabel>
+									<FormLabel>{t("dashboard.country")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.country")} />
 									</FormControl>
@@ -76,7 +76,7 @@ export const UpdateCountry = (country: TCountry) => {
 							name="port"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.port")}</FormLabel>
+									<FormLabel>{t("dashboard.port")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.port")} />
 									</FormControl>

@@ -37,7 +37,7 @@ export const useUpdateInlandTransport = (id: string) => {
 	const updateInlandTransportForm = useForm<TUpdateInlandTransportSchema>({
 		resolver: zodResolver(updateInlandTransportSchema),
 		defaultValues: {
-			cost: 0,
+			cost: undefined,
 			source_id: 0,
 			warehouse_id: 0,
 		},

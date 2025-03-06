@@ -55,7 +55,7 @@ export const CreateAdmin = () => {
 							name="username"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.username")}</FormLabel>
+									<FormLabel>{t("dashboard.username")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.username")} />
 									</FormControl>
@@ -68,7 +68,7 @@ export const CreateAdmin = () => {
 							name="password"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.password")}</FormLabel>
+									<FormLabel>{t("dashboard.password")} *</FormLabel>
 									<FormControl>
 										<Input {...field} placeholder={t("dashboard.password")} />
 									</FormControl>

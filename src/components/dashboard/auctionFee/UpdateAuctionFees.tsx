@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { TAuctionFee } from "../types";
 import { useUpdateAuctionFees } from "../hooks/auctionFee/useUpdateAuctionFees";
 import { t } from "i18next";
+import { useFormState } from "react-hook-form";
 
 export const UpdateAuctionFee = (auctionFee: TAuctionFee) => {
 	const { isUpdatingAuctionFee, onUpdateAuctionFee, updateAuctionFeeForm } =
@@ -30,6 +31,8 @@ export const UpdateAuctionFee = (auctionFee: TAuctionFee) => {
 			updateAuctionFeeForm.reset(auctionFee);
 		}
 	}, []);
+
+	const { isValid } = useFormState({ control: updateAuctionFeeForm.control });
 
 	return (
 		<Dialog>
@@ -60,7 +63,7 @@ export const UpdateAuctionFee = (auctionFee: TAuctionFee) => {
 							name="fee"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.auctionFee")}</FormLabel>
+									<FormLabel>{t("dashboard.auctionFee")} *</FormLabel>
 									<FormControl>
 										<Input
 											{...field}
@@ -82,7 +85,7 @@ export const UpdateAuctionFee = (auctionFee: TAuctionFee) => {
 							<Button
 								className="bg-blue hover:bg-cyan-800 text-white rtl:ml-auto"
 								type="submit"
-								disabled={isUpdatingAuctionFee}
+								disabled={isUpdatingAuctionFee || !isValid}
 							>
 								{isUpdatingAuctionFee
 									? t("dashboard.update.updating")

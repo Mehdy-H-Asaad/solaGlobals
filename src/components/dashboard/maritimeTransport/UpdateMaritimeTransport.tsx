@@ -24,6 +24,7 @@ import { useGetDestinations } from "../hooks/destination/useGetDestinations";
 import { useGetShippingLines } from "../hooks/shppingLines/useGetShippingLines";
 import Select from "react-select";
 import { t } from "i18next";
+import { useGetCountries } from "../hooks/countries/useGetCountries";
 export const UpdateMaritimeTransport = (
 	maritimeTransport: TMaritimeTransports
 ) => {
@@ -35,7 +36,7 @@ export const UpdateMaritimeTransport = (
 
 	const { shippingLines } = useGetShippingLines();
 	const { destinations } = useGetDestinations();
-
+	const { countries } = useGetCountries();
 	const formattedDestinations = destinations?.map(destination => ({
 		label: destination.state,
 		value: destination.id,
@@ -43,6 +44,11 @@ export const UpdateMaritimeTransport = (
 	const formattedShippingLines = shippingLines?.map(shippingLine => ({
 		label: shippingLine.name,
 		value: shippingLine.id,
+	}));
+
+	const formattedCountries = countries?.map(country => ({
+		label: `${country.country} - ${country.port}`,
+		value: country.id,
 	}));
 
 	const { isValid } = useFormState({
@@ -91,7 +97,7 @@ export const UpdateMaritimeTransport = (
 								name="shipping_line_id"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>{t("dashboard.shippingLine")}</FormLabel>
+										<FormLabel>{t("dashboard.shippingLine")} *</FormLabel>
 										<FormControl>
 											<Select
 												isSearchable={true}
@@ -117,7 +123,7 @@ export const UpdateMaritimeTransport = (
 								name="warehouse_id"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>{t("dashboard.warehouse")}</FormLabel>
+										<FormLabel>{t("dashboard.warehouse")} *</FormLabel>
 										<FormControl>
 											<Select
 												isSearchable={true}
@@ -140,10 +146,36 @@ export const UpdateMaritimeTransport = (
 							/>
 							<FormField
 								control={updateMaritimeTransportForm.control}
+								name="destination_id"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>{t("dashboard.destination")} *</FormLabel>
+										<FormControl>
+											<Select
+												isSearchable={true}
+												options={formattedCountries}
+												className="basic-single"
+												classNamePrefix="select"
+												name="source"
+												value={
+													formattedCountries?.find(
+														country =>
+															country.value.toString() == field.value.toString()
+													) || null
+												}
+												onChange={option => field.onChange(option?.value)}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={updateMaritimeTransportForm.control}
 								name="cost"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>{t("dashboard.cost")}</FormLabel>
+										<FormLabel>{t("dashboard.cost")} *</FormLabel>
 										<FormControl>
 											<Input
 												{...field}

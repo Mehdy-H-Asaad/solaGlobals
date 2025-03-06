@@ -14,7 +14,7 @@ export const useUpdateShippingLine = (id: string) => {
 	} = useApiMutation<TShippingLine, TUpdateShippingLineDTO>({
 		axiosRequestMethod: "put",
 		queryKey: ["ShippingLines"],
-		requestURL: `/shipping-lines/create/${id}`,
+		requestURL: `/shipping-lines/update/${id}`,
 		onSuccess: () => {
 			toast.success("Shipping line updated successfully");
 			queryClient.invalidateQueries({

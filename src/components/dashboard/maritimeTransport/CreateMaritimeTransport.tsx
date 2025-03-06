@@ -23,6 +23,7 @@ import { useGetShippingLines } from "../hooks/shppingLines/useGetShippingLines";
 import { useFormState } from "react-hook-form";
 import Select from "react-select";
 import { t } from "i18next";
+import { useGetCountries } from "../hooks/countries/useGetCountries";
 export const CreateMaritimeTransport = () => {
 	const {
 		createMaritimeTransportForm,
@@ -40,6 +41,13 @@ export const CreateMaritimeTransport = () => {
 	const formattedShippingLines = shippingLines?.map(shippingLine => ({
 		label: shippingLine.name,
 		value: shippingLine.id,
+	}));
+
+	const { countries } = useGetCountries();
+
+	const formattedCountries = countries?.map(country => ({
+		label: `${country.country} - ${country.port}`,
+		value: country.id,
 	}));
 
 	const { isValid } = useFormState({
@@ -82,7 +90,7 @@ export const CreateMaritimeTransport = () => {
 								name="shipping_line_id"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>{t("dashboard.shippingLine")}</FormLabel>
+										<FormLabel>{t("dashboard.shippingLine")} *</FormLabel>
 										<FormControl>
 											<Select
 												isSearchable={true}
@@ -102,7 +110,7 @@ export const CreateMaritimeTransport = () => {
 								name="warehouse_id"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>{t("dashboard.warehouse")}</FormLabel>
+										<FormLabel>{t("dashboard.warehouse")} *</FormLabel>
 										<FormControl>
 											<Select
 												isSearchable={true}
@@ -119,19 +127,46 @@ export const CreateMaritimeTransport = () => {
 							/>
 							<FormField
 								control={createMaritimeTransportForm.control}
+								name="destination_id"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>{t("dashboard.destination")} *</FormLabel>
+										<FormControl>
+											<Select
+												isSearchable={true}
+												options={formattedCountries}
+												className="basic-single"
+												classNamePrefix="select"
+												name="destination"
+												onChange={option => {
+													field.onChange(option?.value);
+												}}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+
+							<FormField
+								control={createMaritimeTransportForm.control}
 								name="cost"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>{t("dashboard.cost")}</FormLabel>
+										<FormLabel>{t("dashboard.cost")} *</FormLabel>
 										<FormControl>
 											<Input
 												{...field}
 												placeholder={t("dashboard.cost")}
 												onChange={e => {
-													if (/^\d*$/.test(e.target.value))
-														field.onChange(Number(e.target.value));
+													const value = e.target.value;
+													if (/^\d*$/.test(value)) {
+														field.onChange(
+															value === "" ? undefined : Number(value)
+														);
+													}
 												}}
-												value={field.value === 0 ? "" : field.value}
+												value={field.value === undefined ? "" : field.value}
 											/>
 										</FormControl>
 										<FormMessage />
