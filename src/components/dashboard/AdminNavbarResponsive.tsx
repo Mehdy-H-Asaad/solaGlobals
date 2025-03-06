@@ -6,15 +6,26 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "../ui/sheet";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { adminNavLinks } from "./data";
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+} from "../ui/select";
+import { EAuctionFee, useAuctionFeeStore } from "@/state/auctionFee.state";
 // import { FaEarthAmericas } from "react-icons/fa6";
 
 export const AdminNavbarResponsive = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-
+	const { setAuctionFee } = useAuctionFeeStore();
+	const navigate = useNavigate();
 	const { t } = useTranslation();
 	// const changeLanguage = () => {
 	// 	i18n.language === "ar"
@@ -37,16 +48,54 @@ export const AdminNavbarResponsive = () => {
 				<SheetDescription>
 					<SheetContent className="bg-main-color text-black" dir="ltr">
 						<div className="flex flex-col gap-10">
-							{adminNavLinks.map(nav => (
-								<Link
-									aria-label="Admin navbar links"
-									to={`/admin${nav.href}`}
-									onClick={() => setIsOpen(false)}
-									key={nav.id}
-								>
-									{t(`dashboard.${nav.title}`)}
-								</Link>
-							))}
+							{adminNavLinks.map((nav, index) =>
+								index === adminNavLinks.length - 2 ? (
+									<Fragment key={nav.id}>
+										<NavLink
+											aria-label="Admin navbar links"
+											to={`/admin${nav.href}`}
+											key={nav.id}
+											className={({ isActive }) =>
+												`${isActive ? "active" : ""} w-fit nav-link capitalize`
+											}
+										>
+											{t(`dashboard.${nav.title}`)}
+										</NavLink>
+										<Select
+											onValueChange={value => {
+												setAuctionFee(
+													value.toLowerCase() === "copart"
+														? EAuctionFee.COPART
+														: EAuctionFee.IAAI
+												);
+												navigate(`/admin/auction-fee`, { replace: true });
+											}}
+										>
+											<SelectTrigger className="nav-link !border-b-[1px] w-fit p-0 justify-start gap-x-1 focus:ring-0 border-none outline-none shadow-none text-base">
+												<SelectValue placeholder={t("dashboard.auctionFee")} />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectGroup>
+													<SelectLabel>{t("dashboard.auctionFee")}</SelectLabel>
+													<SelectItem value="copart">Copart</SelectItem>
+													<SelectItem value="iaai">IAAI</SelectItem>
+												</SelectGroup>
+											</SelectContent>
+										</Select>
+									</Fragment>
+								) : (
+									<NavLink
+										aria-label="Admin navbar links"
+										to={`/admin${nav.href}`}
+										key={nav.id}
+										className={({ isActive }) =>
+											`${isActive ? "active" : ""} w-fit nav-link capitalize`
+										}
+									>
+										{t(`dashboard.${nav.title}`)}
+									</NavLink>
+								)
+							)}
 						</div>
 					</SheetContent>
 				</SheetDescription>
