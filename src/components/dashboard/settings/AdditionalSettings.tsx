@@ -17,44 +17,54 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useUpdateAdditionalFee } from "../hooks/users/useUpdateAdditionalFee";
+import { useUpdateAdditionalSettings } from "../hooks/users/useUpdateAdditionalFee";
 import { t } from "i18next";
 import { useEffect } from "react";
 import { useApiQuery } from "@/api/useApiQuery";
-import { TAdditionalFee } from "../types";
+import { TAdditionalSettings } from "../types";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { useFormState } from "react-hook-form";
 
-export const AdditionalFee = () => {
+export const AdditionalSettings = () => {
 	const {
-		isUpdatingAdditionalFee,
-		onUpdateAdditionalFee,
-		updateAdditionalFeeForm,
-	} = useUpdateAdditionalFee();
+		isUpdatingAdditionalSettings,
+		onUpdateAdditionalSettings,
+		updateAdditionalSettingsForm,
+	} = useUpdateAdditionalSettings();
 
-	const { data: additionalFee } = useApiQuery<TAdditionalFee[]>({
-		queryKey: ["additionalFee"],
+	const { data: additionalSettings } = useApiQuery<TAdditionalSettings[]>({
+		queryKey: ["additionalSettings"],
 		requestURL: "/additional-settings/get",
 	});
 
 	useEffect(() => {
-		if (additionalFee) {
-			updateAdditionalFeeForm.reset({
-				additional_fee: additionalFee.data[0].additional_fee,
+		if (additionalSettings) {
+			updateAdditionalSettingsForm.reset({
+				additional_auction_fee:
+					additionalSettings.data[0].additional_auction_fee,
+				company_fee: additionalSettings.data[0].company_fee,
 			});
 		}
-	}, [additionalFee]);
+	}, [additionalSettings]);
 
 	const { isValid } = useFormState({
-		control: updateAdditionalFeeForm.control,
+		control: updateAdditionalSettingsForm.control,
 	});
 
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button className="bg-blue hover:bg-cyan-800 text-white">
-					{t("dashboard.additionalFee")}:{" "}
-					{formatCurrency(additionalFee?.data[0].additional_fee || 0)}
+				<Button className="bg-blue hover:bg-cyan-800 text-white flex-col !py-8 gap-4">
+					<div>
+						{t("dashboard.additionalFee")}:{" "}
+						{formatCurrency(
+							additionalSettings?.data[0].additional_auction_fee || 0
+						)}
+					</div>
+					<div>
+						{t("dashboard.companyFee")}:{" "}
+						{formatCurrency(additionalSettings?.data[0].company_fee || 0)}
+					</div>
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
@@ -71,16 +81,16 @@ export const AdditionalFee = () => {
 						})}
 					</DialogDescription>
 				</DialogHeader>
-				<Form {...updateAdditionalFeeForm}>
+				<Form {...updateAdditionalSettingsForm}>
 					<form
 						className="flex flex-col gap-5"
-						onSubmit={updateAdditionalFeeForm.handleSubmit(
-							onUpdateAdditionalFee
+						onSubmit={updateAdditionalSettingsForm.handleSubmit(
+							onUpdateAdditionalSettings
 						)}
 					>
 						<FormField
-							control={updateAdditionalFeeForm.control}
-							name="additional_fee"
+							control={updateAdditionalSettingsForm.control}
+							name="additional_auction_fee"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>{t("dashboard.additionalFee")} *</FormLabel>
@@ -99,14 +109,35 @@ export const AdditionalFee = () => {
 								</FormItem>
 							)}
 						/>
+						<FormField
+							control={updateAdditionalSettingsForm.control}
+							name="company_fee"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>{t("dashboard.companyFee")} *</FormLabel>
+									<FormControl>
+										<Input
+											{...field}
+											onChange={e => {
+												if (/^\d*$/.test(e.target.value))
+													field.onChange(Number(e.target.value));
+											}}
+											placeholder={t("dashboard.copmanyFee")}
+											value={field.value === 0 ? "" : field.value}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 
 						<DialogFooter>
 							<Button
 								className="bg-blue hover:bg-cyan-800 text-white rtl:ml-auto"
 								type="submit"
-								disabled={isUpdatingAdditionalFee || !isValid}
+								disabled={isUpdatingAdditionalSettings || !isValid}
 							>
-								{isUpdatingAdditionalFee
+								{isUpdatingAdditionalSettings
 									? t("dashboard.update.updating")
 									: t("dashboard.update.update", {
 											name: t("dashboard.additionalFee"),

@@ -67,6 +67,34 @@ export const TrackVehicleResponse = ({
 			</div>
 			<div className="flex justify-between">
 				<div className="flex flex-col gap-1">
+					<div className="font-[600]">{t("hero.estimateCost.amount")}: </div>
+					<div className="text-sm max-w-[250px] text-[#737373] lg:max-w-[400px]">
+						{t("hero.estimateCost.response.amount")}
+					</div>
+				</div>
+				<span className="font-bold text-xl sm:text-2xl text-blue">
+					{formatCurrency(
+						Number(estimateCost?.amount ? estimateCost.amount : "")
+					)}
+				</span>
+			</div>
+			<div className="flex justify-between">
+				<div className="flex flex-col gap-1">
+					<div className="font-[600]">
+						{t("hero.estimateCost.companyFee")}:{" "}
+					</div>
+					<div className="text-sm max-w-[250px] text-[#737373] lg:max-w-[400px]">
+						{t("hero.estimateCost.response.companyFee")}
+					</div>
+				</div>
+				<span className="font-bold text-xl sm:text-2xl text-blue">
+					{formatCurrency(
+						Number(estimateCost?.company_fee ? estimateCost.company_fee : "")
+					)}
+				</span>
+			</div>
+			<div className="flex justify-between">
+				<div className="flex flex-col gap-1">
 					<div className="font-[600]">{t("hero.estimateCost.cost")}: </div>
 					<div className="text-sm max-w-[250px] text-[#737373] lg:max-w-[400px]">
 						{t("hero.estimateCost.response.cost")}
@@ -78,6 +106,7 @@ export const TrackVehicleResponse = ({
 					)}
 				</span>
 			</div>
+
 			<div className="flex flex-col">
 				<h1 className="text-2xl font-bold mb-10">
 					{t("hero.estimateCost.response.additional")}

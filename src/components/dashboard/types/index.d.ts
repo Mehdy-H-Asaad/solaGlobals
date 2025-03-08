@@ -51,8 +51,9 @@ export type TAuctionFee = {
 	auction: number;
 };
 export type TDestination = TSource;
-export type TAdditionalFee = {
-	additional_fee: number;
+export type TAdditionalSettings = {
+	additional_auction_fee: number;
+	company_fee: number;
 };
 
 export type TCreateDestinationDTO = Omit<TSource, "id">;
@@ -78,7 +79,8 @@ export type TUpdateDestinationDTO = Omit<TSource, "id">;
 export type TUpdateInlandTransportsDTO = TCreateInlandTransportDTO;
 export type TUpdateShippingLineDTO = TCreateShippingLineDTO;
 export type TUpdateAuctionFeeDTO = Pick<TAuctionFee, "fee">;
-export type TUpdateAdditionalFeeDTO = {
-	additional_fee: number;
+export type TUpdateAdditionalSettingsDTO = {
+	additional_auction_fee: number;
+	company_fee: number;
 };
 export type TUpdateCountry = Omit<TCountry, "id">;

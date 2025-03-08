@@ -65,6 +65,8 @@
 				"toMaritimeTransport": "Maritime transport cost",
 				"toInland": "Inland transport cost",
 				"auctionFee": "Auction fee",
+				"companyFee": "Company fee",
+				"amount": "Amount",
 				"description": {
 					"bid":"Enter the amount you want to bid on the car",
 					"auction":"Choose the auction in which the car is located.",
@@ -81,7 +83,9 @@
 					"inland": "The cost of transporting the car within the United States from the auction branch to the loading port.",
 					"maritime":"The cost of shipping the car from the United States to the destination port.",
 					"auctionFee":"The fees for the auction from which the car was purchased. The fees vary depending on the bid amount.",
-					"additional": "Car information based on the VIN."
+					"additional": "Car information based on the VIN.",
+					"companyFee": "Fees imposed based on the bid amount, services provided, and shipping charges.",
+					"amount": "The amount you want to bid on the car"
 				}
 		}
 	},

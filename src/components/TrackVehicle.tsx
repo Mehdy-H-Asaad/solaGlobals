@@ -39,9 +39,9 @@ export const TrackVehicle = () => {
 		onGetEstimateCost,
 	} = useEstimateCost();
 	const {
-		destination_country,
-		shipping_line_id,
-		destination_port,
+		// destination_country,
+		// shipping_line_id,
+		// destination_port,
 		source_id,
 		country,
 		setFilters,
@@ -64,9 +64,9 @@ export const TrackVehicle = () => {
 	];
 
 	const { destinationsByOrderCost } = useGetDestinationsOrderCost({
-		destination_country,
-		destination_port,
-		shipping_line_id,
+		// destination_country,
+		// destination_port,
+		// shipping_line_id,
 		source_id,
 	});
 
@@ -215,6 +215,91 @@ export const TrackVehicle = () => {
 											</FormItem>
 										)}
 									/>
+
+									<FormField
+										control={estimateCostForm.control}
+										name="warehouse"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>
+													{t("hero.estimateCost.warehouse")}
+												</FormLabel>
+												<FormControl>
+													<Select
+														placeholder={t("hero.estimateCost.warehouse")}
+														className="basic-single"
+														classNamePrefix="select"
+														onChange={option => field.onChange(option?.value)}
+														isSearchable={true}
+														name="Warehouse"
+														options={formattedDestinationsOrderCost}
+													/>
+												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.warehouse")}
+												</FormDescription>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={estimateCostForm.control}
+										name="shipping_line"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>
+													{t("hero.estimateCost.shippingLine")}
+												</FormLabel>
+												<FormControl>
+													<Select
+														placeholder={t("hero.estimateCost.shippingLine")}
+														className="basic-single"
+														classNamePrefix="select"
+														onChange={option => {
+															field.onChange(option?.value);
+															setFilters({ shipping_line_id: option?.value });
+														}}
+														isSearchable={true}
+														name="Shipping line"
+														options={formattedShippingLines}
+													/>
+												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.shippingLine")}
+												</FormDescription>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+
+									<FormField
+										control={estimateCostForm.control}
+										name="shipping_type"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>
+													{t("hero.estimateCost.shippingType")}
+												</FormLabel>
+												<FormControl>
+													<Select
+														placeholder={t("hero.estimateCost.shippingType")}
+														className="basic-single"
+														classNamePrefix="select"
+														onChange={option => {
+															field.onChange(option?.value);
+														}}
+														isSearchable={true}
+														name="Shipping type"
+														options={formattedShippingTypes}
+													/>
+												</FormControl>
+												<FormDescription>
+													{t("hero.estimateCost.description.shippingType")}
+												</FormDescription>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 									<FormField
 										control={estimateCostForm.control}
 										name="destination_country"
@@ -267,89 +352,6 @@ export const TrackVehicle = () => {
 												</FormControl>
 												<FormDescription>
 													{t("hero.estimateCost.description.port")}
-												</FormDescription>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={estimateCostForm.control}
-										name="shipping_line"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>
-													{t("hero.estimateCost.shippingLine")}
-												</FormLabel>
-												<FormControl>
-													<Select
-														placeholder={t("hero.estimateCost.shippingLine")}
-														className="basic-single"
-														classNamePrefix="select"
-														onChange={option => {
-															field.onChange(option?.value);
-															setFilters({ shipping_line_id: option?.value });
-														}}
-														isSearchable={true}
-														name="Shipping line"
-														options={formattedShippingLines}
-													/>
-												</FormControl>
-												<FormDescription>
-													{t("hero.estimateCost.description.shippingLine")}
-												</FormDescription>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={estimateCostForm.control}
-										name="shipping_type"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>
-													{t("hero.estimateCost.shippingType")}
-												</FormLabel>
-												<FormControl>
-													<Select
-														placeholder={t("hero.estimateCost.shippingType")}
-														className="basic-single"
-														classNamePrefix="select"
-														onChange={option => {
-															field.onChange(option?.value);
-														}}
-														isSearchable={true}
-														name="Shipping type"
-														options={formattedShippingTypes}
-													/>
-												</FormControl>
-												<FormDescription>
-													{t("hero.estimateCost.description.shippingType")}
-												</FormDescription>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={estimateCostForm.control}
-										name="warehouse"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>
-													{t("hero.estimateCost.warehouse")}
-												</FormLabel>
-												<FormControl>
-													<Select
-														placeholder={t("hero.estimateCost.warehouse")}
-														className="basic-single"
-														classNamePrefix="select"
-														onChange={option => field.onChange(option?.value)}
-														isSearchable={true}
-														name="Warehouse"
-														options={formattedDestinationsOrderCost}
-													/>
-												</FormControl>
-												<FormDescription>
-													{t("hero.estimateCost.description.warehouse")}
 												</FormDescription>
 												<FormMessage />
 											</FormItem>

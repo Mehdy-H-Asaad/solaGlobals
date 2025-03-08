@@ -1,47 +1,55 @@
-import { TAdditionalFee, TUpdateAdditionalFeeDTO } from "../../types";
+import { TAdditionalSettings, TUpdateAdditionalSettingsDTO } from "../../types";
 import { useApiMutation } from "@/api/useApiMutation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
 
-export const useUpdateAdditionalFee = () => {
+export const useUpdateAdditionalSettings = () => {
 	const {
-		mutate: updateAdditionalFee,
-		isPending: isUpdatingAdditionalFee,
+		mutate,
+		isPending: isUpdatingAdditionalSettings,
 		queryClient,
-	} = useApiMutation<TAdditionalFee, TUpdateAdditionalFeeDTO>({
+	} = useApiMutation<TAdditionalSettings, TUpdateAdditionalSettingsDTO>({
 		axiosRequestMethod: "put",
-		queryKey: ["additionalFee"],
+		queryKey: ["additionalSettings"],
 		requestURL: `/additional-settings/update`,
 		onSuccess: () => {
-			toast.success("Additional fee updated successfully");
+			toast.success("Additional settings updated successfully");
 			queryClient.invalidateQueries({
-				queryKey: ["additionalFee"],
+				queryKey: ["additionalSettings"],
 				exact: false,
 			});
 		},
 	});
 
-	const updateAdditionalFeeSchema = z.object({
-		additional_fee: z.number().min(1, "Additional fee is required"),
+	const updateAdditionalSettingsSchema = z.object({
+		additional_auction_fee: z
+			.number()
+			.min(1, "Additional settings is required"),
+		company_fee: z.number().min(1, "Copmany fee is required"),
 	});
-	type TUpdateAdditionalFeeSchema = z.infer<typeof updateAdditionalFeeSchema>;
+	type TUpdateAdditionalSettingsSchema = z.infer<
+		typeof updateAdditionalSettingsSchema
+	>;
 
-	const updateAdditionalFeeForm = useForm<TUpdateAdditionalFeeSchema>({
-		resolver: zodResolver(updateAdditionalFeeSchema),
-		defaultValues: {
-			additional_fee: 0,
-		},
-	});
+	const updateAdditionalSettingsForm = useForm<TUpdateAdditionalSettingsSchema>(
+		{
+			resolver: zodResolver(updateAdditionalSettingsSchema),
+			defaultValues: {
+				additional_auction_fee: 0,
+				company_fee: 0,
+			},
+		}
+	);
 
-	const onUpdateAdditionalFee = (values: TUpdateAdditionalFeeSchema) => {
-		updateAdditionalFee(values);
+	const onUpdateAdditionalSettings = (values: TUpdateAdditionalSettingsDTO) => {
+		mutate(values);
 	};
 
 	return {
-		onUpdateAdditionalFee,
-		isUpdatingAdditionalFee,
-		updateAdditionalFeeForm,
+		onUpdateAdditionalSettings,
+		isUpdatingAdditionalSettings,
+		updateAdditionalSettingsForm,
 	};
 };

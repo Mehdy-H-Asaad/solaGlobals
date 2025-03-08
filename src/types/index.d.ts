@@ -33,8 +33,10 @@ export type TGetEstimateCost = {
 	manufacturer: string;
 	country: string;
 	year: number;
-	total_cost: number;
+	amount: number;
 	inland_transport_cost: number;
 	maritime_transport_cost: number;
 	auction_fee: number;
+	company_fee: number;
+	total_cost: number;
 };

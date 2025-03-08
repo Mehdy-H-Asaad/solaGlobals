@@ -25,7 +25,7 @@ import {
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CreateAdmin } from "./CreateAdmin";
-import { AdditionalFee } from "./AdditionalFee";
+import { AdditionalSettings } from "./AdditionalSettings";
 import { t } from "i18next";
 
 interface DataTableProps<TData, TValue> {
@@ -90,7 +90,7 @@ export function UsersDataTable<TData, TValue>({
 					className="max-w-sm bg-transparent border-gray-500"
 				/>
 				<div className="flex gap-4">
-					<AdditionalFee />
+					<AdditionalSettings />
 					<CreateAdmin />
 				</div>
 			</div>
