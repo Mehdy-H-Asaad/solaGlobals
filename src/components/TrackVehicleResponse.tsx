@@ -16,6 +16,19 @@ export const TrackVehicleResponse = ({
 		>
 			<div className="flex justify-between">
 				<div className="flex flex-col gap-1">
+					<div className="font-[600]">{t("hero.estimateCost.amount")}: </div>
+					<div className="text-sm max-w-[250px] text-[#737373] lg:max-w-[400px]">
+						{t("hero.estimateCost.response.amount")}
+					</div>
+				</div>
+				<span className="font-bold text-xl sm:text-2xl text-blue">
+					{formatCurrency(
+						Number(estimateCost?.amount ? estimateCost.amount : "")
+					)}
+				</span>
+			</div>
+			<div className="flex justify-between">
+				<div className="flex flex-col gap-1">
 					<div className="font-[600]">{t("hero.estimateCost.toInland")}: </div>
 					<div className="text-sm max-w-[250px] text-[#737373] lg:lg:max-w-[400px]">
 						{t("hero.estimateCost.response.inland")}
@@ -65,19 +78,7 @@ export const TrackVehicleResponse = ({
 					)}
 				</span>
 			</div>
-			<div className="flex justify-between">
-				<div className="flex flex-col gap-1">
-					<div className="font-[600]">{t("hero.estimateCost.amount")}: </div>
-					<div className="text-sm max-w-[250px] text-[#737373] lg:max-w-[400px]">
-						{t("hero.estimateCost.response.amount")}
-					</div>
-				</div>
-				<span className="font-bold text-xl sm:text-2xl text-blue">
-					{formatCurrency(
-						Number(estimateCost?.amount ? estimateCost.amount : "")
-					)}
-				</span>
-			</div>
+
 			<div className="flex justify-between">
 				<div className="flex flex-col gap-1">
 					<div className="font-[600]">
