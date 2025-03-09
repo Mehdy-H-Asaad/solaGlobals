@@ -12,7 +12,7 @@ export const TrackVehicleResponse = ({
 	return (
 		<div
 			dir={lang}
-			className="mt-10 pl-8 flex-1 pt-4 lg:pt-0 grid grid-cols-1 w-full gap-y-20 lg:gap-y-0 gap-x-10 border-t border-t-gray-300 lg:border-t-0 lg:border-l lg:border-l-gray-300"
+			className="mt-10 pl-8 flex-1 pt-4 lg:pt-0 grid grid-cols-1 w-full gap-y-10 lg:gap-y-0 gap-x-10 border-t border-t-gray-300 lg:border-t-0 lg:border-l lg:border-l-gray-300"
 		>
 			<div className="flex justify-between">
 				<div className="flex flex-col gap-1">

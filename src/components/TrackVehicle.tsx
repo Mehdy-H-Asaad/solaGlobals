@@ -30,6 +30,7 @@ import { useGetDestinationsOrderCost } from "./dashboard/hooks/destination/useGe
 import { useFiltersStore } from "@/state/filters.state";
 import { TrackVehicleResponse } from "./TrackVehicleResponse";
 import { useGetPortsCountriesBy } from "./dashboard/hooks/countries/useGetPortsByCountries";
+import { useState } from "react";
 export const TrackVehicle = () => {
 	const { t } = useTranslation();
 	const {
@@ -46,6 +47,7 @@ export const TrackVehicle = () => {
 		country,
 		setFilters,
 	} = useFiltersStore();
+	const [isSelected, setIsSelected] = useState<boolean>(false);
 
 	const { sources } = useGetSources();
 	const { shippingLines } = useGetShippingLines();
@@ -63,12 +65,10 @@ export const TrackVehicle = () => {
 		).values(),
 	];
 
-	const { destinationsByOrderCost } = useGetDestinationsOrderCost({
-		// destination_country,
-		// destination_port,
-		// shipping_line_id,
-		source_id,
-	});
+	const { destinationsByOrderCost, isLoadingDestinationsByOrderCost } =
+		useGetDestinationsOrderCost({
+			source_id,
+		});
 
 	const formattedDestinationsOrderCost = destinationsByOrderCost?.map(
 		destination => ({
@@ -202,6 +202,7 @@ export const TrackVehicle = () => {
 														onChange={option => {
 															field.onChange(option?.value);
 															setFilters({ source_id: Number(option?.value) });
+															setIsSelected(true);
 														}}
 														isSearchable={true}
 														name="Source"
@@ -232,6 +233,13 @@ export const TrackVehicle = () => {
 														onChange={option => field.onChange(option?.value)}
 														isSearchable={true}
 														name="Warehouse"
+														isLoading={isLoadingDestinationsByOrderCost}
+														// isDisabled={!isSelected ? true : false}
+														value={
+															isSelected
+																? formattedDestinationsOrderCost?.[0]
+																: null
+														}
 														options={formattedDestinationsOrderCost}
 													/>
 												</FormControl>

@@ -30,6 +30,7 @@ export const useGetDestinationsOrderCost = (
 		requestURL: `/warehouses/get/order-by-cost?${new URLSearchParams(
 			queryParams
 		)}`,
+		enabled: !!filters.source_id,
 	});
 
 	return {
