@@ -226,7 +226,6 @@ export const TrackVehicle = () => {
 										control={estimateCostForm.control}
 										name="warehouse"
 										render={({ field }) => {
-											// Find the selected warehouse option based on the current value
 											const selectedWarehouse =
 												formattedDestinationsOrderCost?.find(
 													option =>
@@ -244,7 +243,8 @@ export const TrackVehicle = () => {
 																selectedWarehouse
 																	? selectedWarehouse.label
 																	: formattedDestinationsOrderCost?.[0]
-																			?.label || "Select Warehouse"
+																			?.label ||
+																	  t("hero.estimateCost.warehouse")
 															}
 															className="basic-single"
 															classNamePrefix="select"
