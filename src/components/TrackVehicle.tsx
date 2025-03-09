@@ -30,7 +30,7 @@ import { useGetDestinationsOrderCost } from "./dashboard/hooks/destination/useGe
 import { useFiltersStore } from "@/state/filters.state";
 import { TrackVehicleResponse } from "./TrackVehicleResponse";
 import { useGetPortsCountriesBy } from "./dashboard/hooks/countries/useGetPortsByCountries";
-import { useState } from "react";
+import { useEffect } from "react";
 export const TrackVehicle = () => {
 	const { t } = useTranslation();
 	const {
@@ -39,15 +39,7 @@ export const TrackVehicle = () => {
 		isGettingEstimateCost,
 		onGetEstimateCost,
 	} = useEstimateCost();
-	const {
-		// destination_country,
-		// shipping_line_id,
-		// destination_port,
-		source_id,
-		country,
-		setFilters,
-	} = useFiltersStore();
-	const [isSelected, setIsSelected] = useState<boolean>(false);
+	const { source_id, country, setFilters } = useFiltersStore();
 
 	const { sources } = useGetSources();
 	const { shippingLines } = useGetShippingLines();
@@ -93,11 +85,11 @@ export const TrackVehicle = () => {
 	];
 	const formattedShippingTypes = [
 		{
-			value: 1,
+			value: 3,
 			label: t("hero.estimateCost.triple"),
 		},
 		{
-			value: 2,
+			value: 4,
 			label: t("hero.estimateCost.quadruple"),
 		},
 	];
@@ -113,6 +105,20 @@ export const TrackVehicle = () => {
 	}));
 
 	const lang = i18next.language === "ar" ? "rtl" : "ltr";
+
+	useEffect(() => {
+		if (!isLoadingDestinationsByOrderCost && formattedDestinationsOrderCost) {
+			estimateCostForm.setValue(
+				"warehouse",
+				Number(formattedDestinationsOrderCost[0].value)
+			);
+		}
+	}, [isLoadingDestinationsByOrderCost]);
+
+	const warehouseValueLog = estimateCostForm.watch("warehouse");
+
+	// Log the value of the warehouse field
+	console.log("Warehouse Value:", warehouseValueLog);
 
 	return (
 		// <div className="flex items-center gap-20">
@@ -202,7 +208,6 @@ export const TrackVehicle = () => {
 														onChange={option => {
 															field.onChange(option?.value);
 															setFilters({ source_id: Number(option?.value) });
-															setIsSelected(true);
 														}}
 														isSearchable={true}
 														name="Source"
@@ -220,35 +225,44 @@ export const TrackVehicle = () => {
 									<FormField
 										control={estimateCostForm.control}
 										name="warehouse"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>
-													{t("hero.estimateCost.warehouse")}
-												</FormLabel>
-												<FormControl>
-													<Select
-														placeholder={t("hero.estimateCost.warehouse")}
-														className="basic-single"
-														classNamePrefix="select"
-														onChange={option => field.onChange(option?.value)}
-														isSearchable={true}
-														name="Warehouse"
-														isLoading={isLoadingDestinationsByOrderCost}
-														// isDisabled={!isSelected ? true : false}
-														value={
-															isSelected
-																? formattedDestinationsOrderCost?.[0]
-																: null
-														}
-														options={formattedDestinationsOrderCost}
-													/>
-												</FormControl>
-												<FormDescription>
-													{t("hero.estimateCost.description.warehouse")}
-												</FormDescription>
-												<FormMessage />
-											</FormItem>
-										)}
+										render={({ field }) => {
+											// Find the selected warehouse option based on the current value
+											const selectedWarehouse =
+												formattedDestinationsOrderCost?.find(
+													option =>
+														option.value.toString() === field.value.toString()
+												);
+
+											return (
+												<FormItem>
+													<FormLabel>
+														{t("hero.estimateCost.warehouse")}
+													</FormLabel>
+													<FormControl>
+														<Select
+															placeholder={
+																selectedWarehouse
+																	? selectedWarehouse.label
+																	: formattedDestinationsOrderCost?.[0]
+																			?.label || "Select Warehouse"
+															}
+															className="basic-single"
+															classNamePrefix="select"
+															onChange={option => field.onChange(option?.value)}
+															isSearchable={true}
+															name="Warehouse"
+															isLoading={isLoadingDestinationsByOrderCost}
+															options={formattedDestinationsOrderCost}
+															value={selectedWarehouse} // Control the selected value
+														/>
+													</FormControl>
+													<FormDescription>
+														{t("hero.estimateCost.description.warehouse")}
+													</FormDescription>
+													<FormMessage />
+												</FormItem>
+											);
+										}}
 									/>
 									<FormField
 										control={estimateCostForm.control}
