@@ -11,7 +11,7 @@ export const AuctionFeesList = () => {
 		pagination,
 		setPagination,
 		total_pages,
-	} = useGetAuctionFees({ limit: 10, page: 0 }, auctionFee);
+	} = useGetAuctionFees({ limit: 100, page: 0 }, auctionFee);
 
 	return (
 		<div className="container h-auto sm:min-h-[calc(100vh-96px-40px)]">

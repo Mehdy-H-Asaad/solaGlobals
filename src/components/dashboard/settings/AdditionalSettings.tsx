@@ -22,7 +22,7 @@ import { t } from "i18next";
 import { useEffect } from "react";
 import { useApiQuery } from "@/api/useApiQuery";
 import { TAdditionalSettings } from "../types";
-import { formatCurrency } from "@/utils/formatCurrency";
+// import { formatCurrency } from "@/utils/formatCurrency";
 import { useFormState } from "react-hook-form";
 
 export const AdditionalSettings = () => {
@@ -40,9 +40,9 @@ export const AdditionalSettings = () => {
 	useEffect(() => {
 		if (additionalSettings) {
 			updateAdditionalSettingsForm.reset({
-				additional_auction_fee:
-					additionalSettings.data[0].additional_auction_fee,
+				additional_copart_fee: additionalSettings.data[0].additional_copart_fee,
 				company_fee: additionalSettings.data[0].company_fee,
+				additional_iaai_fee: additionalSettings.data[0].additional_iaai_fee,
 			});
 		}
 	}, [additionalSettings]);
@@ -54,17 +54,24 @@ export const AdditionalSettings = () => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button className="bg-blue hover:bg-cyan-800 text-white flex-col !py-8 gap-4">
-					<div>
-						{t("dashboard.additionalFee")}:{" "}
+				<Button className="bg-blue hover:bg-cyan-800 text-white flex-col gap-0">
+					الرسوم
+					{/* <div dir="ltr">
+						{t("dashboard.copartFee")}:{" "}
 						{formatCurrency(
-							additionalSettings?.data[0].additional_auction_fee || 0
+							additionalSettings?.data[0].additional_copart_fee || 0
+						)}
+					</div>
+					<div>
+						IAAI fee:{" "}
+						{formatCurrency(
+							additionalSettings?.data[0].additional_iaai_fee || 0
 						)}
 					</div>
 					<div>
 						{t("dashboard.companyFee")}:{" "}
 						{formatCurrency(additionalSettings?.data[0].company_fee || 0)}
-					</div>
+					</div> */}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
@@ -90,19 +97,48 @@ export const AdditionalSettings = () => {
 					>
 						<FormField
 							control={updateAdditionalSettingsForm.control}
-							name="additional_auction_fee"
+							name="additional_copart_fee"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>{t("dashboard.additionalFee")} *</FormLabel>
+									<FormLabel>{t("dashboard.copartFee")} *</FormLabel>
+									<FormControl>
+										<Input
+											{...field}
+											placeholder={t("dashboard.copartFee")}
+											onChange={e => {
+												const value = e.target.value;
+												if (/^\d*$/.test(value)) {
+													field.onChange(
+														value === "" ? undefined : Number(value)
+													);
+												}
+											}}
+											value={field.value === undefined ? "" : field.value}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={updateAdditionalSettingsForm.control}
+							name="additional_iaai_fee"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>{t("dashboard.iaaiFee")} *</FormLabel>
 									<FormControl>
 										<Input
 											{...field}
 											onChange={e => {
-												if (/^\d*$/.test(e.target.value))
-													field.onChange(Number(e.target.value));
+												const value = e.target.value;
+												if (/^\d*$/.test(value)) {
+													field.onChange(
+														value === "" ? undefined : Number(value)
+													);
+												}
 											}}
-											placeholder={t("dashboard.additionalFee")}
-											value={field.value === 0 ? "" : field.value}
+											value={field.value === undefined ? "" : field.value}
+											placeholder={t("dashboard.iaaiFee")}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -118,12 +154,16 @@ export const AdditionalSettings = () => {
 									<FormControl>
 										<Input
 											{...field}
-											onChange={e => {
-												if (/^\d*$/.test(e.target.value))
-													field.onChange(Number(e.target.value));
-											}}
 											placeholder={t("dashboard.copmanyFee")}
-											value={field.value === 0 ? "" : field.value}
+											onChange={e => {
+												const value = e.target.value;
+												if (/^\d*$/.test(value)) {
+													field.onChange(
+														value === "" ? undefined : Number(value)
+													);
+												}
+											}}
+											value={field.value === undefined ? "" : field.value}
 										/>
 									</FormControl>
 									<FormMessage />

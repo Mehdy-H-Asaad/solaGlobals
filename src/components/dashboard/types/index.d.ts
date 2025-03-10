@@ -52,7 +52,8 @@ export type TAuctionFee = {
 };
 export type TDestination = TSource;
 export type TAdditionalSettings = {
-	additional_auction_fee: number;
+	additional_copart_fee: number;
+	additional_iaai_fee: number;
 	company_fee: number;
 };
 
@@ -80,7 +81,8 @@ export type TUpdateInlandTransportsDTO = TCreateInlandTransportDTO;
 export type TUpdateShippingLineDTO = TCreateShippingLineDTO;
 export type TUpdateAuctionFeeDTO = Pick<TAuctionFee, "fee">;
 export type TUpdateAdditionalSettingsDTO = {
-	additional_auction_fee: number;
+	additional_copart_fee: number;
+	additional_iaai_fee: number;
 	company_fee: number;
 };
 export type TUpdateCountry = Omit<TCountry, "id">;

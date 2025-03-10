@@ -13,7 +13,7 @@ export const CountriesList = () => {
 		pagination,
 		setPagination,
 		total_pages,
-	} = useGetCountries({ country, port, limit: 10, page: 0 });
+	} = useGetCountries({ country, port, limit: 100, page: 0 });
 
 	return (
 		<div className="container h-auto sm:min-h-[calc(100vh-96px-40px)]">

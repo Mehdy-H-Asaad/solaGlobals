@@ -24,9 +24,8 @@ export const useUpdateAdditionalSettings = () => {
 	});
 
 	const updateAdditionalSettingsSchema = z.object({
-		additional_auction_fee: z
-			.number()
-			.min(1, "Additional settings is required"),
+		additional_copart_fee: z.number().min(1, "Additional settings is required"),
+		additional_iaai_fee: z.number().min(1, "Additional settings is required"),
 		company_fee: z.number().min(1, "Copmany fee is required"),
 	});
 	type TUpdateAdditionalSettingsSchema = z.infer<
@@ -37,8 +36,9 @@ export const useUpdateAdditionalSettings = () => {
 		{
 			resolver: zodResolver(updateAdditionalSettingsSchema),
 			defaultValues: {
-				additional_auction_fee: 0,
-				company_fee: 0,
+				additional_copart_fee: undefined,
+				company_fee: undefined,
+				additional_iaai_fee: undefined,
 			},
 		}
 	);

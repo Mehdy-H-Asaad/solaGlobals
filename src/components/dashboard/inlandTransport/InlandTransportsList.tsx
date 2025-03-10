@@ -27,7 +27,7 @@ export const InlandTransportsList = () => {
 		source_address,
 		source_city,
 		source_zipcode,
-		limit: 10,
+		limit: 100,
 		page: 0,
 	});
 

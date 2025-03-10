@@ -271,6 +271,8 @@
 		"Shipping lines": "خطوط النقل",
 		"Settings":"الإعدادات",
 		"companyFee": "رسوم الشركة",
+		"copartFee": "رسوم Copart",
+		"iaaiFee": "رسوم IAAI",
 		"auctionFee": "رسوم المزاد",
 		"previous":"السابق",
 		"name":"الإسم",

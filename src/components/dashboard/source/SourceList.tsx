@@ -15,7 +15,7 @@ export const SourceList = () => {
 			source_state,
 			source_zipcode,
 			page: 0,
-			limit: 10,
+			limit: 100,
 		});
 
 	return (
