@@ -107,13 +107,13 @@ export const AdditionalSettings = () => {
 											placeholder={t("dashboard.copartFee")}
 											onChange={e => {
 												const value = e.target.value;
-												if (/^\d*$/.test(value)) {
-													field.onChange(
-														value === "" ? undefined : Number(value)
-													);
+												if (value === "") {
+													field.onChange(null);
+												} else if (/^\d+$/.test(value)) {
+													field.onChange(Number(value));
 												}
 											}}
-											value={field.value === undefined ? "" : field.value}
+											value={field.value === null ? "" : field.value}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -131,13 +131,13 @@ export const AdditionalSettings = () => {
 											{...field}
 											onChange={e => {
 												const value = e.target.value;
-												if (/^\d*$/.test(value)) {
-													field.onChange(
-														value === "" ? undefined : Number(value)
-													);
+												if (value === "") {
+													field.onChange(null);
+												} else if (/^\d+$/.test(value)) {
+													field.onChange(Number(value));
 												}
 											}}
-											value={field.value === undefined ? "" : field.value}
+											value={field.value === null ? "" : field.value}
 											placeholder={t("dashboard.iaaiFee")}
 										/>
 									</FormControl>
@@ -154,16 +154,16 @@ export const AdditionalSettings = () => {
 									<FormControl>
 										<Input
 											{...field}
-											placeholder={t("dashboard.copmanyFee")}
+											placeholder={t("dashboard.companyFee")}
 											onChange={e => {
 												const value = e.target.value;
-												if (/^\d*$/.test(value)) {
-													field.onChange(
-														value === "" ? undefined : Number(value)
-													);
+												if (value === "") {
+													field.onChange(null);
+												} else if (/^\d+$/.test(value)) {
+													field.onChange(Number(value));
 												}
 											}}
-											value={field.value === undefined ? "" : field.value}
+											value={field.value === null ? "" : field.value}
 										/>
 									</FormControl>
 									<FormMessage />

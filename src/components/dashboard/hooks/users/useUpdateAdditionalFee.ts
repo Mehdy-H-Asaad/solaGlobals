@@ -24,9 +24,9 @@ export const useUpdateAdditionalSettings = () => {
 	});
 
 	const updateAdditionalSettingsSchema = z.object({
-		additional_copart_fee: z.number().min(1, "Additional settings is required"),
-		additional_iaai_fee: z.number().min(1, "Additional settings is required"),
-		company_fee: z.number().min(1, "Copmany fee is required"),
+		additional_copart_fee: z.number().min(0, "Additional settings is required"),
+		additional_iaai_fee: z.number().min(0, "Additional settings is required"),
+		company_fee: z.number().min(0, "Copmany fee is required"),
 	});
 	type TUpdateAdditionalSettingsSchema = z.infer<
 		typeof updateAdditionalSettingsSchema

@@ -181,10 +181,14 @@ export const UpdateMaritimeTransport = (
 												{...field}
 												placeholder={t("dashboard.cost")}
 												onChange={e => {
-													if (/^\d*$/.test(e.target.value))
-														field.onChange(Number(e.target.value));
+													const value = e.target.value;
+													if (value === "") {
+														field.onChange(null);
+													} else if (/^\d+$/.test(value)) {
+														field.onChange(Number(value));
+													}
 												}}
-												value={field.value === 0 ? "" : field.value}
+												value={field.value === null ? "" : field.value}
 											/>
 										</FormControl>
 										<FormMessage />

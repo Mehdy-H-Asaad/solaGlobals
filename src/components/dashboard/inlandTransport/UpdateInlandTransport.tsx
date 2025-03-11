@@ -50,6 +50,10 @@ export const UpdateInlandTransport = (inlandTransport: TInlandTransports) => {
 		if (inlandTransport) updateInlandTransportForm.reset(inlandTransport);
 	}, []);
 
+	const cost = updateInlandTransportForm.watch("cost");
+
+	console.log(cost);
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -146,13 +150,13 @@ export const UpdateInlandTransport = (inlandTransport: TInlandTransports) => {
 												placeholder={t("dashboard.cost")}
 												onChange={e => {
 													const value = e.target.value;
-													if (/^\d*$/.test(value)) {
-														field.onChange(
-															value === "" ? undefined : Number(value)
-														);
+													if (value === "") {
+														field.onChange(null);
+													} else if (/^\d+$/.test(value)) {
+														field.onChange(Number(value));
 													}
 												}}
-												value={field.value === undefined ? "" : field.value}
+												value={field.value === null ? "" : field.value}
 											/>
 										</FormControl>
 										<FormMessage />

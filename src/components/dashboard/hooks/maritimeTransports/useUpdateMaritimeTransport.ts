@@ -38,7 +38,7 @@ export const useUpdateMaritimeTransport = (id: string) => {
 	const updateMaritimeTransportForm = useForm<TUpdateMarriTimeTransportSchema>({
 		resolver: zodResolver(updateMaritimeTransportSchema),
 		defaultValues: {
-			cost: 0,
+			cost: undefined,
 			shipping_line_id: 0,
 			warehouse_id: 0,
 			destination_id: 0,

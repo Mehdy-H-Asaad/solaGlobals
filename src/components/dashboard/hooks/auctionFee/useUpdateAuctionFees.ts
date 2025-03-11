@@ -36,7 +36,7 @@ export const useUpdateAuctionFees = (id: number) => {
 	const updateAuctionFeeForm = useForm<TUpdateAuctionFeeSchema>({
 		resolver: zodResolver(updateAuctionFeeSchema),
 		defaultValues: {
-			fee: 0,
+			fee: undefined,
 		},
 	});
 
