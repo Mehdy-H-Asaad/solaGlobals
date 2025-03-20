@@ -1,7 +1,6 @@
 import axios from "axios";
-// import { useLocation } from "react-router-dom";
 export const axiosClient = axios.create({
-	baseURL: "https://solagroup.vercel.app",
+	baseURL: process.env.API_URL,
 	headers: {
 		"Content-Type": "application/json",
 	},
@@ -16,18 +15,3 @@ axiosClient.interceptors.request.use(
 	},
 	error => Promise.reject(error)
 );
-
-// axiosClient.interceptors.response.use(
-// 	response => response,
-// 	async error => {
-// 		const location = useLocation();
-// 		if (
-// 			error.response?.status === 401 &&
-// 			location.pathname.startsWith("/admin")
-// 		) {
-// 			localStorage.removeItem("token");
-// 			window.location.replace("/admin/login");
-// 		}
-// 		return Promise.reject(error);
-// 	}
-// );
