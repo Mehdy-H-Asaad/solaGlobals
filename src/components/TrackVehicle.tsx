@@ -115,11 +115,6 @@ export const TrackVehicle = () => {
 		}
 	}, [isLoadingDestinationsByOrderCost]);
 
-	const warehouseValueLog = estimateCostForm.watch("warehouse");
-
-	// Log the value of the warehouse field
-	console.log("Warehouse Value:", warehouseValueLog);
-
 	return (
 		// <div className="flex items-center gap-20">
 		<Dialog>
@@ -170,6 +165,7 @@ export const TrackVehicle = () => {
 											</FormItem>
 										)}
 									/>
+
 									<FormField
 										control={estimateCostForm.control}
 										name="auction"
