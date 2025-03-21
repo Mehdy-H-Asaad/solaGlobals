@@ -44,7 +44,7 @@ export const TrackVehicle = () => {
 	const { sources } = useGetSources();
 	const { shippingLines } = useGetShippingLines();
 	const { countries } = useGetCountries();
-	const { ports } = useGetPortsCountriesBy({ country });
+
 	const formattedSources = [
 		...new Map(
 			sources?.map(source => [
@@ -62,6 +62,7 @@ export const TrackVehicle = () => {
 			source_id,
 		});
 
+	const { ports, isLoadingPorts } = useGetPortsCountriesBy({ country });
 	const formattedDestinationsOrderCost = destinationsByOrderCost?.map(
 		destination => ({
 			value: destination.id,
@@ -365,6 +366,7 @@ export const TrackVehicle = () => {
 														}}
 														isSearchable={true}
 														name="country"
+														isLoading={isLoadingPorts}
 														options={formattedPorts}
 													/>
 												</FormControl>

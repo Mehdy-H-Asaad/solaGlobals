@@ -28,9 +28,9 @@ export const useGetPortsCountriesBy = (
 
 	const queryParams = params ? new URLSearchParams(params) : "";
 
-	const { data, isLoading: isLoadingCountries } = useApiQuery<TCountry[]>({
+	const { data, isLoading: isLoadingPorts } = useApiQuery<TCountry[]>({
 		queryKey: [
-			"countries",
+			"ports",
 			{
 				...params,
 				pageIndex: pagination.pageIndex,
@@ -38,11 +38,12 @@ export const useGetPortsCountriesBy = (
 			},
 		],
 		requestURL: `/destinations/get?${queryParams}`,
+		enabled: !!filters.country,
 	});
 
 	return {
 		ports: data?.data,
-		isLoadingCountries,
+		isLoadingPorts,
 		pagination,
 		setPagination,
 		total_rows: data?.total_rows,
