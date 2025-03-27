@@ -43,7 +43,7 @@ export const Footer = () => {
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.8 }}
 						>
-							<h1 className="text-2xl font-bold">{t("footer.aboutTitle")}</h1>
+							<h4 className="text-2xl font-bold">{t("footer.aboutTitle")}</h4>
 							<p className="max-w-[36rem]">{t("footer.aboutParaghraph")}</p>
 						</motion.div>
 
