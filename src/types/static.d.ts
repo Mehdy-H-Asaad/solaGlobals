@@ -23,6 +23,7 @@ export type TContact = {
 	type: string;
 	primary: string;
 	secondary: string;
+	third: string;
 	primaryHref: string;
 	secondaryHref: string;
 };

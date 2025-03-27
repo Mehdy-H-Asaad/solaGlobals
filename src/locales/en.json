@@ -98,8 +98,9 @@
 		"id": 1,
 		"type": "address",
 		"label": "Head Office",
-		"primary": "Al-Qusiba Street, Janzour, Tripoli",
-		"secondary": "416 Cardinal Dr, Statesboro, GA 30461"
+		"primary": "Al-Qusiba Street, Janzour, Tripoli, Libya",
+		"secondary": "416 Cardinal Dr, Statesboro, GA 30461, USA",
+		"third": "Algeria street, Al Basra, Iraq"
 	  },
 	  {
 		"id": 2,
