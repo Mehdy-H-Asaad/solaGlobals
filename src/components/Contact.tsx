@@ -1,15 +1,15 @@
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "./ui/form";
-import { useSendEmail } from "@/hooks/useSendEmail";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { Button } from "./ui/button";
+// import {
+// 	Form,
+// 	FormControl,
+// 	FormField,
+// 	FormItem,
+// 	FormLabel,
+// 	FormMessage,
+// } from "./ui/form";
+// import { useSendEmail } from "@/hooks/useSendEmail";
+// import { Input } from "./ui/input";
+// import { Textarea } from "./ui/textarea";
+// import { Button } from "./ui/button";
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { useAnimationOptions } from "@/animation/animationOptions";
@@ -18,15 +18,15 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { TContact } from "@/types/static";
 
 export const Contact = () => {
-	const { emailForm, onSendEmail } = useSendEmail();
-	const { t, i18n } = useTranslation(); // Get the current language and translation function
-	const isRTL = i18n.language === "ar"; // Check if the language is Arabic (RTL)
+	// const { emailForm, onSendEmail } = useSendEmail();
+	const { t } = useTranslation(); // Get the current language and translation function
+	// const isRTL = i18n.language === "ar"; // Check if the language is Arabic (RTL)
 
 	const googleMap = useMemo(
 		() => (
 			<iframe
 				title=""
-				src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d206253.5324458531!2d-115.33981002985016!3d36.12488712378223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1706555913762!5m2!1sen!2s"
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3367.49666933253!2d-81.74495532451037!3d32.43263807380947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88fa47711b229cfd%3A0xd62388e9e0e8a64b!2s416%20Cardinal%20Dr%2C%20Statesboro%2C%20GA%2030461%2C%20USA!5e0!3m2!1sen!2sae!4v1743070479402!5m2!1sen!2sae"
 				width="100%"
 				height="400px"
 				style={{ border: "0" }}
@@ -47,72 +47,38 @@ export const Contact = () => {
 
 	return (
 		<div className="py-20" id="contact">
+			<div ref={ref}>
+				<div className="overflow-hidden">
+					<motion.div
+						variants={textAnimation}
+						initial="initial"
+						animate={isInView ? "enter" : ""}
+						className="text-5xl mb-2 font-bold w-fit mx-auto"
+					>
+						<Trans i18nKey={"contact.title"}>
+							<span className="text-blue">Us</span>
+						</Trans>
+					</motion.div>
+				</div>
+				<div className="overflow-hidden mb-10">
+					<motion.p
+						variants={textAnimation}
+						initial="initial"
+						animate={isInView ? "enter" : ""}
+						className="mx-auto w-fit"
+					>
+						{t("contact.paraghraph")}
+					</motion.p>
+				</div>
+			</div>
 			<div className="container">
 				<div className="flex rtl:flex-col-reverse lg:rtl:flex-row-reverse justify-between flex-col lg:flex-row gap-20">
 					<div className="flex-1 flex-col flex gap-10">
 						<div>{googleMap}</div>
-
-						<div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-8">
-							{contactDetails.map((contact, index) => (
-								<motion.div
-									variants={staggerVariants}
-									initial="initial"
-									whileInView="animate"
-									custom={index}
-									viewport={{ once: true }}
-									key={contact.id}
-									className="flex flex-col gap-2 border border-blue rounded-md py-4 px-6 items-center justify-center text-center"
-								>
-									<div className="text-lg font-bold">
-										{contact.label == "WhatsApp" ||
-										contact.label == "واتساب" ? (
-											<FaWhatsapp size={24} />
-										) : (
-											contact.label
-										)}
-									</div>
-									{contact.type === "email" || contact.type === "phone" ? (
-										<>
-											<a
-												dir="ltr"
-												className="text-sm duration-200 hover:text-blue"
-												href={
-													contact.type === "email"
-														? `mailto:${contact.primary}`
-														: `https://wa.me/${contact.primaryHref}`
-												}
-												target="_blank"
-											>
-												{contact.primary}
-											</a>
-											<a
-												dir="ltr"
-												className="text-sm duration-200 hover:text-blue"
-												href={
-													contact.type === "email"
-														? `mailto:${contact.secondary}`
-														: `https://wa.me/${contact.secondaryHref}`
-												}
-												target="_blank"
-											>
-												{contact.secondary}
-											</a>
-										</>
-									) : contact.type === "address" ? (
-										<>
-											<div className="text-sm">{contact.primary}</div>
-											<div className="text-sm">{contact.secondary}</div>
-										</>
-									) : (
-										""
-									)}
-								</motion.div>
-							))}
-						</div>
 					</div>
 
 					<div className="flex-1">
-						<div ref={ref}>
+						{/* <div ref={ref}>
 							<div className="overflow-hidden">
 								<motion.div
 									variants={textAnimation}
@@ -134,8 +100,8 @@ export const Contact = () => {
 									{t("contact.paraghraph")}
 								</motion.p>
 							</div>
-						</div>
-						<motion.div
+						</div> */}
+						{/* <motion.div
 							viewport={{ once: true }}
 							initial={{ opacity: 0, x: 60 }}
 							whileInView={{ opacity: 1, x: 0 }}
@@ -239,7 +205,65 @@ export const Contact = () => {
 									</Button>
 								</form>
 							</Form>
-						</motion.div>
+						</motion.div> */}
+						<div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-8">
+							{contactDetails.map((contact, index) => (
+								<motion.div
+									variants={staggerVariants}
+									initial="initial"
+									whileInView="animate"
+									custom={index}
+									viewport={{ once: true }}
+									key={contact.id}
+									className="flex flex-col gap-2 border border-blue rounded-md py-4 px-6 items-center justify-center text-center"
+								>
+									<div className="text-lg font-bold">
+										{contact.label == "WhatsApp" ||
+										contact.label == "واتساب" ? (
+											<FaWhatsapp size={24} />
+										) : (
+											contact.label
+										)}
+									</div>
+									{contact.type === "email" || contact.type === "phone" ? (
+										<>
+											<a
+												dir="ltr"
+												className="text-sm duration-200 hover:text-blue"
+												href={
+													contact.type === "email"
+														? `mailto:${contact.primary}`
+														: `https://wa.me/${contact.primaryHref}`
+												}
+												target="_blank"
+											>
+												{contact.primary}
+											</a>
+											<a
+												dir="ltr"
+												className="text-sm duration-200 hover:text-blue"
+												href={
+													contact.type === "email"
+														? `mailto:${contact.secondary}`
+														: `https://wa.me/${contact.secondaryHref}`
+												}
+												target="_blank"
+											>
+												{contact.secondary}
+											</a>
+										</>
+									) : contact.type === "address" ? (
+										<>
+											<div className="text-sm">{contact.primary}</div>
+											<div className="text-sm">{contact.secondary}</div>
+											<div className="text-sm">{contact.third}</div>
+										</>
+									) : (
+										""
+									)}
+								</motion.div>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>
