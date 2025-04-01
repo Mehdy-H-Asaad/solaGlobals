@@ -41,14 +41,14 @@ export const TrackVehicle = () => {
 	} = useEstimateCost();
 	const { source_id, country, setFilters } = useFiltersStore();
 
-	const { sources } = useGetSources();
+	const { sources, isLoadingSources } = useGetSources();
 	const { shippingLines } = useGetShippingLines();
 	const { countries } = useGetCountries();
 
 	const formattedSources = [
 		...new Map(
 			sources?.map(source => [
-				source.state,
+				source.id,
 				{
 					label: `${source.state} - ${source.city} ${source.zipcode}`,
 					value: source.id,
@@ -219,6 +219,7 @@ export const TrackVehicle = () => {
 															setFilters({ source_id: Number(option?.value) });
 														}}
 														isSearchable={true}
+														isLoading={isLoadingSources}
 														name="Source"
 														options={formattedSources}
 													/>
