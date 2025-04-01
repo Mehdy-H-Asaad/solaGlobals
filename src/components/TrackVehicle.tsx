@@ -50,12 +50,29 @@ export const TrackVehicle = () => {
 			sources?.map(source => [
 				source.state,
 				{
-					label: `${source.state} - ${source.city}`,
+					label: `${source.state} - ${source.city} ${source.zipcode}`,
 					value: source.id,
 				},
 			])
 		).values(),
 	];
+
+	const formattedCountries = [
+		...new Map(
+			countries?.map(country => [
+				country.country,
+				{
+					label: country.country,
+					value: country.country,
+				},
+			])
+		).values(),
+	];
+
+	// const formattedCountries = countries?.map(country => ({
+	// 	label: country.country,
+	// 	value: country.country,
+	// }));
 
 	const { destinationsByOrderCost, isLoadingDestinationsByOrderCost } =
 		useGetDestinationsOrderCost({
@@ -94,11 +111,6 @@ export const TrackVehicle = () => {
 			label: t("hero.estimateCost.quadruple"),
 		},
 	];
-
-	const formattedCountries = countries?.map(country => ({
-		label: country.country,
-		value: country.country,
-	}));
 
 	const formattedPorts = ports?.map(country => ({
 		label: country.port,
